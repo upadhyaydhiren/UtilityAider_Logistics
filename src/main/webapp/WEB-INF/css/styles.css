@@ -1,0 +1,179 @@
+/* Stylesheet */
+
+
+/* Imports */
+
+/* Selections */
+
+::selection {
+ 	color: #fff;
+ 	text-shadow: none;
+ 	background: #444;
+}
+
+::-moz-selection {
+ 	color: #fff;
+ 	text-shadow: none;
+ 	background: #444;
+}
+
+/* Basics */
+
+html, body {
+	width: 100%;
+	height: 100%;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	color: #444;
+	
+}
+#module-id3{
+	    position: absolute;
+    left: 63%;
+    float: right;
+    background-color: rgba(255,255,153,0.9);
+    border: 2px solid;
+    margin: 1% 0% 0%;
+    width: 460px;
+}
+#main{
+width: 100%;
+
+}
+.header{
+margin-top: -8%;
+text-align: center;
+}
+
+
+#content{
+    float: left;
+    margin-top: 15%;
+    background: rgba(0,0,0,0.1);
+}
+#content h2{
+margin-top: -4%;
+}
+.content{
+margin: 0% 0% -4% 11%;
+}
+
+#header {
+    padding-bottom: 5px;
+    box-shadow: 0px 1px 4px #CCC;
+    z-index: 200;
+    background: #F4F4F4 none repeat scroll 0% 0%;
+    border-bottom: 1px solid #CDCDCD;
+    position: absolute;
+    top: 0px;
+    width: 120%;
+}
+#header .container .login {
+    margin-right: 16%;
+    float: right;
+}
+.logo{
+position: absolute;
+left: 6%;
+}
+#images{
+	height: 100%;
+	width: 100%;
+	visibility:hidden;
+ 	}
+	.truckleft{
+	position: absolute;
+	top:71%;
+	left:-5%;
+	animation-name: moveright;
+	animation-duration:10s;
+	animation-iteration-count:infinite;
+	
+	animation-fill-mode:forwards;
+	animation-timing-function:linear;
+	}
+.truckright{
+	position: absolute;
+	top:76%;
+	right:-5%;
+	animation-name: moveleft;
+	animation-duration:10s;
+	animation-iteration-count:infinite;
+	
+	animation-fill-mode:forwards;
+	animation-timing-function:linear;
+	}
+.n1{
+	animation-delay:0s;
+	z-index:2;
+}
+.n2{
+	animation-delay:2s;
+	z-index:3;
+
+}
+.n3{
+	animation-delay:5s;
+	z-index:4;
+
+}
+.n4{
+	animation-delay:6s;
+	z-index:5;
+
+}
+.n5{
+	animation-delay:8s;
+	z-index:6;
+
+}
+.n6{
+	animation-delay:9s;
+	z-index:7;
+}
+.n7{
+	animation-delay:1s;
+	z-index:8;
+}
+.n8{
+	animation-delay:3s;
+	z-index:9;
+}
+.n9{
+	animation-delay:6s;
+	z-index:10;
+}
+.n10{
+	visibility:hidden;
+	animation:none;
+}
+.n11{
+	animation:none;
+	visibility:hidden;
+}
+.n12{
+	animation:none;
+	visibility:hidden;
+}
+.new-ghome .jointoday input{
+	font-weight:normal;
+}
+
+.os-win input{
+	font-family:helvetica;
+}
+ @keyframes moveleft{
+ 
+	visibility:visible;
+ 0%{transform:translate(0px);}
+ 0.1%{visibility:visible;}
+ 100%{transform:translate(-1350px);}
+}
+@keyframes moveright{
+
+	
+ 0%{transform:translate(0px);}
+ 0.1%{visibility:visible;}
+ 100%{transform:translate(1350px);}
+}
+
+
