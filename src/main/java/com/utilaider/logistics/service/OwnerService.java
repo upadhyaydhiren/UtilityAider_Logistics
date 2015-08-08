@@ -10,8 +10,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author SARJIT
- * Edited by @author DHIREN
+ * @author SARJIT Edited by @author DHIREN
  */
 public interface OwnerService {
 
@@ -24,4 +23,6 @@ public interface OwnerService {
     public void updateOwner(Owner ownerObj) throws Exception;
 
     public void deleteOwner(Owner ownerObj) throws Exception;
+
+    public Owner getOwnerByUsername(String username) throws Exception;
 }

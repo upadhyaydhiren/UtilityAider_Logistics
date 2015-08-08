@@ -10,12 +10,14 @@ import com.utilaider.logistics.domain.Vehicle;
 import java.util.LinkedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author SARJIT
  */
 @Service
+@Transactional
 public class VehicleServiceImpl implements VehicleDao{
 
     @Autowired

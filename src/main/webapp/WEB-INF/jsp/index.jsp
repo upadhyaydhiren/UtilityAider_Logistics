@@ -13,10 +13,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form:form action="save" modelAttribute="Owner" method="post">
-            <form:input path="email" type="email" value="${aemail}" />
-            <form:password path="password" />
-            <form:button type="submit" value="Login" />
-        </form:form>
+        <form action="j_spring_security_logout" method="post">
+            <c:out value="${owner.firstName}" />
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            <input type="submit" value="Logout" />
+        </form>
     </body>
 </html>

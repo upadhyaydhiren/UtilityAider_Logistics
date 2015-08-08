@@ -5,17 +5,19 @@
  */
 package com.utilaider.logistics.utility;
 
+import javax.servlet.Filter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
  *
  * @author Dhiren
  */
-public class SpringWebIntializer extends AbstractAnnotationConfigDispatcherServletInitializer{
+public class SpringWebIntializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{AppConfig.class};
+        return new Class[]{AppConfig.class, SecurityConfig.class};
     }
 
     @Override
@@ -27,5 +29,10 @@ public class SpringWebIntializer extends AbstractAnnotationConfigDispatcherServl
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-    
+
+    @Override
+    protected Filter[] getServletFilters() {
+        return new Filter[]{new DelegatingFilterProxy("springSecurityFilterChain")};
+    }
+
 }

@@ -10,12 +10,14 @@ import com.utilaider.logistics.domain.Owner;
 import java.util.LinkedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author SARJIT
  */
 @Service
+@Transactional
 public class OwnerServiceImpl implements OwnerService {
 
     @Autowired
@@ -23,12 +25,12 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public LinkedList<Owner> getAllOwner() throws Exception {
-       return ownerDao.getAllOwner();
+        return ownerDao.getAllOwner();
     }
 
     @Override
     public boolean insertOwner(Owner ownerObj) throws Exception {
-       return ownerDao.insertOwner(ownerObj);
+        return ownerDao.insertOwner(ownerObj);
     }
 
     @Override
@@ -44,5 +46,10 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public Owner getOwner(Long ownerId) throws Exception {
         return ownerDao.getOwner(ownerId);
+    }
+
+    @Override
+    public Owner getOwnerByUsername(String username) throws Exception {
+        return ownerDao.getUserDetailsByUsername(username);
     }
 }
