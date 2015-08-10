@@ -21,7 +21,6 @@
                                         <label for="session_key-login">Email address</label>
                                         <div class="fieldgroup">
                                             <form:input type="text" path="email" id="email" autofocus="true" tabindex="1" size="27" />
-                                            <span class="error" id="session_key-login-error"></span>
                                         </div>
                                     </li>
                                     <li>
@@ -29,8 +28,8 @@
                                         <a href="" class="forgot-pwd" tabindex="4">Forgot your password?</a>
                                         <div class="fieldgroup">
                                             <form:password path="password" id="password" tabindex="2" size="27" />
-                                            <span class="error" id="session_password-login-error"></span>
                                         </div>
+                                        <span class="error" id="login-error">${loginMessage}</span>
                                     </li>
                                     <li class="button">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -86,7 +85,7 @@
                                                 </div>
                                             </li>
                                             <li>
-                                                <span class="error" id="signup-error">${message}</span>
+                                                <span class="error" id="signup-error">${registrationMessage}</span>
                                             </li>
                                         </ul>
                                         <input type="hidden" name="trk" value="guest_home_login"/>

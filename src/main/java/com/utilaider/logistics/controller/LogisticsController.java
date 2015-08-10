@@ -47,7 +47,7 @@ public class LogisticsController {
             message = "Logged out successfully";
         }
         model.addAttribute("owner", owner);
-        model.addAttribute("message", message);
+        model.addAttribute("loginMessage", message);
         return new ModelAndView("Login", model);
     }
 
@@ -58,14 +58,14 @@ public class LogisticsController {
             owner.setUserRole("owner");
             owner.setOwnerType("self");
             if (ownerService.insertOwner(owner)) {
-                model.addAttribute("message", "You have registered successfully.");
+                model.addAttribute("registrationMessage", "You have registered successfully.");
             } else {
-                model.addAttribute("message", "Registration failed");
+                model.addAttribute("registrationMessage", "Registration failed");
             }
             model.addAttribute("owner", new Owner());
         } catch (Exception ex) {
             ex.printStackTrace();
-            model.addAttribute("message", "Not Successful Registration");
+            model.addAttribute("registrationMessage", "Not Successful Registration");
         }
         return new ModelAndView("Login", model);
     }
