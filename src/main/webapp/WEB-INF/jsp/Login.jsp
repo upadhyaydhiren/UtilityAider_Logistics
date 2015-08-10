@@ -10,9 +10,8 @@
     </head>
     <body dir="ltr" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home">
         <div>          
-            <div id="header" style="width:100%; background-color: rgba(23, 131, 243, 0.9);">
+            <div id="header">
                 <div class="container">
-                    <h1>${message}</h1>
                     <div class="login">
                         <form:form action="j_spring_security_check" method="POST" name="login" id="login" modelAttribute="owner">
                             <fieldset style="margin-right: -31%; float: right;">
@@ -21,32 +20,30 @@
                                     <li>
                                         <label for="session_key-login">Email address</label>
                                         <div class="fieldgroup">
-                                            <span class="error" id="session_key-login-error"></span>
                                             <form:input type="text" path="email" id="email" autofocus="true" tabindex="1" size="27" />
+                                            <span class="error" id="session_key-login-error"></span>
                                         </div>
                                     </li>
                                     <li>
                                         <label for="session_password-login">Password</label>
                                         <a href="" class="forgot-pwd" tabindex="4">Forgot your password?</a>
                                         <div class="fieldgroup">
-                                            <span class="error" id="session_password-login-error"></span>
                                             <form:password path="password" id="password" tabindex="2" size="27" />
+                                            <span class="error" id="session_password-login-error"></span>
                                         </div>
                                     </li>
                                     <li class="button">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                        <form:button type="submit" name="signin" value="Sign In" id="signin" tabindex="3" class="btn-secondary" />
-                                    </li>
-                                </ul>
-                            </fieldset>
+                                        <form:button type="submit" name="signin" id="signin" tabindex="3" class="btn-secondary" >Sign In</form:button>
+                                        </li>
+                                    </ul>
+                                </fieldset>
                         </form:form>
                     </div>
                 </div>
             </div>
             <div id="main-wrapper">
                 <div id="main">
-                    <div id="global-error">
-                    </div>
                     <section>
                         <div class="leo-module mod-feat jointoday" id="module-id3">
                             <div class="header"><h2>Please Sign Up &ndash; it&rsquo;s free.</h2>
@@ -54,7 +51,6 @@
                                     Registration takes less than few minutes.
                                 </p></div>
                             <div class="content">
-
                                 <form:form action="registration" method="POST" name="coldRegistrationForm" novalidate="novalidate" class="feature" data-jsenabled="check" id="guest-home-reg-form" modelAttribute="owner">
                                     <input type="hidden" name="isJsEnabled" value="false"/>
                                     <fieldset>
@@ -79,7 +75,7 @@
                                                 <span class="error" id="email-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
                                                     <form:input type="email" path="email" value="" id="email-coldRegistrationForm" type="email" autocomplete="on" size="55" maxlength="128" tabindex="7" />
-                                                    
+
                                                 </div>
                                             </li>
                                             <li id="password">
@@ -88,6 +84,9 @@
                                                 <div class="fieldgroup">
                                                     <form:password path="password" value="" id="password-coldRegistrationForm" tabindex="8" />
                                                 </div>
+                                            </li>
+                                            <li>
+                                                <span class="error" id="signup-error">${message}</span>
                                             </li>
                                         </ul>
                                         <input type="hidden" name="trk" value="guest_home_login"/>
@@ -101,8 +100,8 @@
                                     </fieldset>
                                     <div class="progress-indicator"></div>
                                 </form:form>
-                    </section>
-                </div>
-            </div>
-    </body>
-</html>
+                                </section>
+                            </div>
+                        </div>
+                        </body>
+                        </html>

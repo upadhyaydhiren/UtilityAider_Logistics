@@ -14,7 +14,6 @@ body {
 }
 .new-ghome #email-address, .new-ghome #password {
     margin-top: 0px;
-    padding-top: 25px;
 }
 ::selection {
  	color: #fff;
@@ -65,7 +64,7 @@ text-align: center;
 margin-top: -4%;
 }
 .content{
-margin: 0% 0% -4% 11%;
+    padding: 10px;
 }
 
 #header {
@@ -76,7 +75,8 @@ margin: 0% 0% -4% 11%;
     border-bottom: 1px solid #CDCDCD;
     position: absolute;
     top: 0px;
-    width: 120%;
+    width: 100%;
+    background-color: rgba(23, 131, 243, 0.9);
 }
 #header .container .login {
     margin-right: 12%;
