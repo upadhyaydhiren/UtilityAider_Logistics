@@ -37,6 +37,7 @@ html, body {
 	
 }
 #module-id3{
+    top: 100px;
     position: absolute;
     left: 63.2%;
     float: right;

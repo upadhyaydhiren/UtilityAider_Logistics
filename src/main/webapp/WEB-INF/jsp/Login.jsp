@@ -18,23 +18,21 @@
                                 <legend>Sign In</legend>
                                 <ul>
                                     <li>
-                                        <label for="session_key-login">Email address</label>
                                         <div class="fieldgroup">
-                                            <form:input type="text" path="email" id="email" autofocus="true" tabindex="1" size="27" />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="session_password-login">Password</label>
-                                        <a href="" class="forgot-pwd" tabindex="4">Forgot your password?</a>
-                                        <div class="fieldgroup">
-                                            <form:password path="password" id="password" tabindex="2" size="27" />
+                                            <form:input type="text" path="email" id="email" autofocus="true" tabindex="1" size="27" placeholder="Email address/Mobile no"/>
                                         </div>
                                         <span class="error" id="login-error">${loginMessage}</span>
                                     </li>
-                                    <li class="button">
+                                    <li>                                            
+                                        <div class="fieldgroup">
+                                            <form:password path="password" id="password" tabindex="2" size="27" placeholder="Password"/>
+                                        </div>
+                                        <a href="" class="forgot-pwd" tabindex="4">Forgot your password?</a>
+                                    </li>
+                                    <li >
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                        <form:button type="submit" name="signin" id="signin" tabindex="3" class="btn-secondary" >Sign In</form:button>
-                                        </li>
+                                        <form:button type="submit" name="signin" id="signin" tabindex="3" class="btn-action" >Sign In</form:button>
+                                        </li>                                       
                                     </ul>
                                 </fieldset>
                         </form:form>
@@ -56,39 +54,33 @@
                                         <legend>Sign Up</legend>
                                         <ul>
                                             <li id="first-name">
-                                                <label for="firstName-coldRegistrationForm">First name</label>
                                                 <span class="error" id="firstName-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input type="text" path="firstName" value="" id="firstName-coldRegistrationForm" autocomplete="on" size="55" maxlength="20" tabindex="5" />
+                                                    <form:input type="text" path="firstName" value="" id="firstName-coldRegistrationForm" autocomplete="on" size="55" maxlength="20" tabindex="5" placeholder="First name"/>
                                                 </div>
                                             </li>
                                             <li id="last-name">
-                                                <label for="lastName-coldRegistrationForm">Last name</label>
                                                 <span class="error" id="lastName-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input type="text" path="lastName" value="" id="lastName-coldRegistrationForm" autocomplete="on" size="55" maxlength="40" tabindex="6" />
+                                                    <form:input type="text" path="lastName" value="" id="lastName-coldRegistrationForm" autocomplete="on" size="55" maxlength="40" tabindex="6" placeholder="Last name"/>
                                                 </div>
                                             </li>
                                             <li id="email-address">
-                                                <label for="email-coldRegistrationForm">Email address</label>
                                                 <span class="error" id="email-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input type="email" path="email" value="" id="email-coldRegistrationForm" type="email" autocomplete="on" size="55" maxlength="128" tabindex="7" />
-
+                                                    <form:input type="email" path="email" value="" id="email-coldRegistrationForm" type="email" autocomplete="on" size="55" maxlength="128" tabindex="7" placeholder="Email address/Mobile no"/>
                                                 </div>
                                             </li>
                                             <li id="password">
-                                                <label for="password-coldRegistrationForm">Password (6 or more characters)</label>
                                                 <span class="error" id="password-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:password path="password" value="" id="password-coldRegistrationForm" tabindex="8" />
+                                                    <form:password path="password" value="" id="password-coldRegistrationForm" tabindex="8" placeholder="Password (6 or more characters)"/>
                                                 </div>
                                             </li>
                                             <li>
                                                 <span class="error" id="signup-error">${registrationMessage}</span>
                                             </li>
                                         </ul>
-                                        <input type="hidden" name="trk" value="guest_home_login"/>
                                         <div class="form-bottom-row">
                                             <p class="policy">
                                                 By clicking Join Now, you agree to Utilader's <a href="">User Agreement</a>.
