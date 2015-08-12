@@ -71,11 +71,11 @@
                                                     <form:input path="lastName" value="" id="lastName-coldRegistrationForm" autocomplete="on" size="55" maxlength="40" tabindex="6" placeholder="Last name"/>
                                                 </div>
                                             </li>
-                                            <li id="email-address">
-                                                <label for="email-coldRegistrationForm">Email address</label>
-                                                <span class="error" id="email-coldRegistrationForm-error"></span>
+                                            <li id="mobile">
+                                                <label for="email-coldRegistrationForm">Mobile no</label>
+                                                <span class="error" id="mobile-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input type="email" path="email" value="" id="email-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" placeholder="Email address/Mobile no" onblur="checkExistEmail();"/>
+                                                    <form:input path="mobile" value="" id="mobile-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" placeholder="Mobile no" onblur="checkMobileNoExists();"/>
                                                 </div>
                                             </li>
                                             <li id="password">
@@ -103,9 +103,9 @@
                             </div>
                         </div>
                         <script type="text/javascript">
-                            function checkExistEmail()
+                            function checkMobileNoExists()
                             {
-                                var url = "http://locolhost:8080<c:url value="/existEmail/" />" + document.getElementById('email-coldRegistrationForm').value;
+                                var url = "http://locolhost:8080<c:url value="/mobleNoExists/" />" + document.getElementById('mobile-coldRegistrationForm').value;
                                 console.log(url);
                                 $.ajax({
                                     mimeType: "application/json",
@@ -113,14 +113,12 @@
                                     url: url,
                                     success: function (data) {
                                         if (data===true) {
-                                            document.getElementById('email-coldRegistrationForm').value="";
-                                            alert("Your Email is already registered");
+                                            document.getElementById('mobile-coldRegistrationForm').value="";
+                                            alert("Your Mobile no is already registered");
                                         }
                                     },
                                     error: function (event) {
-
                                         console.log(event);
-
                                     }
                                 });
                             }
@@ -131,4 +129,4 @@
                             }
                         </style>
                         </body>
-                        </html>
+ </html>

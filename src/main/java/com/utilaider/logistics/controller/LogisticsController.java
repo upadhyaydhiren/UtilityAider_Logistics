@@ -116,11 +116,11 @@ public class LogisticsController {
         return new ModelAndView("index", map);
     }
 
-    @RequestMapping(value = "existEmail/{email}")
+    @RequestMapping(value = "mobleNoExists/{mobileNo}")
     public @ResponseBody
-    Boolean isExistingEmail(@PathVariable("email") String email) {
+    Boolean isMoblenoExists(@PathVariable("mobileNo") String mobileNo) {
         try {
-            return ownerService.getOwnerByUsername(email) == null;
+            return ownerService.getOwnerByUsername(mobileNo) == null;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
