@@ -58,32 +58,32 @@
                                         <legend>Sign Up</legend>
                                         <ul>
                                             <li id="first-name">
+                                                <label for="firstName-coldRegistrationForm">First name</label>
                                                 <span class="error" id="firstName-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
                                                     <form:input path="firstName" value="" id="firstName-coldRegistrationForm" autocomplete="on" size="55" maxlength="20" tabindex="5" placeholder="First name"/>
                                                 </div>
-                                                <form:errors path="firstName" cssClass="error" />
                                             </li>
                                             <li id="last-name">
+                                                <label for="lastName-coldRegistrationForm">Last name</label>
                                                 <span class="error" id="lastName-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
                                                     <form:input path="lastName" value="" id="lastName-coldRegistrationForm" autocomplete="on" size="55" maxlength="40" tabindex="6" placeholder="Last name"/>
                                                 </div>
-                                                <form:errors path="lastName" cssClass="error" />
                                             </li>
                                             <li id="email-address">
+                                                <label for="email-coldRegistrationForm">Email address</label>
                                                 <span class="error" id="email-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
                                                     <form:input type="email" path="email" value="" id="email-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" placeholder="Email address/Mobile no" onblur="checkExistEmail();"/>
                                                 </div>
-                                                <form:errors path="email" cssClass="error" />
                                             </li>
                                             <li id="password">
+                                                <label for="password-coldRegistrationForm">Password (6 or more characters)</label>
                                                 <span class="error" id="password-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:password path="password" value="" id="password-coldRegistrationForm" tabindex="8" placeholder="Password (6 or more characters)" min="6" />
+                                                    <form:password path="password" value="" id="password-coldRegistrationForm" tabindex="8" placeholder="Password (6 or more characters)"/>
                                                 </div>
-                                                <form:errors path="password" cssClass="error" />
                                             </li>
                                             <li>
                                                 <span class="error" id="signup-error">${registrationMessage}</span>
@@ -91,10 +91,10 @@
                                         </ul>
                                         <div class="form-bottom-row">
                                             <p class="policy">
-                                                By clicking Join Now, you agree to Utilader's <a href="#">User Agreement</a>.
+                                                By clicking Join Now, you agree to Utilader's <a href="">User Agreement</a>.
                                             </p>
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                            <input type="submit" name="" value="Join now" id="btn-submit" class="btn-action" tabindex="9" />
+                                            <input type="submit" name="" value="Join now" id="btn-submit" class="btn-action" tabindex="9">
                                         </div>
                                     </fieldset>
                                     <div class="progress-indicator"></div>
