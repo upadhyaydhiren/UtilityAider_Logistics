@@ -163,6 +163,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.35</version>
         </dependency>
+        <!--Java Mail-->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+        <!--End java mail-->
         <!--Common file upload -->
         <dependency>
             <groupId>commons-io</groupId>
