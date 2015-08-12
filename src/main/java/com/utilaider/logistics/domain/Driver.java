@@ -12,34 +12,21 @@
 package com.utilaider.logistics.domain;
 
 import java.util.Date;
-import java.util.List;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "driver")
-@AttributeOverrides(
-        {
-            @AttributeOverride(name = "id", column = @Column(name = "driver_id"))
-        }
-)
+@PrimaryKeyJoinColumn(name = "user_id")
 public class Driver extends User {
 
     @Temporal(TemporalType.DATE)
     private Date dob;
     private String profilePic;
     private String licenseNo;
-    @ElementCollection
-    @CollectionTable(name = "owner_address", joinColumns = @JoinColumn(name = "driver_id"))
-    private List<Address> addresses;
 
     public Date getDob() {
         return dob;
@@ -63,13 +50,5 @@ public class Driver extends User {
 
     public void setLicenseNo(String licenseNo) {
         this.licenseNo = licenseNo;
-    }
-
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
     }
 }

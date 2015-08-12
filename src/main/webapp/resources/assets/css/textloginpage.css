@@ -515,7 +515,7 @@ label {
 }
 .new-ghome .jointoday input.disabled,
 .new-ghome .jointoday input[disabled] {
-    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50);
+    filter: progid DXImageTransform.Microsoft.Alpha(Opacity=50);
     opacity: 0.5;
     cursor: not-allowed
 }
@@ -543,7 +543,7 @@ label {
 }
 .new-ghome .jointoday .error input.disabled,
 .new-ghome .jointoday .error input[disabled] {
-    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50);
+    filter: progid DXImageTransform.Microsoft.Alpha(Opacity=50);
     opacity: 0.5;
     cursor: not-allowed
 }
@@ -577,7 +577,7 @@ label {
     color: #333;
     background-color: #f6e312;
     border-color: #e9ac1a;
-    filter: progid: DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF6E312', endColorstr='#FFF9C80D');
+    filter: progid DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF6E312', endColorstr='#FFF9C80D');
     background-image: -webkit-linear-gradient(top, #f6e312 0%, #f9c80d 100%);
     background-image: -moz-linear-gradient(top, #f6e312 0%, #f9c80d 100%);
     background-image: -o-linear-gradient(top, #f6e312 0%, #f9c80d 100%);
@@ -597,7 +597,7 @@ label {
 .new-ghome .jointoday .btn-action.focus,
 .new-ghome .jointoday .btn-action:focus {
     background-color: #eddb11;
-    filter: progid: DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFEDDB11', endColorstr='#FFF2B21B');
+    filter: progid DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFEDDB11', endColorstr='#FFF2B21B');
     background-image: -webkit-linear-gradient(top, #eddb11 0%, #efcf14 35%, #f1bf18 65%, #f2b21b 100%);
     background-image: -moz-linear-gradient(top, #eddb11 0%, #efcf14 35%, #f1bf18 65%, #f2b21b 100%);
     background-image: -o-linear-gradient(top, #eddb11 0%, #efcf14 35%, #f1bf18 65%, #f2b21b 100%);
@@ -615,7 +615,7 @@ label {
 .new-ghome .jointoday .btn-action.disabled,
 .new-ghome .jointoday .btn-action[disabled] {
     background-color: #eddb11;
-    filter: progid: DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFEDDB11', endColorstr='#FFF2B21B');
+    filter: progid DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFEDDB11', endColorstr='#FFF2B21B');
     background-image: -webkit-linear-gradient(top, #eddb11 0%, #efcf14 35%, #f1bf18 65%, #f2b21b 100%);
     background-image: -moz-linear-gradient(top, #eddb11 0%, #efcf14 35%, #f1bf18 65%, #f2b21b 100%);
     background-image: -o-linear-gradient(top, #eddb11 0%, #efcf14 35%, #f1bf18 65%, #f2b21b 100%);
@@ -624,7 +624,7 @@ label {
     -moz-box-shadow: none;
     box-shadow: none;
     cursor: default;
-    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=60);
+    filter: progid DXImageTransform.Microsoft.Alpha(Opacity=60);
     opacity: 0.6
 }
 .new-ghome .carousel-controls {

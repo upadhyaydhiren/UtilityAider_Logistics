@@ -6,6 +6,7 @@
 package com.utilaider.logistics.dao;
 
 import com.utilaider.logistics.domain.Owner;
+import com.utilaider.logistics.domain.Role;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -81,8 +82,10 @@ public class OwnerDaoImpl implements OwnerDao, UserDetailsService {
             if (owner == null) {
                 return null;
             }
-            List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-            authorities.add(new SimpleGrantedAuthority(owner.getUserRole()));
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            for (Role role : owner.getUserRoles()) {
+                authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+            }
             userDetails = new User(owner.getEmail(), owner.getPassword(), true, true, true, true, authorities);
         } catch (Exception ex) {
             Logger.getLogger(OwnerDaoImpl.class.getName()).log(Level.SEVERE, null, ex);

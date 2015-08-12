@@ -77,6 +77,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         dataSource.setJdbcUrl(jdbcUrl);
         dataSource.setUser(dbUser);
         dataSource.setPassword(dbPassword);
+        dataSource.setIdleConnectionTestPeriod(3000);
         return dataSource;
     }
 
