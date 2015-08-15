@@ -93,7 +93,7 @@ public class LogisticsController {
             model.addAttribute("owner", new Owner());
         } catch (Exception ex) {
             ex.printStackTrace();
-            model.addAttribute("registrationMessage", "Not Successful Registration");
+            model.addAttribute("registrationMessage", "Registration failed");
         }
         return new ModelAndView("Login", model);
     }
@@ -116,11 +116,11 @@ public class LogisticsController {
         return new ModelAndView("index", map);
     }
 
-    @RequestMapping(value = "existEmail/{email}")
+    @RequestMapping(value = "usernameExists/{username}")
     public @ResponseBody
-    Boolean isExistingEmail(@PathVariable("email") String email) {
+    Boolean isExistingEmail(@PathVariable("username") String username) {
         try {
-            return ownerService.getOwnerByUsername(email) == null;
+            return ownerService.getOwnerByUsername(username) == null;
         } catch (Exception e) {
             e.printStackTrace();
             return false;

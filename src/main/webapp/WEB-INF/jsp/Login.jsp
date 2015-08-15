@@ -72,10 +72,10 @@
                                                 </div>
                                             </li>
                                             <li id="email-address">
-                                                <label for="email-coldRegistrationForm">Email address</label>
-                                                <span class="error" id="email-coldRegistrationForm-error"></span>
+                                                <label for="email-coldRegistrationForm">Mobile no</label>
+                                                <span class="error" id="mobile-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input type="email" path="email" value="" id="email-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" placeholder="Email address/Mobile no" onblur="checkExistEmail();"/>
+                                                    <form:input path="mobile" value="" id="mobile-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" placeholder="Mobile no" onblur="usernameExists(this);"/>
                                                 </div>
                                             </li>
                                             <li id="password">
@@ -103,9 +103,9 @@
                             </div>
                         </div>
                         <script type="text/javascript">
-                            function checkExistEmail()
+                            function usernameExists(username)
                             {
-                                var url = "http://locolhost:8080<c:url value="/existEmail/" />" + document.getElementById('email-coldRegistrationForm').value;
+                                var url = "http://locolhost:8080<c:url value="/usernameExists/" />" + username.value;
                                 console.log(url);
                                 $.ajax({
                                     mimeType: "application/json",
@@ -113,8 +113,8 @@
                                     url: url,
                                     success: function (data) {
                                         if (data===true) {
-                                            document.getElementById('email-coldRegistrationForm').value="";
-                                            alert("Your Email is already registered");
+                                            username.value = "" ;
+                                            alert("Your Mobile no is already registered");
                                         }
                                     },
                                     error: function (event) {
