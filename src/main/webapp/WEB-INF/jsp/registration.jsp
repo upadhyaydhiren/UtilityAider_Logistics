@@ -1,49 +1,19 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- Mirrored from www.linkedin.com/nhome/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2015 14:48:22 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
     <title>Registration Page</title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
-
-    <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/assets/css/animate.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />    
     <link href="${pageContext.request.contextPath}/resources/assets/css/style.min.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/assets/css/style-responsive.min.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/assets/css/theme/default.css" rel="stylesheet" id="theme" />
-
-
-    <!-- ================== END BASE CSS STYLE ================== -->
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/progressbarhorizontal.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text-button.css">
-
-
-
-
-    <!-- ================== BEGIN BASE JS ================== -->
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text-button.css">    
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/style_01.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/styles.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <!-- Bootstrap Core CSS -->
-
 </head>
 
 
 <body style="background-color:#e6e6e6" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home">
-    <nav class="navbar navbar-default" style="margin-bottom:5px" >
+    <nav class="navbar navbar-default header">
         <div class="container-fluid" >
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -56,37 +26,18 @@
                 <a class="navbar-brand" style="width:400px" href="#">Utilader</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div class="nav navbar-nav" >
-
                     <li><a href="Home.html" style="left:0px"><font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Home</font></a><li>
                     <li><a href="Profile.html" style="left:40px"><font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Profile</font></a></li>
                     <li><a href="ViewPost.html" style="left:60px"><font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">View/Post</font></a></li>
-
                     <li><a href="Tracker.html" style="left:100px"><font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Track</font></a></li>
-
                 </div>
-
-
-                <form class="navbar-form navbar-right" role="search" style="left:250px">
-                    <div class="form-group" >
-                        <div class="leo-module mod-feat jointoday" >
-
-                            <input type="text" name="firstName" value=""  id="navbarSearchBox"  style="width:150px"autocomplete="on" size="55" maxlength="20" tabindex="">
-
-                        </div>
-                    </div>
-
-                    <button type="submit"  id="navbarSearchButton"class="btn btn-default"style="left:250px" >Submit</button>
-                </form>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </div>
     </nav>
 
-
     <div class="container" style="background-color: rgba(255,255,153,0.9);width:50%;margin-top:5px">
-        <div class="col-md-12" align="center" style="background-color: rgba(255,255,153,0.9); margin-top:0%" ><font face="Open Sans"><h4>Registration</h4></font></div>
+        <div class="col-md-12" align="center" style="background-color: rgba(255,255,153,0.9);" ><font face="Open Sans"><h4>Registration</h4></font></div>
     </div>
     <div class="container" style="background-color:#ffffff;width:50%;margin-top:0%;">
         <div class="col-md-8 md-offset-7" style="background-color: #ffffff; margin-top:0.1%;margin-left:7%" >
@@ -159,7 +110,6 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-
                                             <input type="text" name="panNumber" value="" id="panNumber" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="5">
                                         </div>
                                     </div>
@@ -170,7 +120,6 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-
                                             <input type="text" name="companyName" value="" id="companyName" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="5">
                                         </div>
                                     </div>
@@ -254,12 +203,13 @@
                 </div>
             </div>
         </div></div>
+
+
     <footer class="footer" style="width:100%;margin:0px;height:100px">
         <div class="container" style="width:100%">
             <p class="text-muted">Place your FOOTER CONTENTS content here.</p>
         </div>
     </footer>
-
 </body>
 
 

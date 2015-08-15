@@ -550,7 +550,7 @@ label {
 .new-ghome .jointoday input,
 .new-ghome .jointoday .error input {
     height: auto;
-    width: 100%;
+    width: 93%;
 }
 .new-ghome .jointoday .btn-action {
     font-weight: bold;
@@ -695,8 +695,8 @@ label {
     position: absolute;
     top: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255);
-    height: 110px;
+    background-color: rgba(255,255,153,1.0);
+    height: 80px;
 }
 #header h1 {
     padding-top: 14px;
@@ -856,7 +856,7 @@ label {
     margin-top: 30px
 }
 .new-ghome .jointoday .btn-action {
-    width: 100%;
+    width: 96%;
     margin-top: 10px
 }
 .new-ghome #first-name, .new-ghome #last-name {
@@ -864,7 +864,7 @@ label {
     width: 49%;
 }
 .new-ghome #first-name input, .new-ghome #last-name input {
-    width: 100%;
+    width: 90%;
 }
 .new-ghome #email-address {
     clear: both

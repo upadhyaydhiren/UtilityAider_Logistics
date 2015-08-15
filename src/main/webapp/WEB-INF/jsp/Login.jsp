@@ -61,28 +61,28 @@
                                                 <label for="firstName-coldRegistrationForm">First name</label>
                                                 <span class="error" id="firstName-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input path="firstName" value="" id="firstName-coldRegistrationForm" autocomplete="on" size="55" maxlength="20" tabindex="5" placeholder="First name"/>
+                                                    <form:input path="firstName" value="" id="firstName-coldRegistrationForm" autocomplete="on" size="55" maxlength="20" tabindex="5"/>
                                                 </div>
                                             </li>
                                             <li id="last-name">
                                                 <label for="lastName-coldRegistrationForm">Last name</label>
                                                 <span class="error" id="lastName-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input path="lastName" value="" id="lastName-coldRegistrationForm" autocomplete="on" size="55" maxlength="40" tabindex="6" placeholder="Last name"/>
+                                                    <form:input path="lastName" value="" id="lastName-coldRegistrationForm" autocomplete="on" size="55" maxlength="40" tabindex="6"/>
                                                 </div>
                                             </li>
                                             <li id="email-address">
                                                 <label for="email-coldRegistrationForm">Mobile no</label>
                                                 <span class="error" id="mobile-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input path="mobile" value="" id="mobile-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" placeholder="Mobile no" onblur="usernameExists(this);"/>
+                                                    <form:input path="mobile" value="" id="mobile-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" onblur="usernameExists(this);"/>
                                                 </div>
                                             </li>
                                             <li id="password">
                                                 <label for="password-coldRegistrationForm">Password (6 or more characters)</label>
                                                 <span class="error" id="password-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:password path="password" value="" id="password-coldRegistrationForm" tabindex="8" placeholder="Password (6 or more characters)"/>
+                                                    <form:password path="password" value="" id="password-coldRegistrationForm" tabindex="8"/>
                                                 </div>
                                             </li>
                                             <li>
