@@ -8,7 +8,9 @@
     <link href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />    
     <link href="${pageContext.request.contextPath}/resources/assets/css/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text-button.css">    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/style_01.css">
+    
 </head>
 
 

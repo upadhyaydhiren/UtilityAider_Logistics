@@ -1,42 +1,16 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en">
-    <!--<![endif]-->
-
-    <!-- Mirrored from seantheme.com/color-admin-v1.6/admin/html/form_elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 16 May 2015 11:36:12 GMT -->
-    <head>
-        <meta charset="utf-8" />
-        <title>Eco Trucks | Profile Page</title>
-        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-        <meta content="" name="description" />
-        <meta content="" name="author" />
-
-        <!-- ================== BEGIN BASE CSS STYLE ================== -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-        <link href="${pageContext.request.contextPath}/resources/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-        <link href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="${pageContext.request.contextPath}/resources/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="${pageContext.request.contextPath}/resources/assets/css/animate.min.css" rel="stylesheet" />
-        <link href="${pageContext.request.contextPath}/resources/assets/css/style.min.css" rel="stylesheet" />
-        <link href="${pageContext.request.contextPath}/resources/assets/css/style-responsive.min.css" rel="stylesheet" />
-        <link href="${pageContext.request.contextPath}/resources/assets/css/theme/default.css" rel="stylesheet" id="theme" />
-        <!-- ================== END BASE CSS STYLE ================== -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text-button.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/progressbarhorizontal.css">
-        <!-- ================== BEGIN BASE JS ================== -->
-
-        <script src="js/examples.js"></script>
-        <!-- ================== END BASE JS ================== -->
-
-    </head>
- 
-
-
-
-    <body style="background-color:#E6E6E6"class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" >
+<head>
+    <meta charset="utf-8" />
+    <title>Eco Trucks | Profile Page</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />        
+    <link href="${pageContext.request.contextPath}/resources/assets/css/style.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text-button.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body style="background-color:#E6E6E6"class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" >
         <nav class="navbar navbar-default header" style="margin-bottom:5px;background-color:yellow;">
             <div class="container-fluid" >
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -51,12 +25,12 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="nav navbar-nav" >
-                         <li><a href="Home.html" style=";width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Home</font></a></li>
+                        <li><a href="Home.html" style=";width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Home</font></a></li>
                         <li style="left:30px"><a href="Profile.html" style=";width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Profile</font></a></li>
                         <li style="left:60px;width:100px"><a href="ViewPost.html" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">View/Post</font></a></li>
-		
+
                         <li style="left:90px;width:100px"><a href="Tracker.html" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Track</font></a></li>
-					 <li style="left:90px;width:100px"><a href="Account.html" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Account</font></a></li>                       
+                        <li style="left:90px;width:100px"><a href="Account.html" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Account</font></a></li>                       
                     </div>
                 </div>
             </div>
@@ -69,17 +43,17 @@
                     <div class="thumbnail" style="width:120px" id="pictureThumbnail">
                         <div class="caption">
 
-<input id="lefile" type="file" style="display:none;">
-<div class="input-append" style="height:40px">
-<input id="photoCover" class="input-large" style="width:90px;margin-top:0px" type="text">
-<a class="label label-danger" rel="tooltip" id="changeProfilePicture"onclick="$('input[id=lefile]').click();">Change</a>
-</div>
- 
-<script type="text/javascript">
-$('input[id=lefile]').change(function() {
-$('#photoCover').val($(this).val());
-});
-</script>
+                            <input id="lefile" type="file" style="display:none;">
+                            <div class="input-append" style="height:40px">
+                                <input id="photoCover" class="input-large" style="width:90px;margin-top:0px" type="text">
+                                <a class="label label-danger" rel="tooltip" id="changeProfilePicture"onclick="$('input[id=lefile]').click();">Change</a>
+                            </div>
+
+                            <script type="text/javascript">
+                                $('input[id=lefile]').change(function () {
+                                    $('#photoCover').val($(this).val());
+                                });
+                            </script>
                         </div>
                         <img src="${pageContext.request.contextPath}/resources/images/image1.png" id="profilePictureImage"alt="...">
                     </div></div>
@@ -92,10 +66,6 @@ $('#photoCover').val($(this).val());
                         <h5>Company</h5>
                         <h5>Address | Pincode</h5>
                         <h4>Mobile Number</h4>
-
-
-
-
                     </table>
                 </div>
             </div>
@@ -104,9 +74,6 @@ $('#photoCover').val($(this).val());
         <div class="container" style="background-color: rgba(255,255,153,0.9);width:50%;margin-top:0.5%">
             <div class="col-md-12" align="center" style="background-color: rgba(255,255,153,0.9); margin-top:0%" ><font face="Open Sans"><h4>Additional Information</h4></font></div>
         </div>
-
-
-
         <div class="container" style="background-color:white;width:50%;">
             <div class="row">
 
@@ -129,9 +96,6 @@ $('#photoCover').val($(this).val());
                             <td style="border-color:white"><h5><font style="font-weight:600">Employee :</font> 25</h5></td>
                             <td style="border-color:white"><h5><font style="font-weight:600">Trucks :</font> 50</h5></td>
                         </tr>
-
-
-
                     </table>
                 </div>
             </div>
@@ -339,7 +303,7 @@ $('#photoCover').val($(this).val());
 
                             <div class="panel-body">
                                 <form class="form-horizontal">
-								<div class="form-group">
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">Name of Owner</label>
                                         <div class="col-md-9">
                                             <input type="text" id="modalNo" name="nameOfOwner" class="form-control" style="width:60%"placeholder="Default input" />
@@ -366,17 +330,17 @@ $('#photoCover').val($(this).val());
                                     <div class="col-md-2 col-md-offset-8" style="background-color:white;left:25px;width:30%;padding-right:0%;margin-top:-34%">
                                         <div class="thumbnail" style="width:150px">
                                             <div class="caption">
-                                               <input id="lefilea" type="file" style="display:none;">
-<div class="input-append" style="height:40px">
-<input id="photoCovera" class="input-large" style="width:90px;margin-top:0px" type="text">
-<a class="label label-danger" rel="tooltip" id="truckImage"onclick="$('input[id=lefile]').click();">Change</a>
-</div>
- 
-<script type="text/javascript">
-$('input[id=lefilea]').change(function() {
-$('#photoCovera').val($(this).val());
-});
-</script></div>
+                                                <input id="lefilea" type="file" style="display:none;">
+                                                <div class="input-append" style="height:40px">
+                                                    <input id="photoCovera" class="input-large" style="width:90px;margin-top:0px" type="text">
+                                                    <a class="label label-danger" rel="tooltip" id="truckImage"onclick="$('input[id=lefile]').click();">Change</a>
+                                                </div>
+
+                                                <script type="text/javascript">
+                                                    $('input[id=lefilea]').change(function () {
+                                                        $('#photoCovera').val($(this).val());
+                                                    });
+                                                </script></div>
                                             <img src="${pageContext.request.contextPath}/resources/images/image1.png" alt="...">
                                         </div></div>
 
@@ -435,16 +399,16 @@ $('#photoCovera').val($(this).val());
                                             <input type="text" id="routeInfo" name="routeInfo" class="form-control"style="width:100%" placeholder="Default input" />
                                         </div>
                                     </div>
-									 <div class="form-group">
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">Road Tax Valid upto</label>
                                         <div class="col-md-9">
-                                           <input id="datepicker" name="date" style="width:100%;margin-top:2%" type="text">
+                                            <input id="datepicker" name="date" style="width:100%;margin-top:2%" type="text">
                                         </div>
                                     </div>
-									    <script>
-                    $(function() {
-                    $("#datepicker").datepicker();
-                    });  </script>
+                                    <script>
+                                        $(function () {
+                                            $("#datepicker").datepicker();
+                                        });</script>
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Tracking facility :</label>
                                         <div class="col-md-9">
@@ -521,17 +485,17 @@ $('#photoCovera').val($(this).val());
                                 <div class="col-md-2 col-md-offset-8" style="background-color:white;left:25px;width:30%;padding-right:0%;margin-top:-27%">
                                     <div class="thumbnail" style="width:150px">
                                         <div class="caption">
-                                      <input id="lefileb" type="file" style="display:none;">
-<div class="input-append" style="height:40px">
-<input id="photoCoverb" class="input-large" style="width:90px;margin-top:0px" type="text">
-<a class="label label-danger" rel="tooltip" id="image"onclick="$('input[id=lefile]').click();">Change</a>
-</div>
- 
-<script type="text/javascript">
-$('input[id=lefileb]').change(function() {
-$('#photoCoverb').val($(this).val());
-});
-</script>  </div>
+                                            <input id="lefileb" type="file" style="display:none;">
+                                            <div class="input-append" style="height:40px">
+                                                <input id="photoCoverb" class="input-large" style="width:90px;margin-top:0px" type="text">
+                                                <a class="label label-danger" rel="tooltip" id="image"onclick="$('input[id=lefile]').click();">Change</a>
+                                            </div>
+
+                                            <script type="text/javascript">
+                                                $('input[id=lefileb]').change(function () {
+                                                    $('#photoCoverb').val($(this).val());
+                                                });
+                                            </script>  </div>
                                         <img src="http://lorempixel.com/400/300/sports/1/" alt="...">
                                     </div></div>
 
@@ -555,14 +519,14 @@ $('#photoCoverb').val($(this).val());
                                     </div>
                                 </div>
 
-                            
-                        <div class="modal-footer">
-                            <div class="leo-module mod-feat jointoday" >
-                                <button href="javascript:;" id="modalDialogDriverCloseButton" type="submit" name="" value="Close" style="height:30px;width:80px;margin-top:0px"id="btn-submit" data-dismiss="modal"class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Close</font></button>
-                                <button type="submit" name="" id="modalDialogDriverSumbit" value="Submit" style="height:30px;width:80px;margin-top:0px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Sumbit</font></button>
-                            </div>
-                        </div>
-                                </form>
+
+                                <div class="modal-footer">
+                                    <div class="leo-module mod-feat jointoday" >
+                                        <button href="javascript:;" id="modalDialogDriverCloseButton" type="submit" name="" value="Close" style="height:30px;width:80px;margin-top:0px"id="btn-submit" data-dismiss="modal"class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Close</font></button>
+                                        <button type="submit" name="" id="modalDialogDriverSumbit" value="Submit" style="height:30px;width:80px;margin-top:0px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Sumbit</font></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -910,17 +874,17 @@ $('#photoCoverb').val($(this).val());
                     <div class="col-md-2 col-md-offset-8" style="background-color:white;left:25px;width:30%;padding-right:0%;margin-top:-35%">
                         <div class="thumbnail" style="width:150px">
                             <div class="caption">
-                          <input id="lefilec" type="file" style="display:none;">
-<div class="input-append" style="height:40px">
-<input id="photoCoverc" class="input-large" style="width:90px;margin-top:0px" type="text">
-<a class="label label-danger" rel="tooltip" id="changeGoodsPicture"onclick="$('input[id=lefile]').click();">Change</a>
-</div>
- 
-<script type="text/javascript">
-$('input[id=lefilec]').change(function() {
-$('#photoCoverc').val($(this).val());
-});
-</script>  </div>
+                                <input id="lefilec" type="file" style="display:none;">
+                                <div class="input-append" style="height:40px">
+                                    <input id="photoCoverc" class="input-large" style="width:90px;margin-top:0px" type="text">
+                                    <a class="label label-danger" rel="tooltip" id="changeGoodsPicture"onclick="$('input[id=lefile]').click();">Change</a>
+                                </div>
+
+                                <script type="text/javascript">
+                                    $('input[id=lefilec]').change(function () {
+                                        $('#photoCoverc').val($(this).val());
+                                    });
+                                </script>  </div>
                             <img src="${pageContext.request.contextPath}/resources/images/image4.png" alt="...">
                         </div></div>
                     <div class="form-group">
@@ -967,72 +931,11 @@ $('#photoCoverc').val($(this).val());
         </div>
     </div>
 </div>
-
-
 <footer class="footer" style="width:100%;margin:0px;height:100px">
     <div class="container" style="width:100%">
         <p class="text-muted">Place your FOOTER CONTENTS content here.</p>
     </div>
 </footer>
-
-
-
-
-
-
-
-
-
-
-
-<!-- ================== BEGIN BASE JS ================== -->
-<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
-<script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
-<script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!--[if lt IE 9]>
-        <script src="assets/crossbrowserjs/html5shiv.js"></script>
-        <script src="assets/crossbrowserjs/respond.min.js"></script>
-        <script src="assets/crossbrowserjs/excanvas.min.js"></script>
-<![endif]-->
-<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
-<!-- ================== END BASE JS ================== -->
-
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/plugins/gritter/js/jquery.gritter.js"></script>
-<script src="assets/js/ui-modal-notification.demo.min.js"></script>
-<script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-
-<script>
-    $(document).ready(function () {
-        App.init();
-        Notification.init();
-    });
-</script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '../../../../www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-</script>
-
-
 </body>
-
-
-
-<!-- Mirrored from seantheme.com/color-admin-v1.6/admin/html/form_elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 16 May 2015 11:36:12 GMT -->
 </html>
 
