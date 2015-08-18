@@ -52,8 +52,7 @@
                                     Registration takes less than few minutes.
                                 </p></div>
                             <div class="content">
-                                <form:form action="registration" method="POST" name="coldRegistrationForm" novalidate="novalidate" class="feature" data-jsenabled="check" id="guest-home-reg-form" modelAttribute="owner">
-                                    <input type="hidden" name="isJsEnabled" value="false"/>
+                                <form:form action="registration" method="POST" name="coldRegistrationForm" modelAttribute="owner">
                                     <fieldset>
                                         <legend>Sign Up</legend>
                                         <ul>
@@ -61,28 +60,28 @@
                                                 <label for="firstName-coldRegistrationForm">First name</label>
                                                 <span class="error" id="firstName-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input path="firstName" value="" id="firstName-coldRegistrationForm" autocomplete="on" size="55" maxlength="20" tabindex="5"/>
+                                                    <form:input path="firstName" value="" id="firstName-coldRegistrationForm" pattern="[A-Za-z]{2,50}" title="First Name is only alphabet accept" tabindex="5" required="required" />
                                                 </div>
                                             </li>
                                             <li id="last-name">
                                                 <label for="lastName-coldRegistrationForm">Last name</label>
                                                 <span class="error" id="lastName-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input path="lastName" value="" id="lastName-coldRegistrationForm" autocomplete="on" size="55" maxlength="40" tabindex="6"/>
+                                                    <form:input path="lastName" value="" id="lastName-coldRegistrationForm" pattern="[A-Za-z]{2,50}" title="Last Name is only alphabet accept" tabindex="6" required="required" />
                                                 </div>
                                             </li>
                                             <li id="email-address">
                                                 <label for="email-coldRegistrationForm">Mobile no</label>
                                                 <span class="error" id="mobile-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input path="mobile" value="" id="mobile-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" onblur="usernameExists(this);"/>
+                                                    <form:input path="mobile" value="" id="mobile-coldRegistrationForm" pattern="[7-9][0-9]{9}" title="Only Indian Mobile Number is allowed" tabindex="7" onblur="usernameExists(this);" required="required" />
                                                 </div>
                                             </li>
                                             <li id="password">
                                                 <label for="password-coldRegistrationForm">Password (6 or more characters)</label>
                                                 <span class="error" id="password-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:password path="password" value="" id="password-coldRegistrationForm" tabindex="8"/>
+                                                    <form:password path="password" value="" id="password-coldRegistrationForm" tabindex="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"  title="Password must Case Sensative and numeric" required="required" />
                                                 </div>
                                             </li>
                                             <li>
@@ -105,21 +104,23 @@
                         <script type="text/javascript">
                             function usernameExists(username)
                             {
-                                var url = "http://locolhost:8080<c:url value="/usernameExists/" />" + username.value;
+                                var url = "<c:url value="/usernameExists/"/>" + username.value;
                                 console.log(url);
                                 $.ajax({
                                     mimeType: "application/json",
                                     type: "POST",
                                     url: url,
                                     success: function (data) {
-                                        if (data===true) {
-                                            username.value = "" ;
+                                        console.log(data);
+                                        if (data === false) {
+                                            username.value = "";
                                             alert("Your Mobile no is already registered");
+                                            username.focus();
                                         }
                                     },
                                     error: function (event) {
 
-                                        console.log(event);
+                                        console.log(event.responseText);
 
                                     }
                                 });

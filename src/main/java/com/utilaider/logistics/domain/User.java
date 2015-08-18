@@ -23,8 +23,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -50,7 +51,6 @@ public class User implements Serializable {
     @Column(unique = true)
     private String mobile;
     @Column(unique = true)
-    @Pattern(regexp = ".+@.+\\.[a-z]+")
     private String email;
     @Column(name = "user_password")
     private String password;
@@ -74,6 +74,19 @@ public class User implements Serializable {
     @ElementCollection
     @CollectionTable(name = "user_address", joinColumns = @JoinColumn(name = "user_id"))
     private List<Address> addresses;
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(name = "user_entityType", joinColumns = {
+        @JoinColumn(name = "user_id", referencedColumnName = "user_id")}, inverseJoinColumns = {
+        @JoinColumn(name = "entity_id", referencedColumnName = "id")})
+    private List<UserEntity> userEntities;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(name = "user_business_industry", joinColumns = {
+        @JoinColumn(name = "user_id", referencedColumnName = "user_id")}, inverseJoinColumns = {
+        @JoinColumn(name = "business_industry_id", referencedColumnName = "id")})
+    private List<BusinessIndustry> businessIndustrys;
 
     public String getFirstName() {
         return firstName;
@@ -185,6 +198,22 @@ public class User implements Serializable {
 
     public List<Address> getAddresses() {
         return addresses;
+    }
+
+    public List<UserEntity> getUserEntities() {
+        return userEntities;
+    }
+
+    public void setUserEntities(List<UserEntity> userEntities) {
+        this.userEntities = userEntities;
+    }
+
+    public void setBusinessIndustrys(List<BusinessIndustry> businessIndustrys) {
+        this.businessIndustrys = businessIndustrys;
+    }
+
+    public List<BusinessIndustry> getBusinessIndustrys() {
+        return businessIndustrys;
     }
 
 }
