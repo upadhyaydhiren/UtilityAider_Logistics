@@ -20,9 +20,9 @@ public interface OwnerDao {
 
     public boolean insertOwner(Owner ownerObj) throws Exception;
 
-    public void updateOwner(Owner ownerObj) throws Exception;
+    public boolean updateOwner(Owner ownerObj) throws Exception;
 
-    public void deleteOwner(Owner ownerObj) throws Exception;
+    public boolean deleteOwner(Owner ownerObj) throws Exception;
 
     public Owner getUserDetailsByUsername(String username) throws Exception;
 }

@@ -34,13 +34,13 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public void updateOwner(Owner ownerObj) throws Exception {
-        ownerDao.updateOwner(ownerObj);
+    public boolean updateOwner(Owner ownerObj) throws Exception {
+        return ownerDao.updateOwner(ownerObj);
     }
 
     @Override
-    public void deleteOwner(Owner ownerObj) throws Exception {
-        ownerDao.deleteOwner(ownerObj);
+    public boolean deleteOwner(Owner ownerObj) throws Exception {
+        return ownerDao.deleteOwner(ownerObj);
     }
 
     @Override

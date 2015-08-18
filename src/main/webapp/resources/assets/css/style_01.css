@@ -376,7 +376,7 @@ span.callout-trigger.instructional-callout-trigger.hover {
 .js .callout-container,
 #callout-overlay {
     position: absolute;
-    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    filter: progid DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
     -webkit-transition: opacity 0.3s ease;
     -moz-transition: opacity 0.3s ease;
@@ -390,7 +390,7 @@ span.callout-trigger.instructional-callout-trigger.hover {
     filter: none
 }
 #callout-overlay.shown {
-    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+    filter: progid DXImageTransform.Microsoft.Alpha(Opacity=100);
     opacity: 1
 }
 .ie.lte8 #callout-overlay.shown {
