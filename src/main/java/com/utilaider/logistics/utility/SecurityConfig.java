@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().addFilterBefore(new SimpleCORSFilter(), ChannelProcessingFilter.class)
                 .authorizeRequests()
-                .antMatchers("/login/**", "/registration/**", "/logout/**","/reg/**").permitAll()
+                .antMatchers("/login/**", "/registration/**", "/logout/**","/usernameExists/**").permitAll()
                 .anyRequest().authenticated().and().formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/j_spring_security_check")

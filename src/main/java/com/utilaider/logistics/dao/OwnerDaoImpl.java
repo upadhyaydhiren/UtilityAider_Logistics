@@ -49,13 +49,15 @@ public class OwnerDaoImpl implements OwnerDao, UserDetailsService {
     }
 
     @Override
-    public void updateOwner(Owner owner) throws Exception {
+    public boolean updateOwner(Owner owner) throws Exception {
         sessionFactory.getCurrentSession().update(owner);
+        return (Long) sessionFactory.getCurrentSession().getIdentifier(owner) > 0;
     }
 
     @Override
-    public void deleteOwner(Owner owner) throws Exception {
+    public boolean deleteOwner(Owner owner) throws Exception {
         sessionFactory.getCurrentSession().delete(owner);
+        return (Long) sessionFactory.getCurrentSession().getIdentifier(owner) > 0;
     }
 
     @Override
@@ -86,7 +88,7 @@ public class OwnerDaoImpl implements OwnerDao, UserDetailsService {
             for (Role role : owner.getUserRoles()) {
                 authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
             }
-            userDetails = new User(owner.getEmail(), owner.getPassword(), true, true, true, true, authorities);
+            userDetails = new User(owner.getMobile(), owner.getPassword(), true, true, true, true, authorities);
         } catch (Exception ex) {
             Logger.getLogger(OwnerDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
