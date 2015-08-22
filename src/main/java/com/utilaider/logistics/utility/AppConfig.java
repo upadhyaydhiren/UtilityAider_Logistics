@@ -5,13 +5,10 @@
  */
 package com.utilaider.logistics.utility;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import java.beans.PropertyVetoException;
+import com.jolbox.bonecp.BoneCPDataSource;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -67,17 +64,18 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public DataSource dataSource() throws Exception {
-        ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        try {
-            dataSource.setDriverClass(dbDriverClass);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(AppConfig.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
-        }
+        BoneCPDataSource dataSource = new BoneCPDataSource();
+        dataSource.setDriverClass(dbDriverClass);
         dataSource.setJdbcUrl(jdbcUrl);
         dataSource.setUser(dbUser);
         dataSource.setPassword(dbPassword);
-        dataSource.setIdleConnectionTestPeriod(3000);
+        dataSource.setIdleMaxAgeInMinutes(240);
+        dataSource.setIdleConnectionTestPeriodInMinutes(60);
+        dataSource.setMaxConnectionsPerPartition(15);
+        dataSource.setMinConnectionsPerPartition(1);
+        dataSource.setPartitionCount(3);
+        dataSource.setAcquireIncrement(5);
+        dataSource.setStatementsCacheSize(100);
         return dataSource;
     }
 
