@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text-button.css">    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/style_01.css">
+    <script src="http://pincodes.co.in/public/scripts/pincode.js" type="text/javascript" language="javascript"></script>
 
 </head>
 
 
-<body style="background-color:#e6e6e6" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home">
+<body style="background-color:#e6e6e6" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home" onload="load_pincode('RP-PIN-351', 'state', '0', '0', '0', '0');">
     <nav class="navbar navbar-default header">
         <div class="container-fluid" >
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -82,17 +83,6 @@
                                             <option value="farmer">Farmer</option>
                                             <option value="fci">FCI</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <label for="" style ="position:absolute;margin-top:10px"class="">
-                                        <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*Postal Code</font>
-                                    </label>
-                                    <div class="fieldgroup ">
-                                        <div class="leo-module mod-feat jointoday" >
-
-                                            <input type="text" name="postalCode" value="" id="postalCode" style="margin-top:10px"autocomplete="on" placeholder="eg.201301"size="55" maxlength="20" tabindex="5">
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="job-title required">
@@ -181,6 +171,40 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="">
+                                    <label for="" style ="position:absolute;margin-top:10px"class="">
+                                        <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*State</font>
+                                    </label>
+                                    <div class="fieldgroup ">
+                                        <div class="leo-module mod-feat jointoday" >
+                                            <select id="state" onChange="load_pincode('RP-PIN-351', 'state', 'city', '0', this.value, '1');">
+                                                <option value="">Select State</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label for="" style ="position:absolute;margin-top:10px"class="">
+                                        <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*City</font>
+                                    </label>
+                                    <div class="fieldgroup ">
+                                        <div class="leo-module mod-feat jointoday" >
+                                            <select id="city" onChange="load_pincode('RP-PIN-351', 'state', 'city', 'pincode', this.value, '2')">
+                                                <option value="">Select City</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label for="" style ="position:absolute;margin-top:10px"class="">
+                                        <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*Postal Code</font>
+                                    </label>
+                                    <div class="fieldgroup ">
+                                        <div class="leo-module mod-feat jointoday" >
+                                            <p id="pincode"><input type="text" name="pincode" id="pincode" class="textfield" onBlur="load_pincode('RP-PIN-351', 'state', 'city', 'pincode', this.value, '3')"></p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="job-title required">
                                     <label for="workCompanyTitle-lookingProfileForm" style ="position:absolute;margin-top:10px">
                                         <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*Address</font>
@@ -213,16 +237,3 @@
         </div>
     </footer>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-

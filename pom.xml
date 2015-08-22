@@ -144,6 +144,24 @@
             <version>4.12</version>
         </dependency>
         <!-- End Junit -->
+        <!--Jackson Message Converter -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+
+        <!--End Jackson -->
         <!-- Log4j -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
