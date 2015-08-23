@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,6 +7,7 @@
 package com.utilaider.logistics.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -21,11 +23,13 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.NaturalId;
 
 /**
  *
@@ -49,9 +53,16 @@ public class User implements Serializable {
     @Column(name = "middle_name")
     private String middleName;
     @Column(unique = true)
+    @NaturalId
     private String mobile;
     @Column(unique = true)
+    @NaturalId
     private String email;
+    @Column(unique = true, name = "pan_number")
+    @NaturalId
+    private String panNumber;
+    @Column(name = "company_name")
+    private String companyName;
     @Column(name = "user_password")
     private String password;
     @Temporal(TemporalType.DATE)
@@ -71,9 +82,9 @@ public class User implements Serializable {
         @JoinColumn(name = "user_id", referencedColumnName = "user_id")}, inverseJoinColumns = {
         @JoinColumn(name = "role_id", referencedColumnName = "role_id")})
     private List<Role> userRoles;
-    @ElementCollection
-    @CollectionTable(name = "user_address", joinColumns = @JoinColumn(name = "user_id"))
-    private List<Address> addresses;
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "user_entityType", joinColumns = {
@@ -192,12 +203,12 @@ public class User implements Serializable {
         this.userRoles = userRoles;
     }
 
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
+    public Address getAddress() {
+        return address;
     }
 
     public List<UserEntity> getUserEntities() {
@@ -214,6 +225,22 @@ public class User implements Serializable {
 
     public List<BusinessIndustry> getBusinessIndustrys() {
         return businessIndustrys;
+    }
+
+    public String getPanNumber() {
+        return panNumber;
+    }
+
+    public void setPanNumber(String panNumber) {
+        this.panNumber = panNumber;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
     }
 
 }

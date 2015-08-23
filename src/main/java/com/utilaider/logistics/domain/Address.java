@@ -8,14 +8,21 @@ package com.utilaider.logistics.domain;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author Dhiren
  */
-@Embeddable
+@Entity(name = "address")
 public class Address implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Integer id;        
     @Column(name = "street_name")
     private String streetName;
     @Column(name = "city_name")
@@ -24,6 +31,10 @@ public class Address implements Serializable {
     private String state;
     private Integer pincode;
     private String country;
+
+     public Integer getId() {
+        return id;
+    }
 
     public String getStreetName() {
         return streetName;
