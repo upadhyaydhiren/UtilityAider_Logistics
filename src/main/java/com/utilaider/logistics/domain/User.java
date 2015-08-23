@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -26,6 +27,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.NaturalId;
 
 /**
  *
@@ -49,9 +51,16 @@ public class User implements Serializable {
     @Column(name = "middle_name")
     private String middleName;
     @Column(unique = true)
+    @NaturalId
     private String mobile;
     @Column(unique = true)
+    @NaturalId
     private String email;
+    @Column(unique = true, name = "pan_number")
+    @NaturalId
+    private String panNumber;
+    @Column(name = "company_name")
+    private String companyName;
     @Column(name = "user_password")
     private String password;
     @Temporal(TemporalType.DATE)
@@ -214,6 +223,22 @@ public class User implements Serializable {
 
     public List<BusinessIndustry> getBusinessIndustrys() {
         return businessIndustrys;
+    }
+
+    public String getPanNumber() {
+        return panNumber;
+    }
+
+    public void setPanNumber(String panNumber) {
+        this.panNumber = panNumber;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
     }
 
 }
