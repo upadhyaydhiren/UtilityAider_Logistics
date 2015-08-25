@@ -18,21 +18,21 @@ import javax.persistence.OneToOne;
  *
  * @author Dhiren
  */
-@Entity(name = "user_entity")
-public class UserEntity implements Serializable {
+@Entity(name = "users_industry")
+public class UsersIndustry implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
     @OneToOne
-    @JoinColumn(name = "static_entity_id")
-    private StaticBasicUserEntity basicUserEntity;
+    @JoinColumn(name = "business_industry_id")
+    private BusinessIndustry businessIndustry;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public StaticBasicUserEntity getBasicUserEntity() {
-        return basicUserEntity;
+    public BusinessIndustry getBusinessIndustry() {
+        return businessIndustry;
     }
 
     public Integer getId() {
@@ -43,8 +43,8 @@ public class UserEntity implements Serializable {
         return user;
     }
 
-    public void setBasicUserEntity(StaticBasicUserEntity basicUserEntity) {
-        this.basicUserEntity = basicUserEntity;
+    public void setBusinessIndustry(BusinessIndustry businessIndustry) {
+        this.businessIndustry = businessIndustry;
     }
 
     public void setId(Integer id) {

@@ -60,28 +60,28 @@
                                                 <label for="firstName-coldRegistrationForm">First name</label>
                                                 <span class="error" id="firstName-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input path="firstName" value="" id="firstName-coldRegistrationForm" pattern="[A-Za-z]{2,50}" title="First Name is only alphabet accept" tabindex="5" required="required" />
+                                                    <form:input path="firstName" onblur="validate(this);" value="" id="firstName-coldRegistrationForm" pattern="[A-Za-z]{2,50}" title="First Name is only alphabet accept" tabindex="5" required="required" />
                                                 </div>
                                             </li>
                                             <li id="last-name">
                                                 <label for="lastName-coldRegistrationForm">Last name</label>
                                                 <span class="error" id="lastName-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input path="lastName" value="" id="lastName-coldRegistrationForm" pattern="[A-Za-z]{2,50}" title="Last Name is only alphabet accept" tabindex="6" required="required" />
+                                                    <form:input path="lastName"  onblur="validate(this);" value="" id="lastName-coldRegistrationForm" pattern="[A-Za-z]{2,50}" title="Last Name is only alphabet accept" tabindex="6" required="required" />
                                                 </div>
                                             </li>
                                             <li id="email-address">
                                                 <label for="email-coldRegistrationForm">Mobile no</label>
                                                 <span class="error" id="mobile-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:input path="mobile" value="" id="mobile-coldRegistrationForm" pattern="[7-9][0-9]{9}" title="Only Indian Mobile Number is allowed" tabindex="7" onblur="usernameExists(this);" required="required" />
+                                                    <form:input path="mobile" value="" onchange="validate(this);" id="mobile-coldRegistrationForm" pattern="[7-9][0-9]{9}" title="Only Indian Mobile Number is allowed" tabindex="7" onblur="usernameExists(this);" required="required" />
                                                 </div>
                                             </li>
                                             <li id="password">
                                                 <label for="password-coldRegistrationForm">Password (6 or more characters)</label>
                                                 <span class="error" id="password-coldRegistrationForm-error"></span>
                                                 <div class="fieldgroup">
-                                                    <form:password path="password" value="" id="password-coldRegistrationForm" tabindex="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"  title="Password must Case Sensative and numeric" required="required" />
+                                                    <form:password path="password" onblur="validate(this);" value="" id="password-coldRegistrationForm" tabindex="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"  title="Password must Case Sensative and numeric" required="required" />
                                                 </div>
                                             </li>
                                             <li>
@@ -106,24 +106,42 @@
                             {
                                 var url = "<c:url value="/usernameExists/"/>" + username.value;
                                 console.log(url);
-                                $.ajax({
-                                    mimeType: "application/json",
-                                    type: "POST",
-                                    url: url,
-                                    success: function (data) {
-                                        console.log(data);
-                                        if (data === false) {
-                                            username.value = "";
-                                            alert("Your Mobile no is already registered");
-                                            username.focus();
+                                if (username.value !== '')
+                                {
+                                    $.ajax({
+                                        mimeType: "application/json",
+                                        type: "POST",
+                                        url: url,
+                                        success: function (data) {
+                                            console.log(data);
+                                            if (data === false) {
+                                                username.value = "";
+                                                alert("Your Mobile no is already registered");
+                                                username.focus();
+                                            }
+                                            else if (data === true)
+                                            {
+                                                validate(username);
+                                            }
+                                        },
+                                        error: function (event) {
+
+                                            console.log(event.responseText);
+
                                         }
-                                    },
-                                    error: function (event) {
-
-                                        console.log(event.responseText);
-
-                                    }
-                                });
+                                    });
+                                }
+                            }
+                        </script>
+                        <script type="text/javascript">
+                            function validate(obj)
+                            {
+                                if (!obj.checkValidity())
+                                {
+                                    alert(obj.title);
+                                    obj.value = '';
+                                    obj.focus();
+                                }
                             }
                         </script>
                         <style type="text/css">

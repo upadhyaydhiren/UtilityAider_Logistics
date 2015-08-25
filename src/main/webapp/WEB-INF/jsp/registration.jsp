@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text-button.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/style_01.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="http://pincodes.co.in/public/scripts/pincode.js" type="text/javascript" language="javascript"></script>
 
 </head>
 
 
-<body style="background-color:#e6e6e6" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home" onload="load_pincode('RP-PIN-352', 'state', '0', '0', '0', '0');">
+<body style="background-color:#e6e6e6" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home" onload="load_pincode('RP-PIN-353', 'state', '0', '0', '0', '0');">
     <nav class="navbar navbar-default header">
         <div class="container-fluid" >
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -57,6 +58,7 @@
                     <div id="control_ge">
 
                         <form:form id="form" action="updateprofle" method="POST"  class="standard-form sided looking stacked-form" modelAttribute="owner">
+                            <form:hidden path="id" value="${owner.id}" />
                             <div class="">
                                 <div class="country required" style="height:-20px">
                                     <label for="postalCode-location-lookingProfileForm" style ="position:absolute;margin-top:10px"class="">
@@ -64,9 +66,10 @@
                                     </label>
                                     <div class="fieldgroup"
                                          <span class="error" id="stakeholdersList"></span>
-                                        <form:select path="userEntities[0]" name="countryCode" id="stakeholdersListDropdown" style="margin-top:5px;height:30px" class="country-select" tabindex="1">
+                                        <form:select path="userEntities[0].basicUserEntity.id" name="countryCode" id="stakeholdersListDropdown" style="margin-top:5px;height:30px" class="country-select" tabindex="1">
                                             <form:options items="${entityList}" itemLabel="entityType" itemValue="id"/>
                                         </form:select>
+                                        <form:hidden path="userEntities[0].user.id" value="${owner.id}" />
                                     </div>
                                 </div>
                                 <div class="job-title required">
@@ -75,7 +78,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input type="email" path="email" id="email" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="2"/>
+                                            <form:input type="email" path="email" id="email" style="margin-top:10px" autocomplete="on" size="55" tabindex="2"/>
                                         </div>
                                     </div>
                                 </div>
@@ -107,9 +110,10 @@
                                     </label>
                                     <div class="fieldgroup"
                                          <span class="error" id="industyList"></span>
-                                        <form:select path="businessIndustrys[0]" name="countryCode" id="industyListDropdown"  style=" margin-top:10px;height:30px"class="country-select" tabindex="5">
+                                        <form:select path="usersIndustrys[0].businessIndustry.id" name="countryCode" id="industyListDropdown"  style=" margin-top:10px;height:30px"class="country-select" tabindex="5">
                                             <form:options items="${industryList}" itemLabel="industryName" itemValue="id"/>
                                         </form:select>
+                                        <form:hidden path="usersIndustrys[0].user.id" value="${owner.id}" />
                                     </div>
                                 </div>
 
@@ -167,9 +171,9 @@
                                     </label>
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <select path="address.state" id="state" onChange="load_pincode('RP-PIN-352', 'state', 'city', '0', this.value, '1');" style="margin-top:10px" tabindex="10">
+                                            <form:select path="address.state" id="state" onChange="load_pincode('RP-PIN-353', 'state', 'city', '0', this.value, '1');" style="margin-top:10px" tabindex="10">
                                                 <option value="">Select State</option>
-                                            </select>
+                                            </form:select>
                                         </div>
                                     </div>
                                 </div>
@@ -179,9 +183,9 @@
                                     </label>
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <select path="address.city" id="city" onChange="load_pincode('RP-PIN-352', 'state', 'city', 'pincode', this.value, '2')"  style="margin-top:10px" tabindex="11">
+                                            <form:select path="address.city" id="city" onChange="load_pincode('RP-PIN-353', 'state', 'city', 'pincode', this.value, '2')"  style="margin-top:10px" tabindex="11">
                                                 <option value="">Select City</option>
-                                            </select>
+                                            </form:select>
                                         </div>
                                     </div>
                                 </div>
@@ -190,8 +194,9 @@
                                         <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*Postal Code</font>
                                     </label>
                                     <div class="fieldgroup ">
-                                        <div class="leo-module mod-feat jointoday" >
-                                                <form:input path="address.pincode" name="pincode" id="pincode" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="12" onBlur="load_pincode('RP-PIN-352', 'state', 'city', 'pincode', this.value, '3')"/>
+                                        <div class="leo-module mod-feat jointoday" id="pincode">
+                                            <input name="pincode" type="text" id="pincode" style="margin-top:10px" maxlength="6" tabindex="12" onBlur="load_pincode('RP-PIN-353', 'state', 'city', 'pincode', this.value, '3')">
+                                            <form:hidden path="address.pincode" value=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -201,7 +206,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:textarea path="address.streetName" name="address" id="address" class="span6" style="margin-top:10px;height:40px" autocomplete="on" size="55" maxlength="20" tabindex="13"/>
+                                            <form:textarea path="address.streetName" id="address" class="span6" style="margin-top:10px;height:40px" autocomplete="on" size="55" maxlength="20" tabindex="13"/>
                                             <input type="submit" name="" value="Register" id="btn-submit" class="btn-action" tabindex="14">
                                         </div></div>
                                 </div>
@@ -219,4 +224,14 @@
             <p class="text-muted">Place your FOOTER CONTENTS content here.</p>
         </div>
     </footer>
+    <script type="text/javascript">
+        $('#city').change(function () {
+            var pincode = document.getElementsByName("pincode111");
+            if (pincode.length > 0)
+            {
+                console.log("test");
+                document.getElementById('address.id').value = pincode;
+            }
+        });
+    </script>
 </body>

@@ -18,37 +18,37 @@ import javax.persistence.OneToOne;
  *
  * @author Dhiren
  */
-@Entity(name = "user_entity")
-public class UserEntity implements Serializable {
+@Entity(name = "user_role")
+public class UserRole implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
     @OneToOne
-    @JoinColumn(name = "static_entity_id")
-    private StaticBasicUserEntity basicUserEntity;
+    @JoinColumn(name = "role_id")
+    private Role role;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    public StaticBasicUserEntity getBasicUserEntity() {
-        return basicUserEntity;
-    }
 
     public Integer getId() {
         return id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setBasicUserEntity(StaticBasicUserEntity basicUserEntity) {
-        this.basicUserEntity = basicUserEntity;
-    }
-
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public void setUser(User user) {
