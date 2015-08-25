@@ -7,13 +7,10 @@
 package com.utilaider.logistics.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -56,10 +52,8 @@ public class User implements Serializable {
     @NaturalId
     private String mobile;
     @Column(unique = true)
-    @NaturalId
     private String email;
     @Column(unique = true, name = "pan_number")
-    @NaturalId
     private String panNumber;
     @Column(name = "company_name")
     private String companyName;
@@ -77,27 +71,18 @@ public class User implements Serializable {
     private Boolean isDeleted = Boolean.FALSE;
     @Column(name = "createdBy")
     private String createdBy;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = {
-        @JoinColumn(name = "user_id", referencedColumnName = "user_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "role_id", referencedColumnName = "role_id")})
-    private List<Role> userRoles;
-    @OneToOne
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserRole> userRoles;
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(name = "user_entityType", joinColumns = {
-        @JoinColumn(name = "user_id", referencedColumnName = "user_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "entity_id", referencedColumnName = "id")})
     private List<UserEntity> userEntities;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(name = "user_business_industry", joinColumns = {
-        @JoinColumn(name = "user_id", referencedColumnName = "user_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "business_industry_id", referencedColumnName = "id")})
-    private List<BusinessIndustry> businessIndustrys;
+    private List<UsersIndustry> usersIndustrys;
 
     public String getFirstName() {
         return firstName;
@@ -195,11 +180,11 @@ public class User implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public List<Role> getUserRoles() {
+    public List<UserRole> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<Role> userRoles) {
+    public void setUserRoles(List<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
 
@@ -219,12 +204,12 @@ public class User implements Serializable {
         this.userEntities = userEntities;
     }
 
-    public void setBusinessIndustrys(List<BusinessIndustry> businessIndustrys) {
-        this.businessIndustrys = businessIndustrys;
+    public List<UsersIndustry> getUsersIndustrys() {
+        return usersIndustrys;
     }
 
-    public List<BusinessIndustry> getBusinessIndustrys() {
-        return businessIndustrys;
+    public void setUsersIndustrys(List<UsersIndustry> usersIndustrys) {
+        this.usersIndustrys = usersIndustrys;
     }
 
     public String getPanNumber() {

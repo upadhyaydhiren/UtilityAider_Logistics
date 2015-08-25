@@ -8,15 +8,11 @@ package com.utilaider.logistics.controller;
 import com.utilaider.logistics.domain.Owner;
 import com.utilaider.logistics.service.BusinessIndustryService;
 import com.utilaider.logistics.service.OwnerService;
-import com.utilaider.logistics.service.UserEntityService;
+import com.utilaider.logistics.service.StaticBasicUserEntityService;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -44,7 +40,7 @@ public class LogisticsController {
     @Autowired
     OwnerService ownerService;
     @Autowired
-    UserEntityService userEntityService;
+    StaticBasicUserEntityService basicUserEntityService;
     @Autowired
     BusinessIndustryService businessIndustryService;
 
@@ -76,7 +72,7 @@ public class LogisticsController {
             owner.setModifiedDate(new Date());
             if (ownerService.insertOwner(owner)) {
                 model.addAttribute("registrationMessage", "You have registered successfully.");
-                model.addAttribute("entityList", userEntityService.getAllUserEntitys());
+                model.addAttribute("entityList", basicUserEntityService.getAllStaticBasicUserEntitys());
                 model.addAttribute("industryList", businessIndustryService.getAllBusinessIndustrys());
                 model.addAttribute("owner", owner);
                 return new ModelAndView("registration", model);
@@ -104,7 +100,7 @@ public class LogisticsController {
                 Owner owner = ownerService.getOwnerByUsername(userDetails.getUsername());
                 map.addAttribute("owner", owner);
                 if (owner.getUserEntities().isEmpty()) {
-                    map.addAttribute("entityList", userEntityService.getAllUserEntitys());
+                    map.addAttribute("entityList", basicUserEntityService.getAllStaticBasicUserEntitys());
                     map.addAttribute("industryList", businessIndustryService.getAllBusinessIndustrys());
                     map.addAttribute("owner", owner);
                     return new ModelAndView("registration", map);
@@ -135,11 +131,23 @@ public class LogisticsController {
             if ((auth instanceof AnonymousAuthenticationToken)) {
                 return new ModelAndView("redirect:login");
             } else {
-                if (ownerService.updateOwner(owner)) {
-                    map.addAttribute("owner", owner);
+                Owner fetchedOwner = ownerService.getOwner(owner.getId());
+                fetchedOwner.setEmail(owner.getEmail());
+                fetchedOwner.setPanNumber(owner.getPanNumber());
+                fetchedOwner.setCompanyName(owner.getCompanyName());
+                fetchedOwner.setUserEntities(owner.getUserEntities());
+                fetchedOwner.setUsersIndustrys(owner.getUsersIndustrys());
+                fetchedOwner.setNoOfEmployee(owner.getNoOfEmployee());
+                fetchedOwner.setNoOfVehicles(owner.getNoOfVehicles());
+                fetchedOwner.setBusinessType(owner.getBusinessType());
+                fetchedOwner.setUserReferanceCode(owner.getUserReferanceCode());
+                owner.getAddress().setPincode(Integer.parseInt(request.getParameter("pincode111")));
+                fetchedOwner.setAddress(owner.getAddress());
+                if (ownerService.updateOwner(fetchedOwner)) {
+                    map.addAttribute("owner", fetchedOwner);
                     return new ModelAndView("index", map);
                 } else {
-                    map.addAttribute("entityList", userEntityService.getAllUserEntitys());
+                    map.addAttribute("entityList", basicUserEntityService.getAllStaticBasicUserEntitys());
                     map.addAttribute("industryList", businessIndustryService.getAllBusinessIndustrys());
                     map.addAttribute("owner", owner);
                     return new ModelAndView("registration", map);
@@ -148,7 +156,7 @@ public class LogisticsController {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                map.addAttribute("entityList", userEntityService.getAllUserEntitys());
+                map.addAttribute("entityList", basicUserEntityService.getAllStaticBasicUserEntitys());
             } catch (Exception ex) {
                 Logger.getLogger(LogisticsController.class.getName()).log(Level.SEVERE, null, ex);
                 request.getSession().invalidate();
