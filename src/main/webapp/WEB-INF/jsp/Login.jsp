@@ -11,6 +11,17 @@
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <meta name="_csrf" content="${_csrf.token}"/>
         <meta name="_csrf_header" content="${_csrf.headerName}"/>
+        <style>
+            :required {
+                background-color: lightyellow;
+            }
+            .touched:required:valid {
+                background-color:white;
+            }
+            .touched:required:invalid {
+                background-color: pink;
+            }
+        </style>
     </head>
     <body dir="ltr" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home">
         <div>          
@@ -53,54 +64,57 @@
                                 </p></div>
                             <div class="content">
                                 <form:form action="registration" method="POST" name="coldRegistrationForm" modelAttribute="owner">
-                                    <fieldset>
-                                        <legend>Sign Up</legend>
-                                        <ul>
-                                            <li id="first-name">
-                                                <label for="firstName-coldRegistrationForm">First name</label>
-                                                <span class="error" id="firstName-coldRegistrationForm-error"></span>
-                                                <div class="fieldgroup">
-                                                    <form:input path="firstName" onblur="validate(this);" value="" id="firstName-coldRegistrationForm" pattern="[A-Za-z]{2,50}" title="First Name is only alphabet accept" tabindex="5" required="required" />
-                                                </div>
-                                            </li>
-                                            <li id="last-name">
-                                                <label for="lastName-coldRegistrationForm">Last name</label>
-                                                <span class="error" id="lastName-coldRegistrationForm-error"></span>
-                                                <div class="fieldgroup">
-                                                    <form:input path="lastName"  onblur="validate(this);" value="" id="lastName-coldRegistrationForm" pattern="[A-Za-z]{2,50}" title="Last Name is only alphabet accept" tabindex="6" required="required" />
-                                                </div>
-                                            </li>
-                                            <li id="email-address">
-                                                <label for="email-coldRegistrationForm">Mobile no</label>
-                                                <span class="error" id="mobile-coldRegistrationForm-error"></span>
-                                                <div class="fieldgroup">
-                                                    <form:input path="mobile" value="" onchange="validate(this);" id="mobile-coldRegistrationForm" pattern="[7-9][0-9]{9}" title="Only Indian Mobile Number is allowed" tabindex="7" onblur="usernameExists(this);" required="required" />
-                                                </div>
-                                            </li>
-                                            <li id="password">
-                                                <label for="password-coldRegistrationForm">Password (6 or more characters)</label>
-                                                <span class="error" id="password-coldRegistrationForm-error"></span>
-                                                <div class="fieldgroup">
-                                                    <form:password path="password" onblur="validate(this);" value="" id="password-coldRegistrationForm" tabindex="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"  title="Password must Case Sensative and numeric" required="required" />
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <span class="error" id="signup-error">${registrationMessage}</span>
-                                            </li>
-                                        </ul>
-                                        <div class="form-bottom-row">
-                                            <p class="policy">
-                                                By clicking Join Now, you agree to Utilader's <a href="">User Agreement</a>.
-                                            </p>
-                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                            <input type="submit" name="" value="Join now" id="btn-submit" class="btn-action" tabindex="9">
-                                        </div>
-                                    </fieldset>
+                                    <legend>Sign Up</legend>
+                                    <ul>
+                                        <li id="first-name">
+                                            <label for="firstName-coldRegistrationForm">First name</label>
+                                            <span class="error" id="firstName-coldRegistrationForm-error"></span>
+                                            <div class="fieldgroup">
+                                                <form:input path="firstName" oninvalid="this.setCustomValidity('First Name is only alphabet accept')" value="" id="firstName-coldRegistrationForm" pattern="[A-Za-z]{2,50}" tabindex="5" required="required" oninput="setCustomValidity('')" />
+                                            </div>
+                                        </li>
+                                        <li id="last-name">
+                                            <label for="lastName-coldRegistrationForm">Last name</label>
+                                            <span class="error" id="lastName-coldRegistrationForm-error"></span>
+                                            <div class="fieldgroup">
+                                                <form:input path="lastName"  oninvalid="this.setCustomValidity('Last Name is only alphabet accept')" value="" id="lastName-coldRegistrationForm" pattern="[A-Za-z]{2,50}" tabindex="6" required="required" oninput="setCustomValidity('')" />
+                                            </div>
+                                        </li>
+                                        <li id="email-address">
+                                            <label for="email-coldRegistrationForm">Mobile no</label>
+                                            <span class="error" id="mobile-coldRegistrationForm-error"></span>
+                                            <div class="fieldgroup">
+                                                <form:input path="mobile" value="" oninvalid="this.setCustomValidity('Only Idian mobile number accept')" oninput="setCustomValidity('')" id="mobile-coldRegistrationForm" pattern="[7-9][0-9]{9}" tabindex="7" onblur="usernameExists(this);" required="required" />
+                                            </div>
+                                        </li>
+                                        <li id="password">
+                                            <label for="password-coldRegistrationForm">Password (6 or more characters)</label>
+                                            <span class="error" id="password-coldRegistrationForm-error"></span>
+                                            <div class="fieldgroup">
+                                                <form:password path="password" oninvalid="this.setCustomValidity('Password should be alphanumeric')" value="" id="password-coldRegistrationForm" tabindex="8" pattern="[a-zA-Z0-9]){6,}" required="required" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="error" id="signup-error">${registrationMessage}</span>
+                                        </li>
+                                    </ul>
+                                    <div class="form-bottom-row">
+                                        <p class="policy">
+                                            By clicking Join Now, you agree to Utilader's <a href="">User Agreement</a>.
+                                        </p>
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                        <input type="submit" name="" value="Join now" id="btn-submit" class="btn-action" tabindex="9">
+                                    </div>
                                     <div class="progress-indicator"></div>
                                 </form:form>
                                 </section>
                             </div>
                         </div>
+                        <script type="text/javascript">
+                            $(':required').one('blur keydown', function () {
+                                $(this).addClass('touched');
+                            });
+                        </script>
                         <script type="text/javascript">
                             function usernameExists(username)
                             {
@@ -117,11 +131,6 @@
                                             if (data === false) {
                                                 username.value = "";
                                                 alert("Your Mobile no is already registered");
-                                                username.focus();
-                                            }
-                                            else if (data === true)
-                                            {
-                                                validate(username);
                                             }
                                         },
                                         error: function (event) {
@@ -138,9 +147,7 @@
                             {
                                 if (!obj.checkValidity())
                                 {
-                                    alert(obj.title);
                                     obj.value = '';
-                                    obj.focus();
                                 }
                             }
                         </script>

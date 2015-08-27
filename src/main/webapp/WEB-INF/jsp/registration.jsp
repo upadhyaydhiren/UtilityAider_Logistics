@@ -16,7 +16,7 @@
 </head>
 
 
-<body style="background-color:#e6e6e6" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home" onload="load_pincode('RP-PIN-353', 'state', '0', '0', '0', '0');">
+<body style="background-color:#e6e6e6" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home" onload="load_pincode('RP-PIN-356', 'state', '0', '0', '0', '0');">
     <nav class="navbar navbar-default header">
         <div class="container-fluid" >
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -171,7 +171,7 @@
                                     </label>
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:select path="address.state" id="state" onChange="load_pincode('RP-PIN-353', 'state', 'city', '0', this.value, '1');" style="margin-top:10px" tabindex="10">
+                                            <form:select path="address.state" id="state" onChange="load_pincode('RP-PIN-356', 'state', 'city', '0', this.value, '1');" style="margin-top:10px" tabindex="10">
                                                 <option value="">Select State</option>
                                             </form:select>
                                         </div>
@@ -183,7 +183,7 @@
                                     </label>
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:select path="address.city" id="city" onChange="load_pincode('RP-PIN-353', 'state', 'city', 'pincode', this.value, '2')"  style="margin-top:10px" tabindex="11">
+                                            <form:select path="address.city" id="city" onChange="load_pincode('RP-PIN-356', 'state', 'city', 'pincode', this.value, '2')"  style="margin-top:10px" tabindex="11">
                                                 <option value="">Select City</option>
                                             </form:select>
                                         </div>
@@ -195,7 +195,7 @@
                                     </label>
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday" id="pincode">
-                                            <input name="pincode" type="text" id="pincode" style="margin-top:10px" maxlength="6" tabindex="12" onBlur="load_pincode('RP-PIN-353', 'state', 'city', 'pincode', this.value, '3')">
+                                            <input name="pincode" type="text" id="pincode" style="margin-top:10px" maxlength="6" tabindex="12" onBlur="load_pincode('RP-PIN-356', 'state', 'city', 'pincode', this.value, '3')">
                                             <form:hidden path="address.pincode" value=""/>
                                         </div>
                                     </div>

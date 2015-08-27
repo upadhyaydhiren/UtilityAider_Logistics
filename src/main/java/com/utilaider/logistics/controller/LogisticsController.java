@@ -6,6 +6,7 @@
 package com.utilaider.logistics.controller;
 
 import com.utilaider.logistics.domain.Owner;
+import com.utilaider.logistics.domain.Vehicle;
 import com.utilaider.logistics.service.BusinessIndustryService;
 import com.utilaider.logistics.service.OwnerService;
 import com.utilaider.logistics.service.StaticBasicUserEntityService;
@@ -110,7 +111,7 @@ public class LogisticsController {
             e.printStackTrace();
             return new ModelAndView("redirect:login");
         }
-        return new ModelAndView("index", map);
+        return new ModelAndView("profile", map);
     }
 
     @RequestMapping(value = "usernameExists/{username}")
@@ -144,8 +145,7 @@ public class LogisticsController {
                 owner.getAddress().setPincode(Integer.parseInt(request.getParameter("pincode111")));
                 fetchedOwner.setAddress(owner.getAddress());
                 if (ownerService.updateOwner(fetchedOwner)) {
-                    map.addAttribute("owner", fetchedOwner);
-                    return new ModelAndView("index", map);
+                    return new ModelAndView("redirect:home");
                 } else {
                     map.addAttribute("entityList", basicUserEntityService.getAllStaticBasicUserEntitys());
                     map.addAttribute("industryList", businessIndustryService.getAllBusinessIndustrys());
@@ -164,6 +164,26 @@ public class LogisticsController {
             }
             map.addAttribute("owner", owner);
             return new ModelAndView("registration", map);
+        }
+    }
+
+    @RequestMapping(value = "addtruck", method = RequestMethod.POST)
+    public String getProfile(@ModelAttribute Vehicle vehicle) {
+
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if ((auth instanceof AnonymousAuthenticationToken)) {
+                return "redirect:login";
+            } else {
+                UserDetails userDetails = (UserDetails) auth.getPrincipal();
+                Owner owner = ownerService.getOwnerByUsername(userDetails.getUsername());
+                owner.getVehicles().add(vehicle);
+                ownerService.updateOwner(owner);
+                return "redirect:home";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:home";
         }
     }
 }
