@@ -5,12 +5,17 @@
     <meta charset="utf-8" />
     <title>Eco Trucks | Profile Page</title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />        
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">        
     <link href="${pageContext.request.contextPath}/resources/assets/css/style.min.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/assets/css/theme/default.css" rel="stylesheet" id="theme" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text-button.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/examples.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/circle-progress.js"></script>
 </head>
 <body style="background-color:#E6E6E6"class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" >
     <nav class="navbar navbar-default header" style="margin-bottom:5px;background-color:yellow;">
@@ -37,8 +42,6 @@
             </div>
         </div>
     </nav>
-
-
     <div class="container" style="background-color:white;width:50%;margin-top:0.1%">
         <div class="row" style="width:150">
             <div class="col-md-2 col-md-offset-0" style="background-color:white;width:50%;padding-right:15%;margin-top:2%">
@@ -142,8 +145,6 @@
                                 </select>
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <label class="col-md-3 control-label">Company</label>
                             <div class="col-md-9">
@@ -170,9 +171,6 @@
                                 <input type="text" id="mobile" name="mobile" class="form-control"style="width:100%" placeholder="Mobile Number" />
                             </div>
                         </div>
-
-
-
                         <div class="modal-footer">
 
                             <div class="leo-module mod-feat jointoday" >
@@ -268,16 +266,9 @@
         </div>
     </div>
 
-
-
-
-
-
-
     <div class="container" style="background-color: rgba(255,255,153,0.9);width:50%;margin-top:0.5%">
         <div class="col-md-12" align="center" style="background-color: rgba(255,255,153,0.9); margin-top:0.1%" ><h4>Add Asset</h4></div>
     </div>
-
 
     <div class="container" style="background-color:white;width:50%;margin-top:0%">
         <div id="loginbox" style="margin-top:5%;" style="background-color:#e6e6e6" class="mainbox col-md-12 col-md-offset-0 ">
@@ -439,8 +430,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="col-md-6" style="padding: 0px 0px 0 15px;"><div  style=" background-color:white;width: 100%; ;height: 25%;border-radius:0px;-webkit-box-shadow: 0px 0px 0px 1px rgba(189,189,189,1);
                                                                          -moz-box-shadow: 0px 0px 0px 1px rgba(189,189,189,1);
                                                                          box-shadow: 0px 0px 0px 1px rgba(189,189,189,1);">
@@ -532,11 +521,7 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-
-
         <div class="col-md-6 col-md-offset-0" style="padding: 18px 0px 05px 15px;"><div style=" background-color:white;width: 100%; ;height: 25%;border-radius:0px;-webkit-box-shadow: 0px 0px 0px 1px rgba(189,189,189,1);
                                                                                         -moz-box-shadow: 0px 0px 0px 1px rgba(189,189,189,1);
                                                                                         box-shadow: 0px 0px 0px 1px rgba(189,189,189,1);">
@@ -550,18 +535,12 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
     </div>
-
 </div>
-
 <div class="container" style="background-color: rgba(255,255,153,0.9);width:50%;margin-top:0.5%">
     <div class="col-md-12" align="center" style="background-color: rgba(255,255,153,0.9); margin-top:0.1%" ><h4>Trucks</h4></div>
 </div>
-
 <div class="container" style="background-color:white;width:50%;height:10%">
 
     <h1 align="center"  size="3"style="background-color:#e6e6e6;height:0%;"></h1>
@@ -570,86 +549,48 @@
         <table class="table table-striped "  style="background-color:white;margin-top:-2%">
             <thead>
                 <tr>
-
                     <th class="hidden-phone">Reg. No.</th>
                     <th>Capacity</th>
                     <th >&nbsp&nbsp&nbsp&nbsp&nbspCompletion</th>
                     <td align="right">Edit
                     <td>Delete</td>
-
-
-
                 </tr>
             </thead>
-
             <tbody>
-
                 <tr>
-
                     <td  height="" style="padding-top:8px"><font size="2" >&nbsp&nbspGJ-X-1111</font></td>
                     <td style="padding-top:8px"><font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp8</font></td>
-
-
                     <td align="center"style="padding-top:8px;margin-bottom:0px;padding-bottom:0px" ><div class="progress progress-striped active" style="background-color:#D7DF01;height:10px;width:50px;margin-top:5px;">
                             <div class="progress-bar" style="width: 60%;height:11px;"></div>
                         </div>
                     </td>
-
-            <script src="../../ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-            <script src="js/circle-progress.js"></script>
-            <script src="js/examples.js"></script>
-
-            <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editTruckInfo" href="#modal-dialog5" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
-            <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteTruckInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
-            </tr>
-
-
+                    <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editTruckInfo" href="#modal-dialog5" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteTruckInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
+                </tr>
             </tbody>
             <tbody>
-
                 <tr>
-
                     <td  height="" style="padding-top:8px"><font size="2" >&nbsp&nbspGJ-X-1111</font></td>
                     <td style="padding-top:8px"><font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp8</font></td>
-
-
                     <td align="center"style="padding-top:8px;margin-bottom:0px;padding-bottom:0px" ><div class="progress progress-striped active" style="background-color:#D7DF01;height:10px;width:50px;margin-top:5px;">
                             <div class="progress-bar" style="width: 60%;height:11px;"></div>
                         </div>
                     </td>
-
-            <script src="../../ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-            <script src="js/circle-progress.js"></script>
-            <script src="js/examples.js"></script>
-
-            <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editTruckInfo" href="#modal-dialog5" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
-            <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteTruckInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
-            </tr>
-
-
+                    <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editTruckInfo" href="#modal-dialog5" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteTruckInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
+                </tr>
             </tbody>
             <tbody>
-
                 <tr>
-
                     <td  height="" style="padding-top:8px"><font size="2" >&nbsp&nbspGJ-X-1111</font></td>
                     <td style="padding-top:8px"><font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp8</font></td>
-
-
                     <td align="center"style="padding-top:8px;margin-bottom:0px;padding-bottom:0px" ><div class="progress progress-striped active" style="background-color:#D7DF01;height:10px;width:50px;margin-top:5px;">
                             <div class="progress-bar" style="width: 60%;height:11px;"></div>
                         </div>
                     </td>
-
-            <script src="../../ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-            <script src="js/circle-progress.js"></script>
-            <script src="js/examples.js"></script>
-
-            <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editTruckInfo" href="#modal-dialog5" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
-            <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteTruckInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
-            </tr>
-
-
+                    <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editTruckInfo" href="#modal-dialog5" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteTruckInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -668,133 +609,80 @@
         <table class="table table-striped" style="background-color:white;margin-top:1%">
             <thead>
                 <tr>
-
                     <th class="hidden-phone" >Name</th>
                     <th>&nbsp&nbsp&nbsp&nbsp Mobile No.</th>
                     <th>&nbsp&nbsp&nbsp&nbsp&nbspCompletion</th>
                     <td align="right" >&nbsp&nbsp&nbsp&nbspEdit</td>
                     <td >Delete</td>
-
-
-
                 </tr>
             </thead>
-
             <tbody>
-
                 <tr>
-
                     <td class="hidden-phone" style="padding-top:8px"><font size="2">&nbsp&nbspRam</font></td>
                     <td style="padding-top:8px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="2">8888888888</font></td>
                     <td align="center" style="padding-top:8px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:11px;width:50px;margin-top:5px;">
                             <div class="progress-bar" style="width: 60%;height:11px;"></div>
                         </div>
-
-
-                        <script src="../../ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-                        <script src="js/circle-progress.js"></script>
-                        <script src="js/examples.js"></script></td>
-
-
                     <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editDriverInfo"href="#modal-dialogDriver" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
                     <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteDriverInfo" href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
-
-
             </tbody>
             <tbody>
-
                 <tr>
-
                     <td class="hidden-phone" style="padding-top:8px"><font size="2">&nbsp&nbspRam</font></td>
                     <td style="padding-top:8px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="2">8888888888</font></td>
                     <td align="center" style="padding-top:8px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:11px;width:50px;margin-top:5px;">
                             <div class="progress-bar" style="width: 60%;height:11px;"></div>
                         </div>
-
-
-                        <script src="../../ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-                        <script src="js/circle-progress.js"></script>
-                        <script src="js/examples.js"></script></td>
-
-
                     <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editDriverInfo"href="#modal-dialogDriver" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
                     <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteDriverInfo" href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
-
-
             </tbody>
             <tbody>
-
                 <tr>
-
                     <td class="hidden-phone" style="padding-top:8px"><font size="2">&nbsp&nbspRam</font></td>
                     <td style="padding-top:8px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="2">8888888888</font></td>
                     <td align="center" style="padding-top:8px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:11px;width:50px;margin-top:5px;">
                             <div class="progress-bar" style="width: 60%;height:11px;"></div>
                         </div>
-
-
-                        <script src="../../ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-                        <script src="js/circle-progress.js"></script>
-                        <script src="js/examples.js"></script></td>
-
-
                     <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editDriverInfo"href="#modal-dialogDriver" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
                     <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteDriverInfo" href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
-
-
             </tbody>
     </div>
 
 </table>
 </div>
-
-
 </div>
 <div class="container" style="background-color: rgba(255,255,153,0.9);width:50%;margin-top:0.5%">
     <div class="col-md-12" align="center" style="background-color: rgba(255,255,153,0.9); margin-top:0.1%" ><h4>Goods</h4></div>
 </div>
-
 <div class="container" style="background-color:white;width:50%;margin-top:0%">
     <div class="col-md-12 col-md-offset-0" style="background-color:#ffffff;height:10%">
         <table class="table table-striped " >
             <thead>
                 <tr>
-
                     <th class="hidden-phone">Material</th>
                     <th>Weight</th>
                     <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCompletion</th>
                     <td align="right">Edit</th>
                     <td>Delete</td>
-
                 </tr>
             </thead>
-
             <tbody>
-
                 <tr>
-
                     <td class="hidden-phone" style="padding-top:8px"><font size="2">&nbsp&nbspIron</font></td>
                     <td style="padding-top:8px"><font size="2" >&nbsp&nbsp&nbsp&nbsp&nbsp8 tonnes&nbsp&nbsp&nbsp&nbsp</font></td>
                     <td align="center" style="margin-left:30px;padding-top:8px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:10px;width:50px;margin-top:5px;left:20px">
                             <div class="progress-bar" style="width: 60%;height:11px;"></div>
                         </div>
-
                     </td>
-
-
                     <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editGoodsInfo" href="#modal-dialogGoods"data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
                     <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteGoodsInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
-
-
             </tbody>
             <tbody>
-
                 <tr>
-
                     <td class="hidden-phone" style="padding-top:8px"><font size="2">&nbsp&nbspIron</font></td>
                     <td style="padding-top:8px"><font size="2" >&nbsp&nbsp&nbsp&nbsp&nbsp8 tonnes&nbsp&nbsp&nbsp&nbsp</font></td>
                     <td align="center" style="margin-left:30px;padding-top:8px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:10px;width:50px;margin-top:5px;left:20px">
@@ -802,37 +690,24 @@
                         </div>
 
                     </td>
-
-
                     <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editGoodsInfo" href="#modal-dialogGoods"data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
                     <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteGoodsInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
-
-
             </tbody>
             <tbody>
-
                 <tr>
-
                     <td class="hidden-phone" style="padding-top:8px"><font size="2">&nbsp&nbspIron</font></td>
                     <td style="padding-top:8px"><font size="2" >&nbsp&nbsp&nbsp&nbsp&nbsp8 tonnes&nbsp&nbsp&nbsp&nbsp</font></td>
                     <td align="center" style="margin-left:30px;padding-top:8px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:10px;width:50px;margin-top:5px;left:20px">
                             <div class="progress-bar" style="width: 60%;height:11px;"></div>
                         </div>
-
                     </td>
-
-
                     <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editGoodsInfo" href="#modal-dialogGoods"data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
                     <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteGoodsInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
-
-
             </tbody>
         </table>
     </div>
-
-
 </div>
 
 <div class="modal fade" id="modal-dialogGoods">
@@ -862,17 +737,12 @@
                             <input type="text" id="modalDialogGoodsScheduledDate"class="form-control" style="width:60%"placeholder="Default input" />
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-3 control-label">Value</label>
                         <div class="col-md-9">
                             <input type="text" id="modalDialogGoodsValue"class="form-control" style="width:60%"placeholder="In INR" />
                         </div>
                     </div>
-
-
-
-
                     <div class="col-md-2 col-md-offset-8" style="background-color:white;left:25px;width:30%;padding-right:0%;margin-top:-35%">
                         <div class="thumbnail" style="width:150px">
                             <div class="caption">
@@ -895,7 +765,6 @@
                             <input type="text" id="modalDialogGoodsFrom" class="form-control" style="width:100%"placeholder="Default input" />
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-3 control-label">To</label>
                         <div class="col-md-9">
@@ -916,12 +785,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
                 </form>
             </div>
             <div class="modal-footer">
@@ -940,4 +803,3 @@
 </footer>
 </body>
 </html>
-
