@@ -123,7 +123,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="noOfEmployee" name="numberOfEmployees" id="numberOfEmployees" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="6"/>
+                                            <form:input path="noOfEmployee" id="numberOfEmployees" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="6"/>
                                         </div></div>
                                 </div>
                                 <div class="job-title required">
@@ -132,7 +132,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="noOfVehicles" name="numberOfTrucks" id="numberOfTrucks" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="7"/>
+                                            <form:input path="noOfVehicles" id="numberOfTrucks" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="7"/>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="businessType" name="business" id="business" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="7"/>
+                                            <form:input path="businessType" id="business" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="7"/>
                                         </div></div>
                                 </div>
                                 <div class="job-title required">

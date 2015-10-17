@@ -5,10 +5,10 @@
  */
 package com.utilaider.logistics.service;
 
-import com.utilaider.logistics.dao.RoleDao;
+import com.utilaider.logistics.dao.GenericDao;
 import com.utilaider.logistics.domain.Role;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,34 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class RoleServiceImpl implements RoleService {
+public class RoleServiceImpl extends GenericServiceImpl<Integer, Role> implements RoleService {
+
+    public RoleServiceImpl() {
+    }
 
     @Autowired
-    RoleDao roleDao;
-
-    @Override
-    public boolean insertRole(Role role) throws Exception {
-        return roleDao.insertRole(role);
-    }
-
-    @Override
-    public void updateRole(Role role) throws Exception {
-        roleDao.updateRole(role);
-    }
-
-    @Override
-    public void deleteRole(Role role) throws Exception {
-        roleDao.deleteRole(role);
-    }
-
-    @Override
-    public Role getRoleById(Integer id) throws Exception {
-        return roleDao.getRoleById(id);
-    }
-
-    @Override
-    public List<Role> getRoles() throws Exception {
-        return roleDao.getRoles();
+    public RoleServiceImpl(@Qualifier("roleDaoImpl") GenericDao<Integer, Role> genericDao) {
+        super(genericDao);
     }
 
 }

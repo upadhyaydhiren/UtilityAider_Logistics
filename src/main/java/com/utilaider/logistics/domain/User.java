@@ -6,6 +6,7 @@
  */
 package com.utilaider.logistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -17,9 +18,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
@@ -72,9 +73,10 @@ public class User implements Serializable {
     @Column(name = "createdBy")
     private String createdBy;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<UserRole> userRoles;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @PrimaryKeyJoinColumn(name = "address_id")
     private Address address;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -180,6 +182,7 @@ public class User implements Serializable {
         this.createdBy = createdBy;
     }
 
+    @JsonManagedReference
     public List<UserRole> getUserRoles() {
         return userRoles;
     }
@@ -196,6 +199,7 @@ public class User implements Serializable {
         return address;
     }
 
+    @JsonManagedReference
     public List<UserEntity> getUserEntities() {
         return userEntities;
     }
@@ -204,6 +208,7 @@ public class User implements Serializable {
         this.userEntities = userEntities;
     }
 
+    @JsonManagedReference
     public List<UsersIndustry> getUsersIndustrys() {
         return usersIndustrys;
     }

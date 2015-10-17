@@ -5,6 +5,7 @@
  */
 package com.utilaider.logistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,6 +40,7 @@ public class UserEntity implements Serializable {
         return id;
     }
 
+    @JsonBackReference
     public User getUser() {
         return user;
     }

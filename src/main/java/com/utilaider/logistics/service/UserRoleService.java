@@ -6,21 +6,10 @@
 package com.utilaider.logistics.service;
 
 import com.utilaider.logistics.domain.UserRole;
-import java.util.List;
 
 /**
  *
  * @author Dhiren
  */
-public interface UserRoleService {
-
-    public boolean insertRole(UserRole role) throws Exception;
-
-    public boolean updateRole(UserRole role) throws Exception;
-
-    public boolean deleteRole(UserRole role) throws Exception;
-
-    public UserRole getRoleById(Integer id) throws Exception;
-
-    public List<UserRole> getRoles() throws Exception;
+public interface UserRoleService extends GenericService<Integer, UserRole> {
 }

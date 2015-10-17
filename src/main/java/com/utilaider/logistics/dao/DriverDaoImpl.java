@@ -6,10 +6,7 @@
 package com.utilaider.logistics.dao;
 
 import com.utilaider.logistics.domain.Driver;
-import java.util.LinkedList;
-import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,35 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class DriverDaoImpl implements DriverDao {
-
-    @Autowired
-    SessionFactory sessionFactory;
+public class DriverDaoImpl extends GenericDaoImpl<Long, Driver> implements DriverDao {
 
     @Override
-    public LinkedList<Driver> getAllDriver() throws Exception {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Driver.class);
-        return new LinkedList<>(criteria.list());
-    }
-
-    @Override
-    public Driver getDriverById(Long driverId) throws Exception {
-        return (Driver) sessionFactory.getCurrentSession().get(Driver.class, driverId);
-    }
-
-    @Override
-    public boolean insertDriver(Driver driverObj) throws Exception {
-        return (Long) sessionFactory.getCurrentSession().save(driverObj) > 0;
-    }
-
-    @Override
-    public void updateDriver(Driver driverObj) throws Exception {
-        sessionFactory.getCurrentSession().update(driverObj);
-    }
-
-    @Override
-    public void deleteDriver(Driver driverObj) throws Exception {
-        sessionFactory.getCurrentSession().delete(driverObj);
+    public Driver getDriverByMobileNo(String mobileNumber) throws Exception {
+        return (Driver) getSession().createCriteria(Driver.class).add(Restrictions.eq("mobile", mobileNumber)).uniqueResult();
     }
 
 }

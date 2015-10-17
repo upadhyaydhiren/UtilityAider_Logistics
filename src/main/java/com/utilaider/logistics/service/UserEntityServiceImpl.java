@@ -6,7 +6,7 @@
 package com.utilaider.logistics.service;
 
 import com.utilaider.logistics.dao.GenericDao;
-import com.utilaider.logistics.domain.UserRole;
+import com.utilaider.logistics.domain.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,13 +18,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class UserRoleServiceImpl extends GenericServiceImpl<Integer, UserRole> implements UserRoleService {
+public class UserEntityServiceImpl extends GenericServiceImpl<Integer, UserEntity> implements UserEntityService {
 
-    public UserRoleServiceImpl() {
+    public UserEntityServiceImpl() {
     }
 
     @Autowired
-    public UserRoleServiceImpl(@Qualifier("userRoleDaoImpl") GenericDao<Integer, UserRole> genericDao) {
+    public UserEntityServiceImpl(@Qualifier("userEntityDaoImpl") GenericDao<Integer, UserEntity> genericDao) {
         super(genericDao);
     }
 

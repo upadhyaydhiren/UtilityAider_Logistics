@@ -6,21 +6,11 @@
 package com.utilaider.logistics.dao;
 
 import com.utilaider.logistics.domain.UserRole;
-import java.util.List;
 
 /**
  *
  * @author Dhiren
  */
-public interface UserRoleDao {
+public interface UserRoleDao extends GenericDao<Integer, UserRole> {
 
-    public boolean insertRole(UserRole role) throws Exception;
-
-    public boolean updateRole(UserRole role) throws Exception;
-
-    public boolean deleteRole(UserRole role) throws Exception;
-
-    public UserRole getRoleById(Integer id) throws Exception;
-
-    public List<UserRole> getRoles() throws Exception;
 }

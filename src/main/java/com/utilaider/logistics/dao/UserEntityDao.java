@@ -6,19 +6,11 @@
 package com.utilaider.logistics.dao;
 
 import com.utilaider.logistics.domain.UserEntity;
-import java.util.List;
 
 /**
  *
  * @author Dhiren
  */
-public interface UserEntityDao {
+public interface UserEntityDao extends GenericDao<Integer, UserEntity> {
 
-    public boolean insertUserEntity(UserEntity userEntity) throws Exception;
-
-    public boolean updateUserEnity(UserEntity userEntity) throws Exception;
-
-    public UserEntity getUserEntityById(Integer id) throws Exception;
-
-    public List<UserEntity> getAllUserEntitys() throws Exception;
 }

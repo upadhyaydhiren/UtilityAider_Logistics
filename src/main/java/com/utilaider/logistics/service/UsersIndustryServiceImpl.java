@@ -5,10 +5,12 @@
  */
 package com.utilaider.logistics.service;
 
+import com.utilaider.logistics.dao.GenericDao;
 import com.utilaider.logistics.dao.UsersIndustryDao;
 import com.utilaider.logistics.domain.UsersIndustry;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,34 +20,17 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class UsersIndustryServiceImpl implements UsersIndustryService {
+public class UsersIndustryServiceImpl extends GenericServiceImpl<Integer, UsersIndustry> implements UsersIndustryService {
+
+    private UsersIndustryDao usersIndustryDao;
+
+    public UsersIndustryServiceImpl() {
+    }
 
     @Autowired
-    UsersIndustryDao usersIndustryDao;
-
-    @Override
-    public boolean insertUsersIndustry(UsersIndustry industry) throws Exception {
-        return usersIndustryDao.insertUsersIndustry(industry);
-    }
-
-    @Override
-    public boolean updateUsersIndustry(UsersIndustry industry) throws Exception {
-        return usersIndustryDao.updateUsersIndustry(industry);
-    }
-
-    @Override
-    public boolean deleteUsersIndustry(UsersIndustry industry) throws Exception {
-        return usersIndustryDao.deleteUsersIndustry(industry);
-    }
-
-    @Override
-    public UsersIndustry getUsersIndustryById(Integer id) throws Exception {
-        return usersIndustryDao.getUsersIndustryById(id);
-    }
-
-    @Override
-    public List<UsersIndustry> getAllUsersIndustrys() throws Exception {
-        return usersIndustryDao.getAllUsersIndustrys();
+    public UsersIndustryServiceImpl(@Qualifier("usersIndustryDaoImpl") GenericDao<Integer, UsersIndustry> genericDao) {
+        super(genericDao);
+        this.usersIndustryDao = (UsersIndustryDao) genericDao;
     }
 
     @Override
