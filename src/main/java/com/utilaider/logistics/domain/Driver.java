@@ -12,6 +12,7 @@
 package com.utilaider.logistics.domain;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -27,6 +28,8 @@ public class Driver extends User {
     private Date dob;
     private String profilePic;
     private String licenseNo;
+    @Column(name = "service_duration_month")
+    private Integer serviceDuration;
 
     public Date getDob() {
         return dob;
@@ -51,4 +54,13 @@ public class Driver extends User {
     public void setLicenseNo(String licenseNo) {
         this.licenseNo = licenseNo;
     }
+
+    public Integer getServiceDuration() {
+        return serviceDuration;
+    }
+
+    public void setServiceDuration(Integer serviceDuration) {
+        this.serviceDuration = serviceDuration;
+    }
+
 }

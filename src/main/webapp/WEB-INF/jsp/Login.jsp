@@ -19,7 +19,7 @@
                 background-color:white;
             }
             .touched:required:invalid {
-                background-color: pink;
+                border-color: red;
             }
         </style>
     </head>

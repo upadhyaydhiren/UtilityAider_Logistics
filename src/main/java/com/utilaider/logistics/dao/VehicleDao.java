@@ -6,17 +6,11 @@
 package com.utilaider.logistics.dao;
 
 import com.utilaider.logistics.domain.Vehicle;
-import java.util.LinkedList;
 
 /**
  *
  * @author SARJIT
  */
-public interface VehicleDao 
-{
-    public LinkedList<Vehicle> getAllVehicles() throws Exception;
-    public Vehicle getVehicleByRegNo(String regNo) throws Exception;
-    public boolean saveVechile(Vehicle objVehicle) throws Exception;
-    public void updateVechile(Vehicle objVehicle) throws Exception;
-    public void deleteVechile(Vehicle objVehicle) throws Exception;
+public interface VehicleDao extends GenericDao<String, Vehicle> {
+
 }

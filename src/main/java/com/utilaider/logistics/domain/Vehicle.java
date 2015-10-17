@@ -6,6 +6,7 @@
 package com.utilaider.logistics.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -13,9 +14,15 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -36,12 +43,12 @@ public class Vehicle implements Serializable {
     @Column(name = "no_of_wheels")
     private Integer noOfWheels;
     private Integer weight;
-    @ElementCollection
-    @CollectionTable(name = "vehicle_permits", joinColumns = @JoinColumn(name = "registration_noregistration_no"))
     @Column(name = "permit")
-    private List<String> permits;
+    @Enumerated(EnumType.STRING)
+    private VehiclePermits permits;
     @Column(name = "vehicle_type")
-    private String vehicleType;
+    @Enumerated(EnumType.STRING)
+    private VehicleType vehicleType;
     @ElementCollection
     @CollectionTable(name = "vechile_tracking_log", joinColumns = @JoinColumn(name = "registration_no"))
     @AttributeOverrides({
@@ -50,9 +57,24 @@ public class Vehicle implements Serializable {
         @AttributeOverride(name = "latitude", column = @Column(name = "latitude")),
         @AttributeOverride(name = "longitude", column = @Column(name = "longitude"))
     })
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<TrackLog> trackLogs;
+    @Column(name = "charges_per_hour")
+    private Double chargesPerHour;
+    @Column(name = "is_trackable")
+    private boolean isTrackable;
+    @Column(name = "road_tax_valid_date")
+    @Temporal(TemporalType.DATE)
+    private Date roadTaxValidDate;
+    @Column(name = "route_info")
+    private String routeInfo;
+
     public String getRegNo() {
         return regNo;
+    }
+
+    public boolean isIsTrackable() {
+        return isTrackable;
     }
 
     public void setRegNo(String regNo) {
@@ -99,27 +121,60 @@ public class Vehicle implements Serializable {
         this.weight = weight;
     }
 
-    public String getVehicleType() {
+    public VehicleType getVehicleType() {
         return vehicleType;
     }
 
-    public void setVehicleType(String vehicleType) {
+    public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
     }
 
-    public List<String> getPermits() {
+    public VehiclePermits getPermits() {
         return permits;
+    }
+
+    public void setPermits(VehiclePermits permits) {
+        this.permits = permits;
     }
 
     public List<TrackLog> getTrackLogs() {
         return trackLogs;
     }
 
-    public void setPermits(List<String> permits) {
-        this.permits = permits;
-    }
-
     public void setTrackLogs(List<TrackLog> trackLogs) {
         this.trackLogs = trackLogs;
     }
+
+    public Double getChargesPerHour() {
+        return chargesPerHour;
+    }
+
+    public boolean getIsTrackable() {
+        return isTrackable;
+    }
+
+    public Date getRoadTaxValidDate() {
+        return roadTaxValidDate;
+    }
+
+    public String getRouteInfo() {
+        return routeInfo;
+    }
+
+    public void setChargesPerHour(Double chargesPerHour) {
+        this.chargesPerHour = chargesPerHour;
+    }
+
+    public void setIsTrackable(boolean isTrackable) {
+        this.isTrackable = isTrackable;
+    }
+
+    public void setRoadTaxValidDate(Date roadTaxValidDate) {
+        this.roadTaxValidDate = roadTaxValidDate;
+    }
+
+    public void setRouteInfo(String routeInfo) {
+        this.routeInfo = routeInfo;
+    }
+
 }

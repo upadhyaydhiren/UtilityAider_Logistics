@@ -6,22 +6,12 @@
 package com.utilaider.logistics.service;
 
 import com.utilaider.logistics.domain.Driver;
-import java.util.LinkedList;
 
 /**
  *
  * @author SARJIT
  */
-public interface DriverService {
+public interface DriverService extends GenericService<Long, Driver> {
 
-    public LinkedList<Driver> getAllDriver() throws Exception;
-
-    public Driver getDriverById(Long driverId) throws Exception;
-
-    public boolean insertDriver(Driver driverObj) throws Exception;
-
-    public void updateDriver(Driver driverObj) throws Exception;
-
-    public void deleteDriver(Driver driverObj) throws Exception;
-
+    public Driver getDriverByMobileNo(String mobileNumber) throws Exception;
 }

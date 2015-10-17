@@ -12,15 +12,6 @@ import java.util.List;
  *
  * @author Dhiren
  */
-public interface StaticBasicUserEntityDao {
+public interface StaticBasicUserEntityDao extends GenericDao<Integer, StaticBasicUserEntity> {
 
-    public boolean insert(StaticBasicUserEntity userEntity) throws Exception;
-
-    public boolean update(StaticBasicUserEntity userEntity) throws Exception;
-
-    public boolean delete(StaticBasicUserEntity userEntity) throws Exception;
-
-    public StaticBasicUserEntity getStaticBasicUserEntityById(Integer id) throws Exception;
-
-    public List<StaticBasicUserEntity> getAllStaticBasicUserEntitys() throws Exception;
 }

@@ -6,21 +6,10 @@
 package com.utilaider.logistics.service;
 
 import com.utilaider.logistics.domain.StaticBasicUserEntity;
-import java.util.List;
 
 /**
  *
  * @author Dhiren
  */
-public interface StaticBasicUserEntityService {
-
-    public boolean insert(StaticBasicUserEntity userEntity) throws Exception;
-
-    public boolean update(StaticBasicUserEntity userEntity) throws Exception;
-
-    public boolean delete(StaticBasicUserEntity userEntity) throws Exception;
-
-    public StaticBasicUserEntity getStaticBasicUserEntityById(Integer id) throws Exception;
-
-    public List<StaticBasicUserEntity> getAllStaticBasicUserEntitys() throws Exception;
+public interface StaticBasicUserEntityService extends GenericService<Integer, StaticBasicUserEntity> {
 }

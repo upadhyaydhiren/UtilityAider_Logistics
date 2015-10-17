@@ -5,10 +5,11 @@
  */
 package com.utilaider.logistics.service;
 
+import com.utilaider.logistics.dao.GenericDao;
 import com.utilaider.logistics.dao.OwnerDao;
 import com.utilaider.logistics.domain.Owner;
-import java.util.LinkedList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,34 +19,18 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class OwnerServiceImpl implements OwnerService {
+public class OwnerServiceImpl extends GenericServiceImpl<Long, Owner> implements OwnerService {
+
+    private OwnerDao ownerDao;
+
+    public OwnerServiceImpl() {
+
+    }
 
     @Autowired
-    OwnerDao ownerDao;
-
-    @Override
-    public LinkedList<Owner> getAllOwner() throws Exception {
-        return ownerDao.getAllOwner();
-    }
-
-    @Override
-    public boolean insertOwner(Owner ownerObj) throws Exception {
-        return ownerDao.insertOwner(ownerObj);
-    }
-
-    @Override
-    public boolean updateOwner(Owner ownerObj) throws Exception {
-        return ownerDao.updateOwner(ownerObj);
-    }
-
-    @Override
-    public boolean deleteOwner(Owner ownerObj) throws Exception {
-        return ownerDao.deleteOwner(ownerObj);
-    }
-
-    @Override
-    public Owner getOwner(Long ownerId) throws Exception {
-        return ownerDao.getOwner(ownerId);
+    public OwnerServiceImpl(@Qualifier("ownerDaoImpl") GenericDao<Long, Owner> genericDao) {
+        super(genericDao);
+        this.ownerDao = (OwnerDao) genericDao;
     }
 
     @Override

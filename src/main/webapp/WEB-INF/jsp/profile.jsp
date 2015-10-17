@@ -11,13 +11,18 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/text-button.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://ubilabs.github.io/geocomplete/jquery.geocomplete.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/examples.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/circle-progress.js"></script>
+    <script type="text/javascript">
+        var autocompleteDriver, autocompleteOwner;
+    </script>
 </head>
-<body style="background-color:#E6E6E6"class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" >
+<body style="background-color:#E6E6E6"class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest">
     <nav class="navbar navbar-default header" style="margin-bottom:5px;background-color:yellow;">
         <div class="container-fluid" >
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,6 +43,7 @@
 
                     <li style="left:90px;width:100px"><a href="Tracker.html" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Track</font></a></li>
                     <li style="left:90px;width:100px"><a href="Account.html" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Account</font></a></li>
+                    <li style="left:90px;width:100px"><a href="j_spring_security_logout" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Logout</font></a></li>
                 </div>
             </div>
         </div>
@@ -63,7 +69,7 @@
                     <img src="${pageContext.request.contextPath}/resources/images/image1.png" id="profilePictureImage"alt="...">
                 </div></div>
             <div class="col-md-4 col-md-offset-0" >
-                <a class="btn mini blue-stripe"  style="margin-left:270px"id="editProfileInformation" href="#modal-dialogedit1"data-toggle="modal" > <span style="width:0px"class="glyphicon glyphicon-edit"align="left" ></span></a>
+                <a class="btn mini blue-stripe"  style="margin-left:270px"id="editProfileInformation" href="#modal-dialogedit1" data-toggle="modal"> <span style="width:0px"class="glyphicon glyphicon-edit"align="left" ></span></a>
                 <table class="table table-hover " style="margin-top:0px"id="userDataTable">
 
                     <h2 style="margin-top:0px">${owner.firstName} &nbsp; ${owner.lastName}</h2>
@@ -114,72 +120,81 @@
                 </div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal">
+                    <form:form class="form-horizontal" modelAttribute="owner" action="updatepersonal" method="post">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Name</label>
+                            <label class="col-md-3 control-label">First Name</label>
                             <div class="col-md-9">
-                                <input id="firstName" name = "firstName" type="text" class="form-control" style="width:100%"placeholder="FirstName LastName" />
+                                <form:input path="firstName" type="text" class="form-control" style="width:100%" placeholder="First Name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Last Name</label>
+                            <div class="col-md-9">
+                                <form:input path = "lastName" type="text" class="form-control" style="width:100%" placeholder="LastName" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">I am Currently</label>
                             <div class="col-md-9">
-                                <select id="userRole" name="userRole" class="form-control" default= "eg301201" style ="height:6%;"; required>
-                                    <option value="Transporter">Transporter</option>
-                                    <option value="Broker">Broker</option>
-                                    <option value="ca">Comission Agent</option>
-                                    <option value="fo">Fleet Owner</option>
-                                    <option value="gc">General Customer</option>
-                                    <option value="e/o">Exporter/Importer</option>
-                                    <option value="manufacturer">Manufacturer</option>
-                                    <option value="p&m">Packers&Movers</option>
-                                    <option value="contractor">Contractor</option>
-                                    <option value="retailer">Retailer</option>
-                                    <option value="ws">Wholeseller</option>
-                                    <option value="to">Truck Owner</option>
-                                    <option value="supplier">Supplier</option>
-                                    <option value="builder">Builder</option>
-                                    <option value="driver">Driver</option>
-                                    <option value="farmer">Farmer</option>
-                                    <option value="fci">FCI</option>
-                                </select>
+                                <form:hidden path="userEntities[0].id" />
+                                <form:select id="userRole" path="userEntities[0].basicUserEntity.id" class="form-control" default= "eg301201" style ="height:6%;" required="required">
+                                    <c:forEach items="${entityList}" var="entity">
+                                        <form:option value="${entity.id}" label="${entity.entityType}" />
+                                    </c:forEach>
+                                </form:select>
+                                <form:hidden path="userEntities[0].user.id" value="${owner.id}" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Company</label>
-                            <div class="col-md-9">
-                                <input type="text" id="companyName" name="companyName" class="form-control" style="width:100%"placeholder="Company Name" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Address</label>
-                            <div class="col-md-9">
-                                <textarea type="text" id="address" name="address" class="form-control" style="width:100%"placeholder="Default input" /></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Pincode</label>
-                            <div class="col-md-9">
-                                <input type="text" id="pinCode" name="pinCode" class="form-control"style="width:100%" placeholder="eg. 301201" />
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label class="col-md-3 control-label">Mobile Number</label>
                             <div class="col-md-9">
-                                <input type="text" id="mobile" name="mobile" class="form-control"style="width:100%" placeholder="Mobile Number" />
+                                <form:input type="text" path="mobile" class="form-control"style="width:100%" placeholder="Mobile Number" />
+                            </div>
+                        </div>
+                        <div class="owner-address">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Address</label>
+                                <div class="col-md-9">
+                                    <form:textarea id="address" path="address.streetName" class="form-control" style="width:100%" placeholder="Default input" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">City</label>
+                                <div class="col-md-9">
+                                    <form:input path="address.city" id="city" style="margin-top:10px" tabindex="11" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <form:hidden path="address.id" id="editownerid" />
+                                <label class="col-md-3 control-label">State</label>
+                                <div class="col-md-9">
+                                    <form:input path="address.state" id="state" style="margin-top:10px" tabindex="10" data-geo="administrative_area_level_1"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Pincode</label>
+                                <div class="col-md-9" id="pincode">
+                                    <form:input path="address.pincode" id="pincode" class="form-control" style="width:100%" placeholder="eg. 301201"  />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Country</label>
+                                <div class="col-md-9" id="pincode">
+                                    <form:input path="address.country" id="country" class="form-control" style="width:100%" placeholder="Nation"  />
+                                </div>
+                                <form:hidden path="address.latitude" id="lat"  />
+                                <form:hidden path="address.longitude" id="longt" />
                             </div>
                         </div>
                         <div class="modal-footer">
 
                             <div class="leo-module mod-feat jointoday" >
-                                <button href="javascript:;" id="closeProfile" type="submit" name="closeProfile" value="Close" style="height:30px;width:80px;margin-top:0px"id="btn-submit" data-dismiss="modal"class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Close</font></button>
+                                <button href="javascript:;" id="closeProfile" name="closeProfile" value="Close" style="height:30px;width:80px;margin-top:0px"id="btn-submit" data-dismiss="modal"class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Close</font></button>
                                 <button type="submit" id="submitProfile"name="submitProfile" value="Submit" style="height:30px;width:80px;margin-top:0px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Submit</font></button>
                             </div>
 
                         </div>
-                    </form>
+                    </form:form>
                 </div>
             </div>
 
@@ -194,17 +209,28 @@
                 </div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal">
+                    <form:form class="form-horizontal" modelAttribute="owner" method="post" action="updateaddtionalinfo">
                         <div class="form-group">
                             <label class="col-md-3 control-label">PAN</label>
                             <div class="col-md-9">
-                                <input type="text" id="PAN" name="PAN" class="form-control" style="width:100%"placeholder="Default input" />
+                                <form:input type="text" id="PAN" path="panNumber" class="form-control" style="width:100%" placeholder="Default input" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9">
+                                <form:input type="text" id="email" path="email" class="form-control" style="width:100%" placeholder="Default input" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Industry</label>
                             <div class="col-md-9">
-                                <input type="text" id="industryName" name="industryName" class="form-control" style="width:100%"placeholder="Default input" />
+                                <form:select path="usersIndustrys[0].businessIndustry.id" name="countryCode" id="industyListDropdown"  style=" margin-top:10px;height:30px"class="country-select" tabindex="5">
+                                    <c:forEach items="${industryList}" var="industry">
+                                        <form:option value="${industry.id}" label="${industry.industryName}" />
+                                    </c:forEach>
+                                </form:select>
+                                <form:hidden path="usersIndustrys[0].user.id" value="${owner.id}" />
                             </div>
                         </div>
 
@@ -212,27 +238,27 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Company</label>
                             <div class="col-md-9">
-                                <input type="text" id="companyName" name="companyName" class="form-control" style="width:100%"placeholder="Default input" />
+                                <form:input type="text" id="companyName" path="companyName" class="form-control" style="width:100%" placeholder="Default input" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label">Business</label>
                             <div class="col-md-9">
-                                <input type="text" id="business" name="business" class="form-control" style="width:100%"placeholder="Default input" />
+                                <form:input type="text" id="business" path="businessType" class="form-control" style="width:100%" placeholder="Default input" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Transport Reference</label>
                             <div class="col-md-9">
-                                <input type="text" id="trasnposrtReference" name="transportReference" class="form-control"style="width:100%" placeholder="Default input" />
+                                <form:input type="text" id="trasnposrtReference" path="userReferanceCode" class="form-control" style="width:100%" placeholder="Default input" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label">Number of Employees</label>
                             <div class="col-md-9">
-                                <input type="text" id="noOfEmp" name="noOfEmp" class="form-control"style="width:100%" placeholder="If applicable" />
+                                <form:input type="text" id="noOfEmp" path="noOfEmployee" class="form-control" style="width:100%" placeholder="If applicable" />
                             </div>
                         </div>
 
@@ -240,17 +266,9 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Number of Trucks</label>
                             <div class="col-md-9">
-                                <input type="text" id="noOfTrucks" name="noOfTrucks" class="form-control"style="width:100%" placeholder="If applicable" />
+                                <form:input type="text" id="noOfTrucks" path="noOfVehicles" class="form-control" style="width:100%" placeholder="If applicable" />
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Email</label>
-                            <div class="col-md-9">
-                                <input type="text" id="email" name="email" class="form-control"style="width:100%" placeholder="Default input" />
-                            </div>
-                        </div>
-
                         <div class="modal-footer">
 
                             <div class="leo-module mod-feat jointoday" >
@@ -260,7 +278,7 @@
 
 
                         </div>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>
@@ -295,29 +313,23 @@
                         </div>
 
                         <div class="panel-body">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Name of Owner</label>
-                                    <div class="col-md-9">
-                                        <input type="text" id="modalNo" name="nameOfOwner" class="form-control" style="width:60%"placeholder="Default input" />
-                                    </div>
-                                </div>
+                            <form:form class="form-horizontal" modelAttribute="vehicle" method="post" action="addtruck">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Model No.</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="modalNo" name="modalNo" class="form-control" style="width:60%"placeholder="Default input" />
+                                        <form:input id="modalNo" path="modelNo" class="form-control" style="width:60%" placeholder="Default input" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Reg. No.</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="regNo" name="regNo" class="form-control" style="width:60%"placeholder="Default input" />
+                                        <form:input id="regNo" path="regNo" class="form-control" style="width:60%" placeholder="Default input" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Number of Wheels</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="noOfWheels" name="noOfWheels" class="form-control" style="width:60%"placeholder="Default input" />
+                                        <form:input id="noOfWheels" path="noOfWheels" class="form-control" style="width:60%" placeholder="Default input" />
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-md-offset-8" style="background-color:white;left:25px;width:30%;padding-right:0%;margin-top:-34%">
@@ -336,96 +348,90 @@
                                             </script></div>
                                         <img src="${pageContext.request.contextPath}/resources/images/image1.png" alt="...">
                                     </div></div>
-
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Insurance</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="insurance" name="insurance" class="form-control" style="width:100%"placeholder="Default input" />
+                                        <form:input id="insurance" path="insuranceNo" class="form-control" style="width:100%" placeholder="Default input" />
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Capacity</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="capacity" name="capacity" class="form-control" style="width:100%"placeholder="Default input" />
+                                        <form:input id="capacity" path="capacity" class="form-control" style="width:100%" placeholder="Default input" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Weight</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="weight" name="weight" class="form-control"style="width:100%" placeholder="Default input" />
+                                        <form:input id="weight" path="weight" class="form-control" style="width:100%" placeholder="Default input" />
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Permits</label>
                                     <div class="col-md-9">
-                                        <select class="form-control" id="permits" name="permits" style="width:100%">
-                                            <option>AIP</option>
-                                            <option>SP</option>
-
-                                        </select>
+                                        <form:select class="form-control" path="permits" style="width:100%">
+                                            <c:forEach items="${vehiclepermits}" var="permit">
+                                                <form:option value="${permit}" >${permit.fullName}</form:option>
+                                            </c:forEach>
+                                        </form:select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Truck type</label>
                                     <div class="col-md-9">
-                                        <select class="form-control" id="truckType" name="truckType" style="width:100%">
-                                            <option>Dumper</option>
-                                            <option>Eicher 407</option>
-                                            <option>JCB</option>
-                                        </select>
+                                        <form:select class="form-control" id="truckType" path="vehicleType" style="width:100%">
+                                            <c:forEach items="${vehicletypes}" var="vehicletype">
+                                                <form:option value="${vehicletype}" />${vehicletype.fullName}
+                                            </c:forEach>
+                                        </form:select>
                                     </div>
-
-
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Charges/Hour</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="charges" name="charges" class="form-control"style="width:100%" placeholder="If applicable" />
+                                        <form:input id="charges" path="chargesPerHour" class="form-control" style="width:100%" placeholder="If applicable" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Route Information</label>
+                                    <div class="col-md-9">
+                                        <form:input type="text" id="routeInfo" path="routeInfo" class="form-control" style="width:100%" placeholder="Default input" />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Route Information</label>
-                                    <div class="col-md-9">
-                                        <input type="text" id="routeInfo" name="routeInfo" class="form-control"style="width:100%" placeholder="Default input" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label class="col-md-3 control-label">Road Tax Valid upto</label>
                                     <div class="col-md-9">
-                                        <input id="datepicker" name="date" style="width:100%;margin-top:2%" type="text">
+                                        <form:input id="datepicker" path="roadTaxValidDate" style=" width:100%;margin-top:2%" />
                                     </div>
                                 </div>
-                                <script>
-                                    $(function () {
-                                        $("#datepicker").datepicker();
-                                    });</script>
+                                <!--                                <script>
+                                                                    $(function () {
+                                                                        $("#datepicker").datepicker();
+                                                                    });</script>-->
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Tracking facility :</label>
                                     <div class="col-md-9">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" id="trackingFacilityYes" name="trackingFacility" value="yes" data-parsley-required="true" /> Yes
+                                                <form:radiobutton id="trackingFacilityYes" path="isTrackable" value="true" data-parsley-required="true" /> Yes
                                             </label>
 
                                             <label>
-                                                <input type="radio" id="trackingFacilityNo" name="trackingFacility"  value="no" /> No
+                                                <form:radiobutton path="isTrackable" id="trackingFacilityNo" value="false" /> No
                                             </label>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="modal-footer">
 
                                     <div class="leo-module mod-feat jointoday" >
-                                        <button href="javascript:;" id="modalDialog5CloseButton"type="submit" name="" value="Close" style="height:30px;width:80px;margin-top:0px"id="btn-submit" data-dismiss="modal"class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Close</font></button>
+                                        <button href="javascript:;" id="modalDialog5CloseButton" name="" value="Close" style="height:30px;width:80px;margin-top:0px"id="btn-submit" data-dismiss="modal"class=" btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Close</font></button>
                                         <button type="submit" id="modalDialog5Submit"name="" value="Submit" style="height:30px;width:80px;margin-top:0px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Sumbit</font></button>
                                     </div>
 
                                 </div>
-                            </form>
+                            </form:form>
                         </div>
                     </div>
                 </div>
@@ -439,7 +445,7 @@
                         <img src="${pageContext.request.contextPath}/resources/images/image3.png" alt="Smiley face" height="50px" width="65px" align="right">
                         <font size="3">Add Driver</font><br><font size="2">Adding Driver info keeps track of your driverse.</font>
                         <div class="leo-module mod-feat jointoday" >
-                            <button type="button" id="addDriver"href="#modal-dialogDriver" name="" value="Add Driver" style="border-radius:0px;width:100%;margin-top:0px"id="btn-submit" class="btn-action" data-toggle="modal"tabindex="9"><font face="OPen Sans" style="font-weight:normal">Add Driver</font></button>
+                            <button type="button" id="addDriver" href="#modal-dialogDriver" name="" value="Add Driver" style="border-radius:0px;width:100%;margin-top:0px"id="btn-submit" class="btn-action" data-toggle="modal" tabindex="9"><font face="OPen Sans" style="font-weight:normal">Add Driver</font></button>
                         </div>
                     </div>
                 </div>
@@ -454,23 +460,36 @@
                         <h4 class="modal-title" align="center">Driver Details</h4>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal">
+                        <form:form class="form-horizontal" modelAttribute="driver" method="post" action="adddriver">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Name</label>
+                                <form:hidden path="id" />
+                                <label class="col-md-3 control-label">First Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="driverName" name="driverName" class="form-control" style="width:60%"placeholder="Default input" />
+                                    <form:input type="text" id="driverFirstName" path="firstName" class="form-control" style="width:60%" placeholder="Default input" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Lisence. No.</label>
+                                <label class="col-md-3 control-label">Last Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="lisenceNumber" name="lisenceNumber" class="form-control" style="width:60%"placeholder="Default input" />
+                                    <form:input type="text" id="driverLastName" path="lastName" class="form-control" style="width:60%" placeholder="Default input" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Lisance No.</label>
+                                <div class="col-md-9">
+                                    <form:input type="text" id="lisenceNumber" path="licenseNo" class="form-control" style="width:60%" placeholder="Default input" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Mobile No.</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="mobile" name="mobile" class="form-control"  style="width:60%"placeholder="Default input" />
+                                    <form:input type="text" id="driverMobile" path="mobile" class="form-control"  style="width:60%" placeholder="Default input" onblur="getDriver(this);" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Email No</label>
+                                <div class="col-md-9">
+                                    <form:input type="text" id="driverEmail"  path="email" class="form-control"  style="width:60%" placeholder="Default input" />
                                 </div>
                             </div>
                             <div class="col-md-2 col-md-offset-8" style="background-color:white;left:25px;width:30%;padding-right:0%;margin-top:-27%">
@@ -493,31 +512,51 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Service duration</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="serviceDuration" name="serviceDuration" class="form-control" placeholder="In months" />
+                                    <form:input type="text" id="serviceDuration" path="serviceDuration" class="form-control" placeholder="In months" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Email Id</label>
-                                <div class="col-md-9">
-                                    <input type="text" id="email" name="email" class="form-control" placeholder="In months" />
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Address</label>
                                 <div class="col-md-9">
-                                    <textarea class="form-control" id="address" name="address" placeholder="Textarea" rows="5"></textarea>
+                                    <form:textarea class="form-control" id="driveraddress" path="address.streetName" placeholder="Textarea" rows="5" />
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">City</label>
+                                <div class="col-md-9">
+                                    <form:input path="address.city" id="citydriver" style="margin-top:10px" tabindex="10" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <form:hidden path="address.id" id="editdriverid" />
+                                <label class="col-md-3 control-label">State</label>
+                                <div class="col-md-9">
+                                    <form:input path="address.state" id="statedriver"  style="margin-top:10px" tabindex="10" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Pincode</label>
+                                <div class="col-md-9">
+                                    <form:input path="address.pincode" id="pincodedriver" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Country</label>
+                                <div class="col-md-9">
+                                    <form:input path="address.country" id="countrydriver"  style="margin-top:10px" tabindex="10" />
+                                </div>
+                                <form:hidden path="address.latitude" id="latdriver" />
+                                <form:hidden path="address.longitude" id="longtdriver" />
                             </div>
 
 
                             <div class="modal-footer">
                                 <div class="leo-module mod-feat jointoday" >
                                     <button href="javascript:;" id="modalDialogDriverCloseButton" type="submit" name="" value="Close" style="height:30px;width:80px;margin-top:0px"id="btn-submit" data-dismiss="modal"class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Close</font></button>
-                                    <button type="submit" name="" id="modalDialogDriverSumbit" value="Submit" style="height:30px;width:80px;margin-top:0px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Sumbit</font></button>
+                                    <button type="submit" name="" id="modalDialogDriverSumbit" value="Submit" style="height:30px;width:80px;margin-top:0px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Submit</font></button>
                                 </div>
                             </div>
-                        </form>
+                        </form:form>
                     </div>
                 </div>
             </div>
@@ -531,7 +570,7 @@
                     <img src="${pageContext.request.contextPath}/resources/images/image4.png" alt="Smiley face" height="50px" width="65px" align="right">
                     <font size="3">Add Goods</font><br><font size="2">Adding goods info keeps track of your goods.</font>
                     <div class="leo-module mod-feat jointoday" >
-                        <button type="button" id="addGoods"href="#modal-dialogGoods" name="" value="Add Goods" style="border-radius:0px;width:100%;margin-top:0px"id="btn-submit" class="btn-action" data-toggle="modal"tabindex="9"><font face="Open Sans " style="font-weight:normal">Add Goods</font></button>
+                        <button type="button" id="addGoods" href="#modal-dialogGoods" name="" value="Add Goods" style="border-radius:0px;width:100%;margin-top:0px"id="btn-submit" class="btn-action" data-toggle="modal"tabindex="9"><font face="Open Sans " style="font-weight:normal">Add Goods</font></button>
                     </div>
                 </div>
             </div>
@@ -551,46 +590,21 @@
                 <tr>
                     <th class="hidden-phone">Reg. No.</th>
                     <th>Capacity</th>
-                    <th >&nbsp&nbsp&nbsp&nbsp&nbspCompletion</th>
+                    <th >&nbsp;&nbsp;&nbsp&nbsp&nbspCompletion</th>
                     <td align="right">Edit
                     <td>Delete</td>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td  height="" style="padding-top:8px"><font size="2" >&nbsp&nbspGJ-X-1111</font></td>
-                    <td style="padding-top:8px"><font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp8</font></td>
-                    <td align="center"style="padding-top:8px;margin-bottom:0px;padding-bottom:0px" ><div class="progress progress-striped active" style="background-color:#D7DF01;height:10px;width:50px;margin-top:5px;">
-                            <div class="progress-bar" style="width: 60%;height:11px;"></div>
-                        </div>
-                    </td>
-                    <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editTruckInfo" href="#modal-dialog5" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
-                    <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteTruckInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td  height="" style="padding-top:8px"><font size="2" >&nbsp&nbspGJ-X-1111</font></td>
-                    <td style="padding-top:8px"><font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp8</font></td>
-                    <td align="center"style="padding-top:8px;margin-bottom:0px;padding-bottom:0px" ><div class="progress progress-striped active" style="background-color:#D7DF01;height:10px;width:50px;margin-top:5px;">
-                            <div class="progress-bar" style="width: 60%;height:11px;"></div>
-                        </div>
-                    </td>
-                    <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editTruckInfo" href="#modal-dialog5" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
-                    <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteTruckInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td  height="" style="padding-top:8px"><font size="2" >&nbsp&nbspGJ-X-1111</font></td>
-                    <td style="padding-top:8px"><font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp8</font></td>
-                    <td align="center"style="padding-top:8px;margin-bottom:0px;padding-bottom:0px" ><div class="progress progress-striped active" style="background-color:#D7DF01;height:10px;width:50px;margin-top:5px;">
-                            <div class="progress-bar" style="width: 60%;height:11px;"></div>
-                        </div>
-                    </td>
-                    <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editTruckInfo" href="#modal-dialog5" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
-                    <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteTruckInfo"href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
-                </tr>
+                <c:forEach items="${owner.getVehicles()}" var="vechile" >
+                    <tr>
+                        <td style="padding-top:8px"><font size="2">&nbsp;&nbsp;${vechile.regNo}</font></td>
+                        <td style="padding-top:8px"><font size="2">&nbsp;&nbsp;${vechile.capacity}</font></td>
+                        <td align="center"style="padding-top:8px;margin-bottom:0px;padding-bottom:0px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:10px;width:50px;margin-top:5px;"><div class="progress-bar" style="width: 60%;height:11px;"></div></div></td>
+                        <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="${vechile.regNo}" onclick="editTruck(this);"> <span class="glyphicon glyphicon-edit"></span></a></td>
+                        <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="${vechile.regNo}" onclick="deleteTruck(this);"> <span class="glyphicon glyphicon-remove"></span></a></td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>
@@ -610,49 +624,28 @@
             <thead>
                 <tr>
                     <th class="hidden-phone" >Name</th>
-                    <th>&nbsp&nbsp&nbsp&nbsp Mobile No.</th>
-                    <th>&nbsp&nbsp&nbsp&nbsp&nbspCompletion</th>
-                    <td align="right" >&nbsp&nbsp&nbsp&nbspEdit</td>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp; Mobile No.</th>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Completion</th>
+                    <td align="right" >&nbsp;&nbsp;&nbsp;&nbsp;Edit</td>
                     <td >Delete</td>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="hidden-phone" style="padding-top:8px"><font size="2">&nbsp&nbspRam</font></td>
-                    <td style="padding-top:8px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="2">8888888888</font></td>
-                    <td align="center" style="padding-top:8px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:11px;width:50px;margin-top:5px;">
-                            <div class="progress-bar" style="width: 60%;height:11px;"></div>
-                        </div>
-                    <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editDriverInfo"href="#modal-dialogDriver" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
-                    <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteDriverInfo" href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
-                </tr>
+                <c:forEach items="${owner.getDriverlist()}" var="driver">
+                    <tr>
+                        <td class="hidden-phone" style="padding-top:8px"><font size="2">&nbsp;&nbsp;${driver.firstName}&nbsp;${driver.lastName}</font></td>
+                        <td style="padding-top:8px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="2">${driver.mobile}</font></td>
+                        <td align="center" style="padding-top:8px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:11px;width:50px;margin-top:5px;">
+                                <div class="progress-bar" style="width: 60%;height:11px;"></div>
+                            </div></td>
+                        <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="${driver.mobile}" onclick="getDriver(this);" href="#modal-dialogDriver" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
+                        <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="${driver.mobile}" onclick="deleteDriver(this);"> <span class="glyphicon glyphicon-remove"></span></a></td>
+                    </tr>
+                </c:forEach>
             </tbody>
-            <tbody>
-                <tr>
-                    <td class="hidden-phone" style="padding-top:8px"><font size="2">&nbsp&nbspRam</font></td>
-                    <td style="padding-top:8px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="2">8888888888</font></td>
-                    <td align="center" style="padding-top:8px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:11px;width:50px;margin-top:5px;">
-                            <div class="progress-bar" style="width: 60%;height:11px;"></div>
-                        </div>
-                    <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editDriverInfo"href="#modal-dialogDriver" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
-                    <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteDriverInfo" href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td class="hidden-phone" style="padding-top:8px"><font size="2">&nbsp&nbspRam</font></td>
-                    <td style="padding-top:8px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="2">8888888888</font></td>
-                    <td align="center" style="padding-top:8px"><div class="progress progress-striped active" style="background-color:#D7DF01;height:11px;width:50px;margin-top:5px;">
-                            <div class="progress-bar" style="width: 60%;height:11px;"></div>
-                        </div>
-                    <td align="right" style="padding:0px 0px 0px 200px"><a class="btn mini blue-stripe" id="editDriverInfo"href="#modal-dialogDriver" data-toggle="modal"> <span class="glyphicon glyphicon-edit"></span></a></td>
-                    <td align="right" style="padding:0px 40px 0px 0px"><a class="btn mini blue-stripe" id="deleteDriverInfo" href="{site_url()}admin/editFront/1"> <span class="glyphicon glyphicon-remove"></span></a></td>
-                </tr>
-            </tbody>
-    </div>
 
-</table>
-</div>
+        </table>
+    </div>
 </div>
 <div class="container" style="background-color: rgba(255,255,153,0.9);width:50%;margin-top:0.5%">
     <div class="col-md-12" align="center" style="background-color: rgba(255,255,153,0.9); margin-top:0.1%" ><h4>Goods</h4></div>
@@ -796,6 +789,215 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('#modal-dialog5').on('hidden.bs.modal', function ()
+    {
+        $('#vehicle').trigger("reset");
+        $('#regNo').attr('type', 'text');
+        $('#regNo').val('');
+        $('#vehicle').attr('action', 'addtruck');
+    });
+    function editTruck(truckId)
+    {
+        var url = "<c:url value="/vehicleData/"/>" + truckId.id;
+        console.log(url);
+        if (truckId.id !== '')
+        {
+            $.ajax({
+                mimeType: "application/json",
+                type: "POST",
+                url: url,
+                success: function (data) {
+                    if (data !== null) {
+                        $('#vehicle').trigger("reset");
+                        $('#vehicle').attr('action', 'updatetruck');
+                        $('#modalNo').val(data.modelNo);
+                        $('#regNo').val(data.regNo);
+                        $('#regNo').attr('type', 'hidden');
+                        $('#noOfWheels').val(data.noOfWheels);
+                        $('#insurance').val(data.insuranceNo);
+                        $('#capacity').val(data.capacity);
+                        $('#weight').val(data.weight);
+                        $('#permits').val(data.permits);
+                        $('#truckType').val(data.vehicleType);
+                        $('#charges').val(data.chargesPerHour);
+                        $('#routeInfo').val(data.routeInfo);
+                        $('#datepicker').val(data.roadTaxValidDate);
+                        $("input[name=isTrackable][value='" + data.isTrackable + "']").prop("checked", true);
+                        $('#modal-dialog5').modal('show');
+                    }
+                },
+                error: function (event) {
+
+                    console.log(event.responseText);
+
+                }
+            });
+        }
+    }
+    function deleteTruck(truckId)
+    {
+        var url = "<c:url value="/deleteVehicleData/"/>" + truckId.id;
+        if (truckId.id !== '')
+        {
+            $.ajax({
+                mimeType: "application/json",
+                type: "POST",
+                url: url,
+                success: function (data) {
+                },
+                error: function (event)
+                {
+                    console.log(event.responseText);
+                }
+            });
+        }
+    }
+    function getDriver(param)
+    {
+        var url;
+        if (isNaN(param.id))
+        {
+            $('#driver').trigger("reset");
+            url = "<c:url value="/driverData/"/>" + param.value;
+        }
+        else
+        {
+            $('#driver').trigger("reset");
+            url = "<c:url value="/driverData/"/>" + param.id;
+            $('#driver').attr('action', 'updatedriver');
+        }
+        if (param.value !== '')
+        {
+            $.ajax({
+                mimeType: "application/json",
+                type: "POST",
+                url: url,
+                success: function (data) {
+                    if (data !== null)
+                    {
+                        $('#id').val(data.id);
+                        $('#driverFirstName').val(data.firstName);
+                        $('#driverLastName').val(data.lastName);
+                        $('#lisenceNumber').val(data.licenseNo);
+                        $('#driverMobile').val(data.mobile);
+                        $('#driverEmail').val(data.email);
+                        $('#serviceDuration').val(data.serviceDuration);
+                        $('#editdriverid').val(data.address.id);
+                        $('#driveraddress').val(data.address.streetName);
+                        $('#statedriver').val(data.address.state);
+                        $('#citydriver').val(data.address.city);
+                        $('#pincodedriver').val(data.address.pincode);
+                        $('#countrydriver').val(data.address.country);
+                        $('#latdriver').val(data.address.latitude);
+                        $('#longtdriver').val(data.address.longitude);
+                    }
+                },
+                error: function (event)
+                {
+                    console.log(event.responseText);
+                }
+            });
+        }
+    }
+    function deleteDriver(driverMobile)
+    {
+        var url = "<c:url value="/deleteVehicleData/"/>" + driverMobile.id;
+        if (driverMobile.id !== '')
+        {
+            $.ajax({
+                mimeType: "application/json",
+                type: "POST",
+                url: url,
+                success: function (data) {
+                },
+                error: function (event)
+                {
+                    console.log(event.responseText);
+                }
+            });
+        }
+    }
+</script>
+<script type="text/javascript">
+    $(function ()
+    {
+        var options =
+                {
+                    types: ['(cities)'],
+                    componentRestrictions: {country: ["in"]}
+                };
+        $("#city").geocomplete(options)
+                .bind("geocode:result", function (event, result)
+                {
+                    $.each(result.address_components, function (index, object)
+                    {
+                        $.each(object.types, function (index, name)
+                        {
+                            if (name === 'administrative_area_level_2')
+                            {
+                                $('#city').val(object.long_name);
+                                return false;
+                            }
+                            else if (name === 'administrative_area_level_1')
+                            {
+                                $('#state').val(object.long_name);
+                                return false;
+                            }
+                            else if (name === 'country')
+                            {
+                                $('#country').val(object.long_name);
+                                return false;
+                            }
+                            else if (name === 'postal_code')
+                            {
+                                $('#pincode').val(object.short_name);
+                                return false;
+                            }
+                        });
+                    });
+                    $('#lat').val(result.geometry.location.lat());
+                    $('#longt').val(result.geometry.location.lng());
+                });
+        $("#citydriver").geocomplete(options)
+                .bind("geocode:result", function (event, result)
+                {
+                    $.each(result.address_components, function (index, object)
+                    {
+                        $.each(object.types, function (index, name)
+                        {
+                            if (name === 'administrative_area_level_2')
+                            {
+                                $('#citydriver').val(object.long_name);
+                                return false;
+                            }
+                            else if (name === 'administrative_area_level_1')
+                            {
+                                $('#statedriver').val(object.long_name);
+                                return false;
+                            }
+                            else if (name === 'country')
+                            {
+                                $('#countrydriver').val(object.long_name);
+                                return false;
+                            }
+                            else if (name === 'postal_code')
+                            {
+                                $('#pincodedriver').val(object.short_name);
+                                return false;
+                            }
+                        });
+                    });
+                    $('#latdriver').val(result.geometry.location.lat());
+                    $('#longtdriver').val(result.geometry.location.lng());
+                });
+    });
+</script>
+<style type="text/css">
+    div.pac-container {
+        z-index: 1050 !important;
+    }
+</style>
 <footer class="footer" style="width:100%;margin:0px;height:100px">
     <div class="container" style="width:100%">
         <p class="text-muted">Place your FOOTER CONTENTS content here.</p>

@@ -5,10 +5,11 @@
  */
 package com.utilaider.logistics.service;
 
-import com.utilaider.logistics.dao.*;
+import com.utilaider.logistics.dao.DriverDao;
+import com.utilaider.logistics.dao.GenericDao;
 import com.utilaider.logistics.domain.Driver;
-import java.util.LinkedList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,34 +19,22 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class DriverServiceImpl implements DriverDao {
-    
+public class DriverServiceImpl extends GenericServiceImpl<Long, Driver> implements DriverService {
+
+    private DriverDao driverDao;
+
+    public DriverServiceImpl() {
+
+    }
+
     @Autowired
-    DriverDao driverDao;
-    
-    @Override
-    public LinkedList<Driver> getAllDriver() throws Exception {
-        return driverDao.getAllDriver();
+    public DriverServiceImpl(@Qualifier("driverDaoImpl") GenericDao<Long, Driver> genericDao) {
+        super(genericDao);
+        this.driverDao = (DriverDao) genericDao;
     }
-    
+
     @Override
-    public Driver getDriverById(Long driverId) throws Exception {
-        return driverDao.getDriverById(driverId);
+    public Driver getDriverByMobileNo(String mobileNumber) throws Exception {
+        return driverDao.getDriverByMobileNo(mobileNumber);
     }
-    
-    @Override
-    public boolean insertDriver(Driver driverObj) throws Exception {
-        return driverDao.insertDriver(driverObj);
-    }
-    
-    @Override
-    public void updateDriver(Driver driverObj) throws Exception {
-        driverDao.updateDriver(driverObj);
-    }
-    
-    @Override
-    public void deleteDriver(Driver driverObj) throws Exception {
-        driverDao.deleteDriver(driverObj);
-    }
-    
 }

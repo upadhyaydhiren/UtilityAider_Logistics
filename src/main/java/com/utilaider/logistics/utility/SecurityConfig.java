@@ -1,7 +1,9 @@
 package com.utilaider.logistics.utility;
 
-import com.utilaider.logistics.dao.OwnerDao;
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -11,13 +13,18 @@ import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    OwnerDao ownerDao;
+    @Qualifier("loginServiceImpl")
+    UserDetailsService userDetailsService;
+    @Autowired
+    private DataSource dataSource;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -28,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().addFilterBefore(new SimpleCORSFilter(), ChannelProcessingFilter.class)
                 .authorizeRequests()
-                .antMatchers("/login/**", "/registration/**", "/logout/**","/usernameExists/**").permitAll()
+                .antMatchers("/login/**", "/registration/**", "/logout/**", "/usernameExists/**", "/driverData/**").permitAll()
                 .anyRequest().authenticated().and().formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/j_spring_security_check")
@@ -37,13 +44,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/home", true).permitAll().and()
                 .logout().logoutSuccessUrl("/login?logout")
                 .invalidateHttpSession(true).deleteCookies("JSESSIONID")
-                .logoutUrl("/j_spring_security_logout").and().rememberMe()
-                .key("uniqueAndSecret").tokenValiditySeconds(86400);
+                .logoutUrl("/j_spring_security_logout").and().rememberMe().tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(1209600);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService((UserDetailsService)ownerDao).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+        tokenRepositoryImpl.setDataSource(dataSource);
+        return tokenRepositoryImpl;
+    }
 }
