@@ -1,5 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8" />
@@ -18,9 +19,6 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/examples.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/circle-progress.js"></script>
-    <script type="text/javascript">
-        var autocompleteDriver, autocompleteOwner;
-    </script>
 </head>
 <body style="background-color:#E6E6E6"class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest">
     <nav class="navbar navbar-default header" style="margin-bottom:5px;background-color:yellow;">
@@ -49,7 +47,7 @@
         </div>
     </nav>
     <div class="container" style="background-color:white;width:50%;margin-top:0.1%">
-        <div class="row" style="width:150">
+        <div class="row">
             <div class="col-md-2 col-md-offset-0" style="background-color:white;width:50%;padding-right:15%;margin-top:2%">
                 <div class="thumbnail" style="width:120px" id="pictureThumbnail">
                     <div class="caption">
@@ -148,7 +146,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Mobile Number</label>
                             <div class="col-md-9">
-                                <form:input type="text" path="mobile" class="form-control"style="width:100%" placeholder="Mobile Number" />
+                                <form:input type="text" path="mobile" class="form-control" style="width:100%" placeholder="Mobile Number" />
                             </div>
                         </div>
                         <div class="owner-address">
@@ -168,7 +166,7 @@
                                 <form:hidden path="address.id" id="editownerid" />
                                 <label class="col-md-3 control-label">State</label>
                                 <div class="col-md-9">
-                                    <form:input path="address.state" id="state" style="margin-top:10px" tabindex="10" data-geo="administrative_area_level_1"/>
+                                    <form:input path="address.state" id="state" style="margin-top:10px" tabindex="10" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -225,7 +223,8 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Industry</label>
                             <div class="col-md-9">
-                                <form:select path="usersIndustrys[0].businessIndustry.id" name="countryCode" id="industyListDropdown"  style=" margin-top:10px;height:30px"class="country-select" tabindex="5">
+                                <form:hidden path="usersIndustrys[0].id" />
+                                <form:select path="usersIndustrys[0].businessIndustry.id" name="countryCode" id="industyListDropdown"  style="margin-top:10px;height:30px" class="country-select" tabindex="5">
                                     <c:forEach items="${industryList}" var="industry">
                                         <form:option value="${industry.id}" label="${industry.industryName}" />
                                     </c:forEach>
@@ -371,7 +370,7 @@
                                     <div class="col-md-9">
                                         <form:select class="form-control" path="permits" style="width:100%">
                                             <c:forEach items="${vehiclepermits}" var="permit">
-                                                <form:option value="${permit}" >${permit.fullName}</form:option>
+                                                <form:option value="${permit.shortName}" >${permit.fullName}</form:option>
                                             </c:forEach>
                                         </form:select>
                                     </div>
@@ -445,7 +444,7 @@
                         <img src="${pageContext.request.contextPath}/resources/images/image3.png" alt="Smiley face" height="50px" width="65px" align="right">
                         <font size="3">Add Driver</font><br><font size="2">Adding Driver info keeps track of your driverse.</font>
                         <div class="leo-module mod-feat jointoday" >
-                            <button type="button" id="addDriver" href="#modal-dialogDriver" name="" value="Add Driver" style="border-radius:0px;width:100%;margin-top:0px"id="btn-submit" class="btn-action" data-toggle="modal" tabindex="9"><font face="OPen Sans" style="font-weight:normal">Add Driver</font></button>
+                            <button type="button" onclick="clearDriver();" id="addDriver" href="#modal-dialogDriver" name="" value="Add Driver" style="border-radius:0px;width:100%;margin-top:0px"id="btn-submit" class="btn-action" data-toggle="modal" tabindex="9"><font face="OPen Sans" style="font-weight:normal">Add Driver</font></button>
                         </div>
                     </div>
                 </div>
@@ -797,6 +796,10 @@
         $('#regNo').val('');
         $('#vehicle').attr('action', 'addtruck');
     });
+    function clearDriver()
+    {
+        $('#driver').trigger("reset");
+    }
     function editTruck(truckId)
     {
         var url = "<c:url value="/vehicleData/"/>" + truckId.id;
@@ -858,7 +861,6 @@
         var url;
         if (isNaN(param.id))
         {
-            $('#driver').trigger("reset");
             url = "<c:url value="/driverData/"/>" + param.value;
         }
         else
@@ -934,25 +936,27 @@
                     {
                         $.each(object.types, function (index, name)
                         {
-                            if (name === 'administrative_area_level_2')
+                            switch (name)
                             {
-                                $('#city').val(object.long_name);
-                                return false;
-                            }
-                            else if (name === 'administrative_area_level_1')
-                            {
-                                $('#state').val(object.long_name);
-                                return false;
-                            }
-                            else if (name === 'country')
-                            {
-                                $('#country').val(object.long_name);
-                                return false;
-                            }
-                            else if (name === 'postal_code')
-                            {
-                                $('#pincode').val(object.short_name);
-                                return false;
+                                case "administrative_area_level_2":
+                                    $('#city').val(object.long_name);
+                                    return false;
+
+                                case "administrative_area_level_1":
+                                    $('#state').val(object.long_name);
+                                    return false;
+
+                                case "country":
+                                    $('#country').val(object.long_name);
+                                    return false;
+
+                                case "postal_code":
+                                    $('#pincode').val(object.short_name);
+                                    return false;
+
+                                default :
+                                    return false;
+
                             }
                         });
                     });
@@ -966,25 +970,23 @@
                     {
                         $.each(object.types, function (index, name)
                         {
-                            if (name === 'administrative_area_level_2')
+                            switch (name)
                             {
-                                $('#citydriver').val(object.long_name);
-                                return false;
-                            }
-                            else if (name === 'administrative_area_level_1')
-                            {
-                                $('#statedriver').val(object.long_name);
-                                return false;
-                            }
-                            else if (name === 'country')
-                            {
-                                $('#countrydriver').val(object.long_name);
-                                return false;
-                            }
-                            else if (name === 'postal_code')
-                            {
-                                $('#pincodedriver').val(object.short_name);
-                                return false;
+                                case "administrative_area_level_2":
+                                    $('#citydriver').val(object.long_name);
+                                    return false;
+
+                                case "administrative_area_level_1":
+                                    $('#statedriver').val(object.long_name);
+                                    return false;
+                                case "country":
+                                    $('#countrydriver').val(object.long_name);
+                                    return false;
+                                case "postal_code":
+                                    $('#pincodedriver').val(object.short_name);
+                                    return false;
+                                default :
+                                    return false;
                             }
                         });
                     });

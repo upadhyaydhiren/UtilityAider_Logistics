@@ -12,7 +12,7 @@ package com.utilaider.logistics.domain;
 public enum VehiclePermits {
 
     ALL_INDIA_PERMITS("ALL INDIA PERMITS", "aip"),
-    STATE_PERMITS("STATE_PERMITS", "sip");
+    STATE_PERMITS("STATE_PERMITS", "sp");
 
     private final String fullName;
     private final String shortName;
