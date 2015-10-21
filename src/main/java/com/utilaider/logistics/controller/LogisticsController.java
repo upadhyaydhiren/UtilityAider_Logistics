@@ -37,7 +37,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -56,7 +55,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @ControllerAdvice
 public class LogisticsController {
-    
+
     @Autowired(required = true)
     OwnerService ownerService;
     @Autowired(required = true)
@@ -67,18 +66,18 @@ public class LogisticsController {
     VehicleService vehicleService;
     @Autowired(required = true)
     DriverService driverService;
-    
+
     @InitBinder
     public void initBider(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
-    
+
     @RequestMapping(value = "login")
     public ModelAndView login(@ModelAttribute Owner owner, ModelMap model, @RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "logout", required = false) String logout) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        
+
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             return new ModelAndView("redirect:home");
         }
@@ -92,9 +91,9 @@ public class LogisticsController {
         model.addAttribute("loginMessage", message);
         return new ModelAndView("Login", model);
     }
-    
+
     @RequestMapping(value = "registration", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute Owner owner, ModelMap model, BindingResult result) {
+    public ModelAndView save(@ModelAttribute Owner owner, ModelMap model) {
         try {
             owner.setPassword(new BCryptPasswordEncoder().encode(owner.getPassword()));
             owner.setCreatedBy(owner.getEmail());
@@ -105,9 +104,9 @@ public class LogisticsController {
             role.setRoleId(1);
             userRole.setRole(role);
             userRole.setUser(owner);
-            List<UserRole> roles = new ArrayList<>();
-            roles.add(userRole);
-            owner.setUserRoles(roles);
+            List<UserRole> userRoles = new ArrayList<>();
+            userRoles.add(userRole);
+            owner.setUserRoles(userRoles);
             Address address = new Address();
             address.setUser(owner);
             owner.setAddress(address);
@@ -129,9 +128,9 @@ public class LogisticsController {
             return new ModelAndView("Login", model);
         }
     }
-    
+
     @RequestMapping("home")
-    public ModelAndView home(HttpServletRequest request, ModelMap map) {
+    public ModelAndView home(ModelMap map) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         try {
             if ((auth instanceof AnonymousAuthenticationToken)) {
@@ -159,7 +158,7 @@ public class LogisticsController {
         }
         return new ModelAndView("profile", map);
     }
-    
+
     @RequestMapping(value = "usernameExists/{username}")
     public @ResponseBody
     Boolean isExistingEmail(@PathVariable("username") String username) {
@@ -170,9 +169,9 @@ public class LogisticsController {
             return false;
         }
     }
-    
+
     @RequestMapping(value = "updateprofle", method = RequestMethod.POST)
-    public ModelAndView completeProfile(@ModelAttribute Owner owner, BindingResult result, ModelMap map, HttpServletRequest request) {
+    public ModelAndView completeProfile(@ModelAttribute Owner owner, HttpServletRequest request, ModelMap map) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if ((auth instanceof AnonymousAuthenticationToken)) {
@@ -206,10 +205,10 @@ public class LogisticsController {
             return new ModelAndView("registration", map);
         }
     }
-    
+
     @RequestMapping(value = "addtruck", method = RequestMethod.POST)
-    public String getProfile(@ModelAttribute Vehicle vehicle, HttpServletRequest request) {
-        
+    public String getProfile(@ModelAttribute Vehicle vehicle) {
+
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if ((auth instanceof AnonymousAuthenticationToken)) {
@@ -226,9 +225,9 @@ public class LogisticsController {
             return "redirect:home";
         }
     }
-    
+
     @RequestMapping(value = "adddriver", method = RequestMethod.POST)
-    public String addDriver(@ModelAttribute Driver driver, HttpServletRequest request) {
+    public String addDriver(@ModelAttribute Driver driver) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if ((auth instanceof AnonymousAuthenticationToken)) {
@@ -244,9 +243,9 @@ public class LogisticsController {
                 role.setRoleId(1);
                 userRole.setRole(role);
                 userRole.setUser(driver);
-                List<UserRole> roles = new ArrayList<>();
-                roles.add(userRole);
-                driver.setUserRoles(roles);
+                List<UserRole> userRoles = new ArrayList<>();
+                userRoles.add(userRole);
+                driver.setUserRoles(userRoles);
                 List<UserEntity> userEntitys = new ArrayList<>();
                 UserEntity userEntity = new UserEntity();
                 StaticBasicUserEntity basicUserEntity = new StaticBasicUserEntity();
@@ -267,9 +266,9 @@ public class LogisticsController {
             return "redirect:home";
         }
     }
-    
+
     @RequestMapping(value = "updatepersonal", method = RequestMethod.POST)
-    public String updatePersonal(@ModelAttribute Owner owner, HttpServletRequest request) {
+    public String updatePersonal(@ModelAttribute Owner owner) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if ((auth instanceof AnonymousAuthenticationToken)) {
@@ -291,7 +290,7 @@ public class LogisticsController {
             return "redirect:home";
         }
     }
-    
+
     @RequestMapping(value = "updateaddtionalinfo", method = RequestMethod.POST)
     public String updateAddtionalInfo(@ModelAttribute Owner owner) {
         try {
@@ -317,7 +316,7 @@ public class LogisticsController {
             return "redirect:home";
         }
     }
-    
+
     @RequestMapping(value = "updatetruck", method = RequestMethod.POST)
     public String editTruck(@ModelAttribute Vehicle vehicle) {
         try {
@@ -358,9 +357,9 @@ public class LogisticsController {
             return "redirect:home";
         }
     }
-    
+
     @RequestMapping(value = "updatedriver", method = RequestMethod.POST)
-    public String updateDriver(@ModelAttribute Driver driver, HttpServletRequest request) {
+    public String updateDriver(@ModelAttribute Driver driver) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if ((auth instanceof AnonymousAuthenticationToken)) {
@@ -397,7 +396,7 @@ public class LogisticsController {
             return "redirect:home";
         }
     }
-    
+
     @RequestMapping(value = {"vehicleData/{regno}"}, method = RequestMethod.POST)
     @ResponseBody
     public Vehicle getVehicleData(@PathVariable("regno") String regno) {
@@ -408,7 +407,7 @@ public class LogisticsController {
             return null;
         }
     }
-    
+
     @RequestMapping(value = "deleteVehicleData/{regno}", method = RequestMethod.POST)
     public String deleteVehicleData(@PathVariable("regno") String regno) {
         try {
@@ -438,18 +437,19 @@ public class LogisticsController {
             return "redirect:home";
         }
     }
-    
+
     @RequestMapping(value = "driverData/{drivermobile}", method = RequestMethod.POST)
     @ResponseBody
     public Driver getDriverData(@PathVariable(value = "drivermobile") String driverMobile) {
         try {
             return driverService.getDriverByMobileNo(driverMobile);
         } catch (Exception e) {
+            e.getMessage();
             e.printStackTrace();
             return null;
         }
     }
-    
+
     @RequestMapping(value = "deleteDriver{mobile}", method = RequestMethod.POST)
     public String deleteDriver(@PathVariable("mobile") String mobile) {
         try {
@@ -477,7 +477,7 @@ public class LogisticsController {
                 ownerService.update(fetchedOwner);
                 return "redirect:home";
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             return "redirect:home";

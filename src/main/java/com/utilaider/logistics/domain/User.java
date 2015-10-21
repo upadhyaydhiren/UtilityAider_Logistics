@@ -195,6 +195,7 @@ public class User implements Serializable {
         this.address = address;
     }
 
+    @JsonManagedReference
     public Address getAddress() {
         return address;
     }

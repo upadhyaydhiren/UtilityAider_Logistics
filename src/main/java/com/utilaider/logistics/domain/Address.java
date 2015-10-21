@@ -5,6 +5,7 @@
  */
 package com.utilaider.logistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -104,6 +105,7 @@ public class Address implements Serializable {
         this.user = user;
     }
 
+    @JsonBackReference
     public User getUser() {
         return user;
     }
