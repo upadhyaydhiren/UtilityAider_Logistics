@@ -370,7 +370,7 @@
                                     <div class="col-md-9">
                                         <form:select class="form-control" path="permits" style="width:100%">
                                             <c:forEach items="${vehiclepermits}" var="permit">
-                                                <form:option value="${permit.shortName}" >${permit.fullName}</form:option>
+                                                <form:option value="${permit}" >${permit.fullName}</form:option>
                                             </c:forEach>
                                         </form:select>
                                     </div>
@@ -413,7 +413,7 @@
                                     <div class="col-md-9">
                                         <div class="radio">
                                             <label>
-                                                <form:radiobutton id="trackingFacilityYes" path="isTrackable" value="true" data-parsley-required="true" /> Yes
+                                                <form:radiobutton id="trackingFacilityYes" path="isTrackable" value="true" /> Yes
                                             </label>
 
                                             <label>

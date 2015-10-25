@@ -6,10 +6,13 @@
 package com.utilaider.logistics.service;
 
 import com.utilaider.logistics.domain.StaticBasicUserEntity;
+import java.util.List;
 
 /**
  *
  * @author Dhiren
  */
 public interface StaticBasicUserEntityService extends GenericService<Integer, StaticBasicUserEntity> {
+
+    public void saveIntialUserEntity(List<StaticBasicUserEntity> staticBasicUserEntitys) throws Exception;
 }

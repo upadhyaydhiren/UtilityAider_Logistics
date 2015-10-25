@@ -6,6 +6,7 @@
 package com.utilaider.logistics.dao;
 
 import com.utilaider.logistics.domain.Role;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,5 @@ import com.utilaider.logistics.domain.Role;
  */
 public interface RoleDao extends GenericDao<Integer, Role> {
 
+    public void saveIntialAllRole(List<Role> roles) throws Exception;
 }

@@ -1,5 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8" />
@@ -11,12 +12,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/style_01.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="http://pincodes.co.in/public/scripts/pincode.js" type="text/javascript" language="javascript"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script src="http://ubilabs.github.io/geocomplete/jquery.geocomplete.js" type="text/javascript"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 </head>
 
 
-<body style="background-color:#e6e6e6" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home" onload="load_pincode('RP-PIN-356', 'state', '0', '0', '0', '0');">
+<body style="background-color:#e6e6e6" class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" id="pagekey-guest-home">
     <nav class="navbar navbar-default header">
         <div class="container-fluid" >
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -110,7 +113,7 @@
                                     </label>
                                     <div class="fieldgroup"
                                          <span class="error" id="industyList"></span>
-                                        <form:select path="usersIndustrys[0].businessIndustry.id" name="countryCode" id="industyListDropdown"  style=" margin-top:10px;height:30px"class="country-select" tabindex="5">
+                                        <form:select path="usersIndustrys[0].businessIndustry.id" name="countryCode" id="industyListDropdown"  style=" margin-top:10px;height:30px" class="country-select" tabindex="5">
                                             <form:options items="${industryList}" itemLabel="industryName" itemValue="id"/>
                                         </form:select>
                                         <form:hidden path="usersIndustrys[0].user.id" value="${owner.id}" />
@@ -171,9 +174,7 @@
                                     </label>
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:select path="address.state" id="state" onChange="load_pincode('RP-PIN-356', 'state', 'city', '0', this.value, '1');" style="margin-top:10px" tabindex="10">
-                                                <option value="">Select State</option>
-                                            </form:select>
+                                            <form:input path="address.state" id="state" />
                                         </div>
                                     </div>
                                 </div>
@@ -183,9 +184,7 @@
                                     </label>
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:select path="address.city" id="city" onChange="load_pincode('RP-PIN-356', 'state', 'city', 'pincode', this.value, '2')"  style="margin-top:10px" tabindex="11">
-                                                <option value="">Select City</option>
-                                            </form:select>
+                                            <form:input path="address.city" id="city" style="margin-top:10px" tabindex="11" />
                                         </div>
                                     </div>
                                 </div>
@@ -194,11 +193,13 @@
                                         <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*Postal Code</font>
                                     </label>
                                     <div class="fieldgroup ">
-                                        <div class="leo-module mod-feat jointoday" id="pincode">
-                                            <input name="pincode" type="text" id="pincode" style="margin-top:10px" maxlength="6" tabindex="12" onBlur="load_pincode('RP-PIN-356', 'state', 'city', 'pincode', this.value, '3')">
-                                            <form:hidden path="address.pincode" value=""/>
+                                        <div class="leo-module mod-feat jointoday">
+                                            <form:input path="address.pincode" value="" id="pincode"/>
                                         </div>
                                     </div>
+                                    <form:hidden path="address.latitude" id="lat"  />
+                                    <form:hidden path="address.longitude" id="longt" />
+                                    <form:hidden path="address.id" />
                                 </div>
                                 <div class="job-title required">
                                     <label for="workCompanyTitle-lookingProfileForm" style ="position:absolute;margin-top:10px">
@@ -217,21 +218,59 @@
             </div>
         </div>
     </div>
-
-
     <footer class="footer" style="width:100%;margin:0px;height:100px">
         <div class="container" style="width:100%">
             <p class="text-muted">Place your FOOTER CONTENTS content here.</p>
         </div>
     </footer>
-    <script type="text/javascript">
-        $('#city').change(function () {
-            var pincode = document.getElementsByName("pincode111");
-            if (pincode.length > 0)
-            {
-                console.log("test");
-                document.getElementById('address.id').value = pincode;
-            }
-        });
-    </script>
 </body>
+<style type="text/css">
+    div.pac-container {
+        z-index: 1050 !important;
+    } 
+</style>
+<script type="text/javascript">
+    $(function ()
+    {
+        var options =
+                {
+                    types: ['(cities)'],
+                    componentRestrictions: {country: ["in"]}
+                };
+        $("#city").geocomplete(options)
+                .bind("geocode:result", function (event, result)
+                {
+                    $.each(result.address_components, function (index, object)
+                    {
+                        $.each(object.types, function (index, name)
+                        {
+                            switch (name)
+                            {
+                                case "administrative_area_level_2":
+                                    $('#city').val(object.long_name);
+                                    return false;
+
+                                case "administrative_area_level_1":
+                                    $('#state').val(object.long_name);
+                                    return false;
+
+                                case "country":
+                                    $('#country').val(object.long_name);
+                                    return false;
+
+                                case "postal_code":
+                                    $('#pincode').val(object.short_name);
+                                    return false;
+
+                                default :
+                                    return false;
+
+                            }
+                        });
+                    });
+                    $('#lat').val(result.geometry.location.lat());
+                    $('#longt').val(result.geometry.location.lng());
+                });
+    });
+</script>
+</html>

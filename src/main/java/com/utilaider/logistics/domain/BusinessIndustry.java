@@ -20,7 +20,7 @@ import javax.persistence.Id;
 public class BusinessIndustry implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "industry_name")
     private String industryName;
