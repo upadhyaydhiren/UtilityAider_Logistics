@@ -38,7 +38,7 @@ import org.hibernate.annotations.NaturalId;
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private Long id;
     @Column(name = "first_name")

@@ -23,7 +23,7 @@ import javax.persistence.OneToOne;
 public class UserRole implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @OneToOne
     @JoinColumn(name = "role_id")

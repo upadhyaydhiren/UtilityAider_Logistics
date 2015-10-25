@@ -6,6 +6,7 @@
 package com.utilaider.logistics.controller;
 
 import com.utilaider.logistics.domain.Address;
+import com.utilaider.logistics.domain.BusinessIndustry;
 import com.utilaider.logistics.domain.Driver;
 import com.utilaider.logistics.domain.Owner;
 import com.utilaider.logistics.domain.Role;
@@ -18,6 +19,7 @@ import com.utilaider.logistics.domain.VehicleType;
 import com.utilaider.logistics.service.BusinessIndustryService;
 import com.utilaider.logistics.service.DriverService;
 import com.utilaider.logistics.service.OwnerService;
+import com.utilaider.logistics.service.RoleService;
 import com.utilaider.logistics.service.StaticBasicUserEntityService;
 import com.utilaider.logistics.service.VehicleService;
 import java.text.SimpleDateFormat;
@@ -66,6 +68,8 @@ public class LogisticsController {
     VehicleService vehicleService;
     @Autowired(required = true)
     DriverService driverService;
+    @Autowired(required = true)
+    RoleService roleService;
 
     @InitBinder
     public void initBider(WebDataBinder binder) {
@@ -73,11 +77,139 @@ public class LogisticsController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
+    private void saveIntialAllBusinessIndustry() {
+        try {
+            List<BusinessIndustry> businessIndustrys = new ArrayList<>();
+            BusinessIndustry businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("MANUFACTURING");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("TRADING");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("FARMING  / FOODS");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("REAL STATE / CONSTRUCTION");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("HEALTH CARE");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("IT / TELECOM");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("EXPORT /IMPORT");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("PWD / PSU / GOVT.CONTRACTOR");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("FM CG");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("PLASTICS");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("TEXTILE");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("COMMODITY");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("POST /PARCEL /COURIER");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("UTILITY");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("WOODS /FURNITURE");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("SCRAP");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("METAL /NON METAL /STEEL");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("INDUSTRY EQUIPMENT");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("MACHINERY");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("PAPER INDUSTRY");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("PACKERS AND MOVERS");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("HOTEL INDUSTRY");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("ELECTRONICS");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("RUBBER INDUSTRY");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("RECYCLING");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("WASTE MANAGEMENT");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("ENTERTAINMENT");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("MINES / MINERALS");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("AUTOMOBILES");
+            businessIndustrys.add(businessIndustry);
+            businessIndustry = new BusinessIndustry();
+            businessIndustry.setIndustryName("OTHERS / GENERAL");
+            businessIndustrys.add(businessIndustry);
+            businessIndustryService.saveIntialAllIndustry(businessIndustrys);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveIntialStaticBasicUserEntity() {
+        try {
+            List<StaticBasicUserEntity> staticBasicUserEntitys = new ArrayList<>();
+            StaticBasicUserEntity staticBasicUserEntity = new StaticBasicUserEntity();
+            staticBasicUserEntity.setEntityType("owner");
+            staticBasicUserEntitys.add(staticBasicUserEntity);
+            staticBasicUserEntity = new StaticBasicUserEntity();
+            staticBasicUserEntity.setEntityType("driver");
+            staticBasicUserEntitys.add(staticBasicUserEntity);
+            basicUserEntityService.saveIntialUserEntity(staticBasicUserEntitys);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveIntialAllRole() {
+        try {
+            List<Role> roles = new ArrayList<>();
+            Role role = new Role();
+            role.setRoleName("user");
+            roles.add(role);
+            role = new Role();
+            role.setRoleName("admin");
+            roles.add(role);
+            roleService.saveIntialAllRole(roles);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @RequestMapping(value = "login")
     public ModelAndView login(@ModelAttribute Owner owner, ModelMap model, @RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "logout", required = false) String logout) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             return new ModelAndView("redirect:home");
         }
@@ -95,6 +227,9 @@ public class LogisticsController {
     @RequestMapping(value = "registration", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute Owner owner, ModelMap model) {
         try {
+            saveIntialAllBusinessIndustry();
+            saveIntialStaticBasicUserEntity();
+            saveIntialAllRole();
             owner.setPassword(new BCryptPasswordEncoder().encode(owner.getPassword()));
             owner.setCreatedBy(owner.getEmail());
             owner.setCreatedDate(new Date());

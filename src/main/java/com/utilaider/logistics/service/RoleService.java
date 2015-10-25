@@ -6,10 +6,13 @@
 package com.utilaider.logistics.service;
 
 import com.utilaider.logistics.domain.Role;
+import java.util.List;
 
 /**
  *
  * @author Dhiren
  */
 public interface RoleService extends GenericService<Integer, Role> {
+
+    public void saveIntialAllRole(List<Role> roles) throws Exception;
 }

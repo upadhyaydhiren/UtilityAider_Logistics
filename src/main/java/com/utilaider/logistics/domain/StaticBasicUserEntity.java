@@ -22,7 +22,7 @@ import org.hibernate.annotations.Immutable;
 public class StaticBasicUserEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "entity_type")
     private String entityType;

@@ -6,6 +6,7 @@
 package com.utilaider.logistics.service;
 
 import com.utilaider.logistics.domain.BusinessIndustry;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,10 @@ import com.utilaider.logistics.domain.BusinessIndustry;
  */
 public interface BusinessIndustryService extends GenericService<Integer, BusinessIndustry> {
 
+    /**
+     *
+     * @param businessIndustrys
+     * @throws Exception
+     */
+    public void saveIntialAllIndustry(List<BusinessIndustry> businessIndustrys) throws Exception;
 }

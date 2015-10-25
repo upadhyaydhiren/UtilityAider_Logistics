@@ -44,19 +44,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/home", true).permitAll().and()
                 .logout().logoutSuccessUrl("/login?logout")
                 .invalidateHttpSession(true).deleteCookies("JSESSIONID")
-                .logoutUrl("/j_spring_security_logout").and().rememberMe().tokenRepository(persistentTokenRepository())
-                .tokenValiditySeconds(1209600);
+                .logoutUrl("/j_spring_security_logout");
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
-
-    @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
-        tokenRepositoryImpl.setDataSource(dataSource);
-        return tokenRepositoryImpl;
     }
 }

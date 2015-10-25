@@ -22,7 +22,7 @@ import org.hibernate.annotations.Immutable;
 public class Role implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id")
     private Integer roleId;
     @Column(name = "role_name")

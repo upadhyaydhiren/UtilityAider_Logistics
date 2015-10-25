@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface StaticBasicUserEntityDao extends GenericDao<Integer, StaticBasicUserEntity> {
 
+    public void saveIntialUserEntity(List<StaticBasicUserEntity> staticBasicUserEntitys) throws Exception;
 }
