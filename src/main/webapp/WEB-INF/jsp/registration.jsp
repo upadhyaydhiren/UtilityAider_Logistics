@@ -160,11 +160,20 @@
                                 </div>
                                 <div class="job-title required">
                                     <label for="workCompanyTitle-lookingProfileForm" style ="position:absolute;margin-top:10px">
-                                        <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">Country</font>
+                                        <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*Address</font>
                                     </label>
                                     <div class="fieldgroup">
-                                        <div class="leo-module mod-feat jointoday">
-                                            <form:input path="address.country" name="country" id="country" style="margin-top:10px" autocomplete="on" size="55" maxlength="20"  tabindex="9"/>
+                                        <div class="leo-module mod-feat jointoday" >
+                                            <form:textarea path="address.streetName" id="address" class="span6" style="margin-top:10px;height:40px" autocomplete="on" size="55" maxlength="20" tabindex="13"/>
+                                        </div></div>
+                                </div>
+                                <div class="job-title required">
+                                    <label for="" style ="position:absolute;margin-top:10px"class="">
+                                        <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*City</font>
+                                    </label>
+                                    <div class="fieldgroup ">
+                                        <div class="leo-module mod-feat jointoday" >
+                                            <form:input path="address.city" id="city" name="city" style="margin-top:10px"  autocomplete="on" size="55" maxlength="20" tabindex="11" />
                                         </div>
                                     </div>
                                 </div>
@@ -179,12 +188,12 @@
                                     </div>
                                 </div>
                                 <div class="job-title required">
-                                    <label for="" style ="position:absolute;margin-top:10px"class="">
-                                        <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*City</font>
+                                    <label for="workCompanyTitle-lookingProfileForm" style ="position:absolute;margin-top:10px">
+                                        <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">Country</font>
                                     </label>
-                                    <div class="fieldgroup ">
-                                        <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="address.city" id="city" name="city" style="margin-top:10px"  autocomplete="on" size="55" maxlength="20" tabindex="11" />
+                                    <div class="fieldgroup">
+                                        <div class="leo-module mod-feat jointoday">
+                                            <form:input path="address.country" name="country" id="country" style="margin-top:10px" autocomplete="on" size="55" maxlength="20"  tabindex="9"/>
                                         </div>
                                     </div>
                                 </div>
@@ -195,21 +204,12 @@
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday">
                                             <form:input path="address.pincode" value="" id="pincode" name="pincode" style="margin-top:10px"  autocomplete="on" size="55" maxlength="20" tabindex="12" />
+                                            <input type="submit" name="" value="Register" id="btn-submit" class="btn-action" tabindex="14">
                                         </div>
                                     </div>
                                     <form:hidden path="address.latitude" id="lat"  />
                                     <form:hidden path="address.longitude" id="longt" />
                                     <form:hidden path="address.id" />
-                                </div>
-                                <div class="job-title required">
-                                    <label for="workCompanyTitle-lookingProfileForm" style ="position:absolute;margin-top:10px">
-                                        <font style="font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="2">*Address</font>
-                                    </label>
-                                    <div class="fieldgroup">
-                                        <div class="leo-module mod-feat jointoday" >
-                                            <form:textarea path="address.streetName" id="address" class="span6" style="margin-top:10px;height:40px" autocomplete="on" size="55" maxlength="20" tabindex="13"/>
-                                            <input type="submit" name="" value="Register" id="btn-submit" class="btn-action" tabindex="14">
-                                        </div></div>
                                 </div>
                             </div>
                         </form:form>>
