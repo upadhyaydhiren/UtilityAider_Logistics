@@ -618,4 +618,19 @@ public class LogisticsController {
             return "redirect:home";
         }
     }
+
+    @RequestMapping("goods")
+    public ModelAndView viewpost(ModelMap map) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        try {
+            if ((auth instanceof AnonymousAuthenticationToken)) {
+                return new ModelAndView("redirect:login");
+            } else {
+              return new ModelAndView("goods", map);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelAndView("redirect:login");
+        }
+    }
 }
