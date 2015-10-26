@@ -620,13 +620,28 @@ public class LogisticsController {
     }
 
     @RequestMapping("goods")
-    public ModelAndView viewpost(ModelMap map) {
+    public ModelAndView goods(ModelMap map) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         try {
             if ((auth instanceof AnonymousAuthenticationToken)) {
                 return new ModelAndView("redirect:login");
             } else {
               return new ModelAndView("goods", map);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelAndView("redirect:login");
+        }
+    }
+
+    @RequestMapping("trucks")
+    public ModelAndView trucks(ModelMap map) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        try {
+            if ((auth instanceof AnonymousAuthenticationToken)) {
+                return new ModelAndView("redirect:login");
+            } else {
+              return new ModelAndView("trucks", map);
             }
         } catch (Exception e) {
             e.printStackTrace();

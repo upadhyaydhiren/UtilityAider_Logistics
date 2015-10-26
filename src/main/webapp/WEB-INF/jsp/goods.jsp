@@ -162,7 +162,7 @@
                     <li><a href="home" style=";width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Home</font></a></li>
                     <li style="left:30px"><a href="profile" style=";width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Profile</font></a></li>
                     <li style="left:60px;width:100px"><a href="goods" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Goods</font></a></li>
-                    <li style="left:60px;width:100px"><a href="viewpost" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Trucks</font></a></li>
+                    <li style="left:60px;width:100px"><a href="trucks" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Trucks</font></a></li>
                     <li style="left:90px;width:100px"><a href="Tracker.html" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Track</font></a></li>
                     <li style="left:90px;width:100px"><a href="j_spring_security_logout" style="width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Logout</font></a></li>
                 </div>
