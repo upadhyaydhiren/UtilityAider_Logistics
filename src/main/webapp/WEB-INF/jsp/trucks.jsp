@@ -14,51 +14,15 @@
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script>
             $(function() {
-                $("#default-tab-1").mousedown();
-                $("#datepicker").datepicker();
-                $("#datepicker1").datepicker();
-                
-            }); 
-            
-            function toggleOverlay(){
-                var overlay = document.getElementById('overlay');
-                        var specialBox = document.getElementById('specialBox');
-                        overlay.style.opacity = .5;
-                        if (overlay.style.display == "block"){
-                overlay.style.display = "none";
-                        specialBox.style.display = "none";
-                } else {
-                overlay.style.display = "block";
-                        specialBox.style.display = "block";
-                }
-            }
-                    
-            function toggleOverlay2(){
-                var overlaye = document.getElementById('overlaye');
-                        var specialBox1 = document.getElementById('specialBox1');
-                        overlaye.style.opacity = .5;
-                        if (overlaye.style.display == "block"){
-                overlaye.style.display = "none";
-                        specialBox1.style.display = "none";
-                } else {
-                overlaye.style.display = "block";
-                        specialBox1.style.display = "block";
-                }
-            }
-            
-            function toggleOverlay3(){
-                var overlaye = document.getElementById('overlayd');
-                        var specialBox2 = document.getElementById('specialBox2');
-                        overlayd.style.opacity = .5;
-                        if (overlayd.style.display == "block"){
-                overlayd.style.display = "none";
-                        specialBox2.style.display = "none";
-                } else {
-                overlayd.style.display = "block";
-                        specialBox2.style.display = "block";
-                }
-            }
-        </script>        
+            $("#datepicker").datepicker();
+            });  
+        </script>
+        <script>
+            $(function() {
+            $("#datepicker1").datepicker();
+            });  
+        </script>
+        
         <link href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
         <link href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
@@ -143,8 +107,54 @@
                 text-align: center;
             }
         </style>
+        <script>
+                    function toggleOverlay(){
+                    var overlay = document.getElementById('overlay');
+                            var specialBox = document.getElementById('specialBox');
+                            overlay.style.opacity = .5;
+                            if (overlay.style.display == "block"){
+                    overlay.style.display = "none";
+                            specialBox.style.display = "none";
+                    } else {
+                    overlay.style.display = "block";
+                            specialBox.style.display = "block";
+                    }
+                    }
+        </script>
+        <script>
+            function toggleOverlay2(){
+            var overlaye = document.getElementById('overlaye');
+                    var specialBox1 = document.getElementById('specialBox1');
+                    overlaye.style.opacity = .5;
+                    if (overlaye.style.display == "block"){
+            overlaye.style.display = "none";
+                    specialBox1.style.display = "none";
+            } else {
+            overlaye.style.display = "block";
+                    specialBox1.style.display = "block";
+            }
+            }
+        </script>
+        <script>
+            function toggleOverlay3(){
+            var overlaye = document.getElementById('overlayd');
+                    var specialBox2 = document.getElementById('specialBox2');
+                    overlayd.style.opacity = .5;
+                    if (overlayd.style.display == "block"){
+            overlayd.style.display = "none";
+                    specialBox2.style.display = "none";
+            } else {
+            overlayd.style.display = "block";
+                    specialBox2.style.display = "block";
+            }
+            }
+        </script>
+
     </head>
     <body>
+
+
+
     <body style="background-color:#E6E6E6"class="guest v2 new-ghome login-in-header chrome-v5 chrome-v5-responsive sticky-bg guest" >
         <nav class="navbar navbar-default header" style="margin-bottom:5px;background-color:yellow;">
         <div class="container-fluid" >
@@ -157,6 +167,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" style="width:400px;margin-top:0px;padding:0px;background-color:yellow" href="#"><img src="${pageContext.request.contextPath}/resources/images/logo.png" style="margin-top:5px;margin-left:80px;width:200px;height:45px"></img></a></div>
+
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div class="nav navbar-nav" >
                     <li><a href="home" style=";width:80px"><font style="font-weight:600;font-family:'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif';" size="3">Home</font></a></li>
@@ -170,14 +181,124 @@
         </div>
     </nav>                        
         <ul class="nav nav-pills" style="background-color:white;width:50%;margin-left:25%;margin-top:0.1%;margin-bottom:5px">
-          <li class="active" style="width:50%;padding:0px;margin-right:0px;"><a href="#default-tab-1" onmousedown="$('#default-tab-postgoods').hide();$('#mypostpostgoods').hide(); $('#default-tab-viewgoods').show(); $('#mypostpostgoods').hide();" style="text-align:center;border-radius:0px 0px 0px 0px;margin-right:0px"data-toggle="tab"><font face="Open Sans" color="black">VIEW</font></a></li>
-          <li class="" style="width:50%;padding:0px;margin:0px;margin-bottom:0px"><a href="#default-tab-2" onclick="$('#default-tab-viewgoods').hide(); $('#default-tab-viewtruck').hide(); $('#mypostpostgoods').show(); $('#default-tab-postgoods').show();"style="text-align:center;border-radius:0px 0px 0px 0px;margin-right:0px" data-toggle="tab"><font face="Open Sans" color="black">POST</font></a></li>	
+          <li class="" style="width:50%;padding:0px;margin-right:0px;"><a href="#default-tab-1" onmousedown="$('#default-tab-postgoods').hide();$('#mypostpostgoods').hide();$('#default-tab-posttruck').hide();$('#mypostposttruck').hide();"style="text-align:center;border-radius:0px 0px 0px 0px;margin-right:0px"data-toggle="tab"><font face="Open Sans" color="black">VIEW</font></a></li>
+            <li class="active"style="width:50%;padding:0px;margin:0px;margin-bottom:0px"><a href="#default-tab-2" onclick="$('#default-tab-viewgoods').hide(); $('#default-tab-viewtruck').hide();"style="text-align:center;border-radius:0px 0px 0px 0px;margin-right:0px" data-toggle="tab"><font face="Open Sans" color="black">POST</font></a></li>	
         </ul>
 
         <div class="tab-content" style=";width:50%;margin-left:25%;height:100%;margin-top:0.1%;margin-bottom:0px">
+            <div class="tab-pane fade active in" id="default-tab-1" style="width:100%;margin-bottom:5%;margin-top:-2.5%">
+
+
+                <div class="form-group" >
+                    <div class="col-md-6" style="width:50%;">
+                        <label class="radio-inline"  style="margin-left:70%">
+                            <input type="radio" name="optionsRadios"  onclick="$('#default-tab-viewtruck').show(); $('#default-tab-viewgoods').hide(); $('#mypostposttruck').hide(); $('#mypostpostgoods').hide();"  value="option1" checked />
+                            View Truck
+                        </label>
+                    </div>
+                    <div class="col-md-6" style="width:50%;">
+                        <label class="radio-inline">
+                            <input type="radio" name="optionsRadios" onclick="$('#default-tab-viewgoods').show(); $('#default-tab-viewtruck').hide(); $('#mypostposttruck').hide(); $('#mypostpostgoods').hide();" value="option2" />
+                            View Goods
+                        </label>
+                    </div>
+                </div>
+
+            </div>	
+
             <div class="tab-pane fade" id="default-tab-2" style="width:100%;margin-bottom:%;margin-top:-2.5%">
+                <div class="form-group" >
+                    <div class="col-md-6" style="width:50%;">
+                        <label class="radio-inline" style="margin-left:70%">
+                            <input type="radio" name="optionsRadios" onclick="$('#mypostpostgoods').hide(); $('#default-tab-posttruck').show(); $('#mypostposttruck').show	(); $('#default-tab-postgoods').hide(); $('#default-tab-viewgoods').hide();"  value="option1" checked="checked" />
+                            Post Truck
+                        </label>
+                    </div>
+                    <div class="col-md-6" style="width:50%;">
+                        <label class="radio-inline">
+                            <input type="radio" name="optionsRadios" onclick="$('#mypostposttruck').hide(); $('#mypostpostgoods').show(); $('#default-tab-postgoods').show(); $('#default-tab-posttruck').hide(); $('#default-tab-viewtruck').hide();" value="option2" />
+                            Post Goods
+                        </label>
+                    </div>
+
+                </div>
+
                 <div class="tab-content" style="margin-bottom:-1.8%">
                     
+                    <div class="" id="default-tab-posttruck" style="margin-bottom:0px;height:100%;display:none">
+                         <form>
+                        <div class="form-group" style="background-color:white">
+                           
+                            <label for="name" class="col-lg-2" style="margin-top:1%;margin-bottom:1%">Source:</label>
+                            <div class="col-lg-4" >
+                                <div class="leo-module mod-feat jointoday" style="margin-bottom:1%" >
+                                    <input type="text" name="source" value="" id="source" style="margin-top:2%;margin-bottom:0px;width:100%"autocomplete="on" size="55" maxlength="20" tabindex="5">
+                                </div>
+                            </div>
+                            <label for="name" class="col-lg-2" style="margin-top:1%;bottom">Destination:</label>
+                            <div class="col-lg-4">
+                                <div class="leo-module mod-feat jointoday" style="margin-bottom:1%">
+                                    <input type="text" name="destination" value="" id="destination" style="margin-top:2%;width:100%"autocomplete="on" size="55" maxlength="20" tabindex="5">
+                                </div>
+                            </div>
+                            <label for="name" class="col-lg-2" style="margin-top:2%">Date :</label>
+                            <div class="col-lg-4" style="margin-top:1%">
+                                <div class="leo-module mod-feat jointoday" style="margin-bottom:1%" >
+                                    <input type="text" id="datepicker" name="date" style="width:100%;margin-top:2%">  
+                                </div>
+                            </div>
+                            <label for="name" class="col-lg-2" style="margin-top:2%">Distance :</label>
+                            <div class="col-lg-4" style="margin-bottom:1%;margin-top:1.1%">
+                                <div class="leo-module mod-feat jointoday" style="margin-bottom:1%" >
+                                    <input type="text" name="distance" value="" id="distance" style="margin-top:2%;width:100%"autocomplete="on" size="55" maxlength="20" tabindex="5">
+                                </div>
+                            </div>
+                            <div id="changeradio">
+                                <label for="name" class="col-lg-2" style="margin-top:1%">Truck type :</label>
+                                <div class="col-lg-4" style="margin-bottom:%;margin-top:0.3%">
+                                    <div class="leo-module mod-feat jointoday" style="margin-bottom:1%">
+                                        <select  name="truckType" id="truckType" style="margin-top:2%;width:100%;height:27px" class="country-select" >
+                                            <option value="Transporter">Truck A</option>
+                                            <option value="Broker">Broker</option>
+                                            <option value="ca">Comission Agent</option>
+                                            <option value="fo">Fleet Owner</option>
+                                            <option value="gc">General Customer</option>
+                                            <option value="e/o">Exporter/Importer</option>
+                                            <option value="manufacturer">Manufacturer</option>
+                                            <option value="p&m">Packers&Movers</option>
+                                            <option value="contractor">Contractor</option>
+                                            <option value="retailer">Retailer</option>
+                                            <option value="ws">Wholeseller</option>
+                                            <option value="to">Truck Owner</option>
+                                            <option value="supplier">Supplier</option>
+                                            <option value="builder">Builder</option>
+                                            <option value="driver">Driver</option>
+                                            <option value="farmer">Farmer</option>
+                                            <option value="fci">FCI</option>
+                                        </select></div>
+                                </div>
+                                <label for="name" class="col-lg-2" style="margin-top:1%">Capacity :</label>
+                                <div class="col-lg-4" style="margin-bottom:%;margin-top:%">
+                                    <div class="leo-module mod-feat jointoday" style="margin-bottom:1%">
+                                        <input type="text" name="capacity" id="capacity" value="" style="margin-top:2%;width:100%"autocomplete="on" size="55" maxlength="20" tabindex="5">
+                                    </div>
+                                </div>
+                            </div>
+                            <label for="name" class="col-lg-2" style="margin-top:2%">Contact No:</label>
+                            <div class="col-lg-4" style="margin-bottom:1%;margin-top:1%">
+                                <div class="leo-module mod-feat jointoday" style="margin-bottom:1%">
+                                    <input type="text" name="contact" value="" id="contact" style="margin-top:2%;width:100%"autocomplete="on" size="55" maxlength="20" tabindex="5">
+                                </div>
+                            </div>
+                            <div class="leo-module mod-feat jointoday" align="center" style="margin-top:10px;margin-right:10px;margin-bottom:1%">
+                                <button type="submit" name="" value="Post Truck" style="line-height:28px;height:30px;width:20%;margin-top:2%;margin-left:10%;padding-left:20px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Post Truck</font></button>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                    </div>
                     <div class="" id="default-tab-postgoods" style="margin-bottom:0px;height:100%;display:none"><div class="form-group" style="background-color:">
                             <form>
                             <label for="name" class="col-lg-2" style="margin-top:2%">Source:</label>
@@ -231,11 +352,18 @@
 
 </form>
                         </div>
+
                     </div>
+                        
                 </div>
+
             </div>
+
         </div>
-        <div class="" id="default-tab-viewgoods" style="background-color:white;width:50%;margin-left:25%">
+
+
+
+        <div class="" id="default-tab-viewgoods" style="background-color:white;display:none;width:50%;margin-left:25%">
 
             <div  style="background-color:;height:10%" id="second" style="background-color:#d8d8d8">	
                 <table class="table table-striped " >
@@ -310,6 +438,82 @@
 
             </div>
         </div>
+        <div class="" id="default-tab-viewtruck" style="background-color:white;width:50%;margin-left:25%;display:none">
+            <div  style="background-color:;height:10%" id="first"style="background-color:#d8d8d8">	
+                <table class="table table-striped " >
+                    <thead style="background-color:#d8d8d8">
+                        <tr >
+                            <th >Source</th>
+                            <th>Destination</th>
+                            <th >Truck type</th>
+							<th>Tracking Facility</th>
+                            <th>Capacity</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ahmedabad</td>
+                            <td>Delhi</td>
+                            <td>Truck B</td>
+							<td>No</td>
+                            <td ><font size="2">&nbsp&nbsp&nbsp10	</font></td>
+                            <td>15/07/2015</td>
+
+                            <td><div id="wrapper"><div class="leo-module mod-feat jointoday" >
+                                        <button type="submit"  onmousedown="toggleOverlay()"name="" value="Respond" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal;font-size:13px">Respond</font></button>
+                                    </div></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ahmedabad</td>
+                            <td>Delhi</td>
+                            <td>Truck B</td>
+							<td>Yes</td>
+                            <td ><font size="2">&nbsp&nbsp&nbsp10	</font></td>
+                            <td>15/07/2015</td>
+
+                            <td><div id="wrapper"><div class="leo-module mod-feat jointoday" >
+                                        <button type="submit"  onmousedown="toggleOverlay()"name="" value="Respond" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal;font-size:13px">Respond</font></button>
+                                    </div></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ahmedabad</td>
+                            <td>Delhi</td>
+                            <td>Truck B</td>
+							<td>No</td>
+                            <td ><font size="2">&nbsp&nbsp&nbsp10	</font></td>
+                            <td>15/07/2015</td>
+
+                            <td><div id="wrapper"><div class="leo-module mod-feat jointoday" >
+                                        <button type="submit"  onmousedown="toggleOverlay()"name="" value="Respond" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal;font-size:13px">Respond</font></button>
+                                    </div></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ahmedabad</td>
+                            <td>Delhi</td>
+                            <td>Truck A </td>
+							<td>Yes</td>
+                            <td ><font size="2">&nbsp&nbsp&nbsp10	</font></td>
+                            <td>15/07/2015</td>
+
+                            <td><div id="wrapper"><div class="leo-module mod-feat jointoday" >
+                                        <button type="submit"  onmousedown="toggleOverlay()"name="" value="Respond" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal;font-size:13px">Respond</font></button>
+                                    </div></div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+
         <script>$(document).ready(function () {
             $('.content').hide();
                     $('.btn-action').click(function () {
@@ -320,6 +524,197 @@
             });
                     });</script>	
 
+
+
+        <div id="mypostposttruck" class="col-md-0 col-md-offset-3" style=";display:none;width:50%;margin-right:0px;height:100px">
+            <div  style="background-color:;height:5px" style="background-color:#d8d8d8">	
+                <table class="table table-striped " style="height:5px;margin-bottom:0px">
+                    <thead>
+                        <tr style="background-color:#d8d8d8;">
+                            <th style="width:5px">Source</th>
+                            <th  style="height:5px"> Destination</th>
+                            <th>Truck type</th>
+                            <th >Capacity</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color:white;">
+                            <td>Ahmedabad</td>
+                            <td>Delhi</td>
+                            <td>Eicher 407</td>
+                            <td>5 days</td>
+                            <td>17/06/2015</td>
+                            <td>
+                                <div class="dropdown open" style="margin-bottom:-20px">
+                                    <a aria-expanded="true" href="" onClick=" $('#box').show(); info" data-toggle="dropdown" style="margin-bottom:10px"class="dropdown-toggle f-s-14">
+                                        <i class="fa fa-bell-o"></i>
+                                        <span class="label" style="background-color:#FE2E64;border-radius:10px">4</span>
+                                    </a>  
+                                </div>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                <div class="leo-module mod-feat jointoday" >
+                    <div class="content"style="margin-left:0px">		<table class="table table-striped " >
+                            <thead>
+                                <tr style="background-color:#d8d8d8;">
+                                    <th style="width:5px">Source</th>
+                                    <th>Destination</th>
+                                    <th>Material type</th>
+                                    <th >Weight</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Ahmedabad</td>
+                                    <td>Delhi</td>
+                                    <td>Iron</td>
+                                    <td ><font size="2">10</font></td>
+                                    <td>Rs. 25000</td>
+                                    <td><div class="leo-module mod-feat jointoday" >
+                                            <button type="submit" onClick=" $('#box').hide(); info"  onmousedown="toggleOverlay2()" value="Confirm" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Confirm</font></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ahmedabad</td>
+                                    <td>Delhi</td>
+                                    <td>Iron</td>
+                                    <td ><font size="2">10</font></td>
+                                    <td>Rs. 25000</td>
+                                    <td><div class="leo-module mod-feat jointoday" >
+                                            <button type="submit" onClick=" $('#box').hide(); info"  onmousedown="toggleOverlay2()" value="Confirm" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Confirm</font></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ahmedabad</td>
+                                    <td>Delhi</td>
+                                    <td>Iron</td>
+                                    <td ><font size="2">10</font></td>
+                                    <td>Rs. 25000</td>
+                                    <td><div class="leo-module mod-feat jointoday" >
+                                            <button type="submit" onClick=" $('#box').hide(); info"  onmousedown="toggleOverlay2()" value="Confirm" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open sans" style="font-weight:normal">Confirm</font></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ahmedabad</td>
+                                    <td>Delhi</td>
+                                    <td>Iron</td>
+                                    <td ><font size="2">10</font></td>
+                                    <td>Rs. 25000</td>
+                                    <td><div class="leo-module mod-feat jointoday" >
+                                            <button type="submit" onClick=" $('#box').hide(); info"  onmousedown="toggleOverlay2()" value="Confirm" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Confirm</font></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn-action" style="margin-top:-3%;margin-left:89.5%;height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px;font-weight:normal">Respond</button></div>
+                <table class="table table-striped " style="height:5px;margin-bottom:0px">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color:white;">
+                            <td>Ahmedabad</td>
+                            <td>Delhi</td>
+                            <td>Eicher 407</td>
+                            <td>5 days</td>
+                            <td>17/06/2015</td>
+                            <td>
+                                <div class="dropdown open" style="margin-bottom:-20px">
+                                    <a aria-expanded="true" href="" onClick=" $('#box').show(); info" data-toggle="dropdown" style="margin-bottom:10px"class="dropdown-toggle f-s-14">
+                                        <i class="fa fa-bell-o"></i>
+                                        <span class="label" style="background-color:#FE2E64;border-radius:10px">4</span>
+                                    </a>  
+                                </div>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                <div class="leo-module mod-feat jointoday" >
+                    <div class="content"style="margin-left:0px">		<table class="table table-striped " >
+                            <thead>
+                                <tr style="background-color:#d8d8d8;">
+                                    <th style="width:5px">Source</th>
+                                    <th>Destination</th>
+                                    <th>Material type</th>
+                                    <th >Weight</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Ahmedabad</td>
+                                    <td>Delhi</td>
+                                    <td>Iron</td>
+                                    <td ><font size="2">10</font></td>
+                                    <td>Rs. 25000</td>
+                                    <td><div class="leo-module mod-feat jointoday" >
+                                            <button type="submit" onClick=" $('#box').hide(); info"  onmousedown="toggleOverlay2()" value="Confirm" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Confirm</font></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ahmedabad</td>
+                                    <td>Delhi</td>
+                                    <td>Iron</td>
+                                    <td ><font size="2">10</font></td>
+                                    <td>Rs. 25000</td>
+                                    <td><div class="leo-module mod-feat jointoday" >
+                                            <button type="submit" onClick=" $('#box').hide(); info"  onmousedown="toggleOverlay2()" value="Confirm" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Confirm</font></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ahmedabad</td>
+                                    <td>Delhi</td>
+                                    <td>Iron</td>
+                                    <td ><font size="2">10</font></td>
+                                    <td>Rs. 25000</td>
+                                    <td><div class="leo-module mod-feat jointoday" >
+                                            <button type="submit" onClick=" $('#box').hide(); info"  onmousedown="toggleOverlay2()" value="Confirm" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open sans" style="font-weight:normal">Confirm</font></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ahmedabad</td>
+                                    <td>Delhi</td>
+                                    <td>Iron</td>
+                                    <td ><font size="2">10</font></td>
+                                    <td>Rs. 25000</td>
+                                    <td><div class="leo-module mod-feat jointoday" >
+                                            <button type="submit" onClick=" $('#box').hide(); info"  onmousedown="toggleOverlay2()" value="Confirm" style="height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px"id="btn-submit" class="btn-action" tabindex="9"><font face="Open Sans" style="font-weight:normal">Confirm</font></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn-action" style="margin-top:-3%;margin-left:89.5%;height:20px;width:70px;margin-top:0px;line-height:14px;font-size:13px;font-weight:normal">Respond</button></div>
+            </div>
+
+
+            <div  id="box"style="display:none;margin-top:100px;height:10%" style="background-color:white">	
+
+
+            </div>
+
+        </div>
         <div id="overlay" ></div>
 
         <div id="specialBox" style="width:50%;">
