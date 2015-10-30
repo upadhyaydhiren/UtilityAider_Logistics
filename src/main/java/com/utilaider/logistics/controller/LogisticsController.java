@@ -209,6 +209,9 @@ public class LogisticsController {
     @RequestMapping(value = "login")
     public ModelAndView login(@ModelAttribute Owner owner, ModelMap model, @RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "logout", required = false) String logout) {
+        saveIntialAllBusinessIndustry();
+        saveIntialAllRole();
+        saveIntialStaticBasicUserEntity();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             return new ModelAndView("redirect:home");
@@ -227,9 +230,6 @@ public class LogisticsController {
     @RequestMapping(value = "registration", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute Owner owner, ModelMap model) {
         try {
-            saveIntialAllBusinessIndustry();
-            saveIntialStaticBasicUserEntity();
-            saveIntialAllRole();
             owner.setPassword(new BCryptPasswordEncoder().encode(owner.getPassword()));
             owner.setCreatedBy(owner.getEmail());
             owner.setCreatedDate(new Date());

@@ -206,7 +206,7 @@
 
             </div>	
 
-            <div class="tab-pane fade" id="default-tab-2" style="width:100%;margin-bottom:%;margin-top:-2.5%">
+            <div class="tab-pane fade" id="default-tab-2" style="width:100%;margin-top:-2.5%">
                 <div class="form-group" >
                     <div class="col-md-6" style="width:50%;">
                         <label class="radio-inline" style="margin-left:70%">
@@ -255,7 +255,7 @@
                             </div>
                             <div id="changeradio">
                                 <label for="name" class="col-lg-2" style="margin-top:1%">Truck type :</label>
-                                <div class="col-lg-4" style="margin-bottom:%;margin-top:0.3%">
+                                <div class="col-lg-4" style="margin-top:0.3%">
                                     <div class="leo-module mod-feat jointoday" style="margin-bottom:1%">
                                         <select  name="truckType" id="truckType" style="margin-top:2%;width:100%;height:27px" class="country-select" >
                                             <option value="Transporter">Truck A</option>
@@ -278,7 +278,7 @@
                                         </select></div>
                                 </div>
                                 <label for="name" class="col-lg-2" style="margin-top:1%">Capacity :</label>
-                                <div class="col-lg-4" style="margin-bottom:%;margin-top:%">
+                                <div class="col-lg-4">
                                     <div class="leo-module mod-feat jointoday" style="margin-bottom:1%">
                                         <input type="text" name="capacity" id="capacity" value="" style="margin-top:2%;width:100%"autocomplete="on" size="55" maxlength="20" tabindex="5">
                                     </div>
@@ -365,7 +365,7 @@
 
         <div class="" id="default-tab-viewgoods" style="background-color:white;display:none;width:50%;margin-left:25%">
 
-            <div  style="background-color:;height:10%" id="second" style="background-color:#d8d8d8">	
+            <div id="second" style="background-color:#d8d8d8;height:10%">	
                 <table class="table table-striped " >
                     <thead style="background-color:#d8d8d8">
                         <tr >
@@ -439,7 +439,7 @@
             </div>
         </div>
         <div class="" id="default-tab-viewtruck" style="background-color:white;width:50%;margin-left:25%;display:none">
-            <div  style="background-color:;height:10%" id="first"style="background-color:#d8d8d8">	
+            <div id="first" style="background-color:#d8d8d8;height:10%">	
                 <table class="table table-striped " >
                     <thead style="background-color:#d8d8d8">
                         <tr >
@@ -527,7 +527,7 @@
 
 
         <div id="mypostposttruck" class="col-md-0 col-md-offset-3" style=";display:none;width:50%;margin-right:0px;height:100px">
-            <div  style="background-color:;height:5px" style="background-color:#d8d8d8">	
+            <div style="background-color:#d8d8d8; height:5px">	
                 <table class="table table-striped " style="height:5px;margin-bottom:0px">
                     <thead>
                         <tr style="background-color:#d8d8d8;">
@@ -1107,7 +1107,7 @@ $('#photoCovera').val($(this).val());
 
         </div>
         <div id="mypostpostgoods" class="col-md-0 col-md-offset-3" style=";display:none;width:50%;margin-right:0px;height:100px">
-            <div  style="background-color:;height:10%" style="background-color:#d8d8d8">	
+            <div style="background-color:#d8d8d8;height:10%">	
                 <table class="table table-striped " style="height:5px;margin-bottom:0px">
                     <thead>
                         <tr style="background-color:#d8d8d8;">

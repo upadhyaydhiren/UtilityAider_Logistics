@@ -186,7 +186,7 @@
             </div>
         </nav>
         <div class="tab-content" style=";width:50%;margin-left:25%;height:100%;margin-top:0.1%;margin-bottom:0px">
-            <div class="tab-pane fade active in" id="default-tab-2" style="width:100%;margin-bottom:%;margin-top:-2.5%">
+            <div class="tab-pane fade active in" id="default-tab-2" style="width:100%;margin-top:-2.5%">
                 <div class="tab-content" style="margin-bottom:-1.8%">
                     <div class="" id="default-tab-postgoods" style="margin-bottom:0px;height:100%;">
                         <div class="form-group" style="background-color:">
@@ -607,7 +607,7 @@
             </div>
         </div>
         <div id="otherspostedgoods" class="col-md-0 col-md-offset-3" style="width:50%;margin-right:0px;height:100px">
-            <div  style="background-color:;height:10%" style="background-color:#d8d8d8">
+            <div style="background-color:#d8d8d8;height: 10%">
                 <table class="table table-striped " style="height:5px;margin-bottom:0px">
                     <thead>
                         <tr style="background-color:#d8d8d8;">
@@ -640,7 +640,7 @@
         </div>
         <div id="mypostpostgoods" class="col-md-0 col-md-offset-3" style="width:50%;margin-right:0px;height:100px">
             <h3>View responses</h3>
-            <div  style="background-color:;height:10%" style="background-color:#d8d8d8">
+            <div style="background-color:#d8d8d8; height:10%">
                 <table class="table table-striped " style="height:5px;margin-bottom:0px">
                     <thead>
                         <tr style="background-color:#d8d8d8;">
