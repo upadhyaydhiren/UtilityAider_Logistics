@@ -122,13 +122,13 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">First Name</label>
                             <div class="col-md-9">
-                                <form:input path="firstName" type="text" class="form-control" style="width:100%" placeholder="First Name" />
+                                <form:input path="firstName" cssClass="form-control" cssStyle="width:100%" placeholder="First Name" pattern="[a-zA-Z]{2,50}" oninvalid="this.setCustomValidity('First Name is only alphabet accept')" oninput="this.setCustomValidity('');" required="required" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Last Name</label>
                             <div class="col-md-9">
-                                <form:input path = "lastName" type="text" class="form-control" style="width:100%" placeholder="LastName" />
+                                <form:input path = "lastName" cssClass="form-control" cssStyle="width:100%" placeholder="LastName" pattern="[a-zA-Z]{2,50}" oninvalid="this.setCustomValidity('First Name is only alphabet accept');" oninput="this.setCustomValidity('');" required="required" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -146,39 +146,39 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Mobile Number</label>
                             <div class="col-md-9">
-                                <form:input type="text" path="mobile" class="form-control" style="width:100%" placeholder="Mobile Number" />
+                                <form:input path="mobile" cssClass="form-control" cssStyle="width:100%" placeholder="Mobile Number" pattern="[7-9]{1}[0-9]{9}" oninvalid="this.setCustomValidity('Only Indian mobile number accept')" oninput="this.setCustomValidity('');" required="required" />
                             </div>
                         </div>
                         <div class="owner-address">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Address</label>
                                 <div class="col-md-9">
-                                    <form:textarea id="address" path="address.streetName" class="form-control" style="width:100%" placeholder="Default input" />
+                                    <form:textarea id="address" path="address.streetName" cssClass="form-control" cssStyle="width:100%" placeholder="Default input" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">City</label>
                                 <div class="col-md-9">
-                                    <form:input path="address.city" id="city" style="margin-top:10px" tabindex="11" />
+                                    <form:input path="address.city" id="city" cssClass="form-control" cssStyle="margin-top:10px" tabindex="10" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <form:hidden path="address.id" id="editownerid" />
                                 <label class="col-md-3 control-label">State</label>
                                 <div class="col-md-9">
-                                    <form:input path="address.state" id="state" style="margin-top:10px" tabindex="10" />
+                                    <form:input path="address.state" id="state" cssClass="form-control" cssStyle="margin-top:10px" tabindex="11" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Pincode</label>
                                 <div class="col-md-9" id="pincode">
-                                    <form:input path="address.pincode" id="pincode" class="form-control" style="width:100%" placeholder="eg. 301201"  />
+                                    <form:input path="address.pincode" id="pincode" cssClass="form-control" cssStyle="width:100%" placeholder="eg. 301201" pattern="[1-9]{1}[0-9]{5}" oninvalid="this.setCustomValidity('Only Indian Postal Code are allowed ')" oninput="this.setCustomValidity('');"  />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Country</label>
                                 <div class="col-md-9" id="pincode">
-                                    <form:input path="address.country" id="country" class="form-control" style="width:100%" placeholder="Nation"  />
+                                    <form:input path="address.country" id="country" cssClass="form-control" cssStyle="width:100%" placeholder="Nation" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');"  />
                                 </div>
                                 <form:hidden path="address.latitude" id="lat"  />
                                 <form:hidden path="address.longitude" id="longt" />
@@ -211,20 +211,20 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">PAN</label>
                             <div class="col-md-9">
-                                <form:input type="text" id="PAN" path="panNumber" class="form-control" style="width:100%" placeholder="Default input" />
+                                <form:input id="PAN" path="panNumber" cssClass="form-control" cssStyle="width:100%" placeholder="Default input" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" oninvalid="this.setCustomValidity('Only Indian Pan Number is allowed ')" oninput="this.setCustomValidity('');"  />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Email</label>
                             <div class="col-md-9">
-                                <form:input type="text" id="email" path="email" class="form-control" style="width:100%" placeholder="Default input" />
+                                <form:input id="email" path="email" cssClass="form-control" cssStyle="width:100%" placeholder="Default input" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.([a-zA-Z]{2,10}|[a-zA-z]{2,10}\.[a-zA-Z]{2,10})" oninvalid="this.setCustomValidity('Email is not valid')" oninput="this.setCustomValidity('');" required="required" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Industry</label>
                             <div class="col-md-9">
                                 <form:hidden path="usersIndustrys[0].id" />
-                                <form:select path="usersIndustrys[0].businessIndustry.id" name="countryCode" id="industyListDropdown"  style="margin-top:10px;height:30px" class="country-select" tabindex="5">
+                                <form:select path="usersIndustrys[0].businessIndustry.id" name="countryCode" id="industyListDropdown"  cssStyle="margin-top:10px;height:30px" cssClass="country-select" tabindex="5">
                                     <c:forEach items="${industryList}" var="industry">
                                         <form:option value="${industry.id}" label="${industry.industryName}" />
                                     </c:forEach>
@@ -237,27 +237,27 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Company</label>
                             <div class="col-md-9">
-                                <form:input type="text" id="companyName" path="companyName" class="form-control" style="width:100%" placeholder="Default input" />
+                                <form:input id="companyName" path="companyName" cssClass="form-control" cssStyle="width:100%" placeholder="Default input" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label">Business</label>
                             <div class="col-md-9">
-                                <form:input type="text" id="business" path="businessType" class="form-control" style="width:100%" placeholder="Default input" />
+                                <form:input id="business" path="businessType" cssClass="form-control" cssStyle="width:100%" placeholder="Default input" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');"   />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Transport Reference</label>
                             <div class="col-md-9">
-                                <form:input type="text" id="trasnposrtReference" path="userReferanceCode" class="form-control" style="width:100%" placeholder="Default input" />
+                                <form:input type="text" id="trasnposrtReference" path="userReferanceCode" cssClass="form-control" cssStyle="width:100%" placeholder="Default input" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label">Number of Employees</label>
                             <div class="col-md-9">
-                                <form:input type="text" id="noOfEmp" path="noOfEmployee" class="form-control" style="width:100%" placeholder="If applicable" />
+                                <form:input id="noOfEmp" path="noOfEmployee" cssClass="form-control" cssStyle="width:100%" placeholder="If applicable" pattern="[0-9]{1,}" oninvalid="this.setCustomValidity('Only Number is allowed')" oninput="this.setCustomValidity('');"  />
                             </div>
                         </div>
 
@@ -265,7 +265,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Number of Trucks</label>
                             <div class="col-md-9">
-                                <form:input type="text" id="noOfTrucks" path="noOfVehicles" class="form-control" style="width:100%" placeholder="If applicable" />
+                                <form:input id="noOfTrucks" path="noOfVehicles" cssClass="form-control" cssStyle="width:100%" placeholder="If applicable" pattern="[0-9]{1,}" oninvalid="this.setCustomValidity('Only Number is allowed')" oninput="this.setCustomValidity('');"  />
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -316,19 +316,19 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Model No.</label>
                                     <div class="col-md-9">
-                                        <form:input id="modalNo" path="modelNo" class="form-control" style="width:60%" placeholder="Default input" />
+                                        <form:input id="modalNo" path="modelNo" cssClass="form-control" cssStyle="width:60%" placeholder="Default input" pattern="[a-zA-Z0-9]{2,}" oninvalid="this.setCustomValidity('Enter Valid Model Number')" oninput="this.setCustomValidity('');"  />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Reg. No.</label>
                                     <div class="col-md-9">
-                                        <form:input id="regNo" path="regNo" class="form-control" style="width:60%" placeholder="Default input" />
+                                        <form:input id="regNo" path="regNo" cssStyle="width:60%" placeholder="Default input" pattern="[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}" oninvalid="this.setCustomValidity('Enter Valid Registration NO')" oninput="this.setCustomValidity('');"  />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Number of Wheels</label>
                                     <div class="col-md-9">
-                                        <form:input id="noOfWheels" path="noOfWheels" class="form-control" style="width:60%" placeholder="Default input" />
+                                        <form:input id="noOfWheels" path="noOfWheels" cssClass="form-control" cssStyle="width:60%" placeholder="Default input" pattern="[0-9]{1,}" oninvalid="this.setCustomValidity('Only Numbers are allowed')" oninput="this.setCustomValidity('');"    />
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-md-offset-8" style="background-color:white;left:25px;width:30%;padding-right:0%;margin-top:-34%">
@@ -350,19 +350,19 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Insurance</label>
                                     <div class="col-md-9">
-                                        <form:input id="insurance" path="insuranceNo" class="form-control" style="width:100%" placeholder="Default input" />
+                                        <form:input id="insurance" path="insuranceNo" cssClass="form-control" cssStyle="width:100%" placeholder="Default input" pattern="[A-Za-z0-9]{2,}" oninvalid="this.setCustomValidity('Enter Valid Insurance NO')" oninput="this.setCustomValidity('');"   />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Capacity</label>
                                     <div class="col-md-9">
-                                        <form:input id="capacity" path="capacity" class="form-control" style="width:100%" placeholder="Default input" />
+                                        <form:input id="capacity" path="capacity" cssClass="form-control" cssStyle="width:100%" placeholder="Default input" pattern="[0-9]{1,}" oninvalid="this.setCustomValidity('Ony Numbers are allowed')" oninput="this.setCustomValidity('');"   />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Weight</label>
                                     <div class="col-md-9">
-                                        <form:input id="weight" path="weight" class="form-control" style="width:100%" placeholder="Default input" />
+                                        <form:input id="weight" path="weight" cssClass="form-control" cssStyle="width:100%" placeholder="Default input" pattern="[0-9]{1,}" oninvalid="this.setCustomValidity('Ony Numbers are allowed')" oninput="this.setCustomValidity('');"  />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -388,26 +388,26 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Charges/Hour</label>
                                     <div class="col-md-9">
-                                        <form:input id="charges" path="chargesPerHour" class="form-control" style="width:100%" placeholder="If applicable" />
+                                        <form:input id="charges" path="chargesPerHour" cssClass="form-control" cssStyle="width:100%" placeholder="If applicable" pattern="(?:0|[1-9]\d*)(?:\.(?!.*000)\d+)?" oninvalid="this.setCustomValidity('Ony Indian Currency are allowed')" oninput="this.setCustomValidity('');"   />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Route Information</label>
                                     <div class="col-md-9">
-                                        <form:input type="text" id="routeInfo" path="routeInfo" class="form-control" style="width:100%" placeholder="Default input" />
+                                        <form:input id="routeInfo" path="routeInfo" cssClass="form-control" cssStyle="width:100%" placeholder="Default input" pattern="[a-zA-Z]{1,}" oninvalid="this.setCustomValidity('Ony Alphabets are allowed')" oninput="this.setCustomValidity('');"  />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Road Tax Valid upto</label>
                                     <div class="col-md-9">
-                                        <form:input id="datepicker" path="roadTaxValidDate" style=" width:100%;margin-top:2%" />
+                                        <form:input id="datepicker" path="roadTaxValidDate" cssStyle=" width:100%;margin-top:2%" cssClass="form-control" />
                                     </div>
                                 </div>
-                                <!--                                <script>
-                                                                    $(function () {
-                                                                        $("#datepicker").datepicker();
-                                                                    });</script>-->
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $("#datepicker").datepicker();
+                                    });</script>
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Tracking facility :</label>
                                     <div class="col-md-9">
@@ -442,7 +442,7 @@
                     <div style="width:100%" align="center">
 
                         <img src="${pageContext.request.contextPath}/resources/images/image3.png" alt="Smiley face" height="50px" width="65px" align="right">
-                        <font size="3">Add Driver</font><br><font size="2">Adding Driver info keeps track of your driverse.</font>
+                        <font size="3">Add Driver</font><br><font size="2">Adding Driver info keeps track of your drivers.</font>
                         <div class="leo-module mod-feat jointoday" >
                             <button type="button" onclick="clearDriver();" id="addDriver" href="#modal-dialogDriver" name="" value="Add Driver" style="border-radius:0px;width:100%;margin-top:0px"id="btn-submit" class="btn-action" data-toggle="modal" tabindex="9"><font face="OPen Sans" style="font-weight:normal">Add Driver</font></button>
                         </div>
@@ -464,31 +464,31 @@
                                 <form:hidden path="id" />
                                 <label class="col-md-3 control-label">First Name</label>
                                 <div class="col-md-9">
-                                    <form:input type="text" id="driverFirstName" path="firstName" class="form-control" style="width:60%" placeholder="Default input" />
+                                    <form:input id="driverFirstName" path="firstName" cssClass="form-control" cssStyle="width:60%" placeholder="Default input" pattern="[a-zA-Z]{2,50}" oninvalid="this.setCustomValidity('First Name is only alphabet accept')" oninput="this.setCustomValidity('');" required="required" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Last Name</label>
                                 <div class="col-md-9">
-                                    <form:input type="text" id="driverLastName" path="lastName" class="form-control" style="width:60%" placeholder="Default input" />
+                                    <form:input id="driverLastName" path="lastName" cssClass="form-control" cssStyle="width:60%" placeholder="Default input" pattern="[a-zA-Z]{2,50}" oninvalid="this.setCustomValidity('Last Name is only alphabet accept')" oninput="this.setCustomValidity('');" required="required" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Lisance No.</label>
                                 <div class="col-md-9">
-                                    <form:input type="text" id="lisenceNumber" path="licenseNo" class="form-control" style="width:60%" placeholder="Default input" />
+                                    <form:input id="lisenceNumber" path="licenseNo" cssClass="form-control" cssStyle="width:60%" placeholder="Default input" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Mobile No.</label>
                                 <div class="col-md-9">
-                                    <form:input type="text" id="driverMobile" path="mobile" class="form-control"  style="width:60%" placeholder="Default input" onblur="getDriver(this);" />
+                                    <form:input id="driverMobile" path="mobile" cssClas="form-control"  cssStyle="width:60%" placeholder="Default input" onblur="getDriver(this);" pattern="[7-9]{1}[0-9]{9}" oninvalid="this.setCustomValidity('Only Indian mobile number accept')" oninput="this.setCustomValidity('');" required="required" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Email No</label>
                                 <div class="col-md-9">
-                                    <form:input type="text" id="driverEmail"  path="email" class="form-control"  style="width:60%" placeholder="Default input" />
+                                    <form:input id="driverEmail"  path="email" cssClass="form-control"  cssStyle="width:60%" placeholder="Default input" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.([a-zA-Z]{2,10}|[a-zA-z]{2,10}\.[a-zA-Z]{2,10})" oninvalid="this.setCustomValidity('Email is not valid')" oninput="this.setCustomValidity('');" />
                                 </div>
                             </div>
                             <div class="col-md-2 col-md-offset-8" style="background-color:white;left:25px;width:30%;padding-right:0%;margin-top:-27%">
@@ -511,38 +511,38 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Service duration</label>
                                 <div class="col-md-9">
-                                    <form:input type="text" id="serviceDuration" path="serviceDuration" class="form-control" placeholder="In months" />
+                                    <form:input id="serviceDuration" path="serviceDuration" cssClass="form-control" placeholder="In months" pattern="[0-9]{1,}" oninvalid="this.setCustomValidity('Only Number are allowed')" oninput="this.setCustomValidity('');" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Address</label>
                                 <div class="col-md-9">
-                                    <form:textarea class="form-control" id="driveraddress" path="address.streetName" placeholder="Textarea" rows="5" />
+                                    <form:textarea cssClass="form-control" id="driveraddress" path="address.streetName" placeholder="Textarea" rows="5" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">City</label>
                                 <div class="col-md-9">
-                                    <form:input path="address.city" id="citydriver" style="margin-top:10px" tabindex="10" />
+                                    <form:input path="address.city" id="citydriver" cssStyle="margin-top:10px" cssClass="form-control" tabindex="10" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <form:hidden path="address.id" id="editdriverid" />
                                 <label class="col-md-3 control-label">State</label>
                                 <div class="col-md-9">
-                                    <form:input path="address.state" id="statedriver"  style="margin-top:10px" tabindex="10" />
+                                    <form:input path="address.state" id="statedriver"  cssStyle="margin-top:10px" cssClass="form-control" tabindex="11" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Pincode</label>
                                 <div class="col-md-9">
-                                    <form:input path="address.pincode" id="pincodedriver" />
+                                    <form:input path="address.pincode" cssClass="form-control" id="pincodedriver" pattern="[1-9]{1}[0-9]{5}" oninvalid="this.setCustomValidity('Only Indian Postal Code are allowed ')" oninput="this.setCustomValidity('');"  />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Country</label>
                                 <div class="col-md-9">
-                                    <form:input path="address.country" id="countrydriver"  style="margin-top:10px" tabindex="10" />
+                                    <form:input path="address.country" id="countrydriver" cssClass="form-control"  cssStyle="margin-top:10px" tabindex="10" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');"  />
                                 </div>
                                 <form:hidden path="address.latitude" id="latdriver" />
                                 <form:hidden path="address.longitude" id="longtdriver" />
@@ -825,7 +825,8 @@
                         $('#truckType').val(data.vehicleType);
                         $('#charges').val(data.chargesPerHour);
                         $('#routeInfo').val(data.routeInfo);
-                        $('#datepicker').val(data.roadTaxValidDate);
+                        var date=new Date(data.roadTaxValidDate);
+                        $('#datepicker').val((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());
                         $("input[name=isTrackable][value='" + data.isTrackable + "']").prop("checked", true);
                         $('#modal-dialog5').modal('show');
                     }

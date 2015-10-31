@@ -18,6 +18,7 @@ import com.utilaider.logistics.domain.VehiclePermits;
 import com.utilaider.logistics.domain.VehicleType;
 import com.utilaider.logistics.service.BusinessIndustryService;
 import com.utilaider.logistics.service.DriverService;
+import com.utilaider.logistics.service.LoginServiceImpl;
 import com.utilaider.logistics.service.OwnerService;
 import com.utilaider.logistics.service.RoleService;
 import com.utilaider.logistics.service.StaticBasicUserEntityService;
@@ -33,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -70,10 +72,12 @@ public class LogisticsController {
     DriverService driverService;
     @Autowired(required = true)
     RoleService roleService;
+    @Autowired(required = true)
+    LoginServiceImpl loginServiceImpl;
 
     @InitBinder
     public void initBider(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
@@ -245,7 +249,13 @@ public class LogisticsController {
             Address address = new Address();
             address.setUser(owner);
             owner.setAddress(address);
-            if ((Long) ownerService.save(owner) > 0) {
+            if ((Long) ownerService.save(owner) > 0) 
+            {
+                UserDetails userDetails=loginServiceImpl.loadUserByUsername(owner.getMobile());
+                Authentication authentication = new UsernamePasswordAuthenticationToken(
+						userDetails,userDetails.getPassword(), userDetails.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(
+						authentication);
                 model.addAttribute("registrationMessage", "You have registered successfully.");
                 model.addAttribute("entityList", basicUserEntityService.getAll());
                 model.addAttribute("industryList", businessIndustryService.getAll());
@@ -535,7 +545,8 @@ public class LogisticsController {
     @RequestMapping(value = {"vehicleData/{regno}"}, method = RequestMethod.POST)
     @ResponseBody
     public Vehicle getVehicleData(@PathVariable("regno") String regno) {
-        try {
+        try 
+        {
             return vehicleService.getById(regno);
         } catch (Exception e) {
             e.printStackTrace();

@@ -69,7 +69,7 @@
                                     </label>
                                     <div class="fieldgroup"
                                          <span class="error" id="stakeholdersList"></span>
-                                        <form:select path="userEntities[0].basicUserEntity.id" name="countryCode" id="stakeholdersListDropdown" style="margin-top:5px;height:30px" class="country-select" tabindex="1">
+                                        <form:select path="userEntities[0].basicUserEntity.id" id="stakeholdersListDropdown" style="margin-top:5px;height:30px" class="country-select" tabindex="1" required="required">
                                             <form:options items="${entityList}" itemLabel="entityType" itemValue="id"/>
                                         </form:select>
                                         <form:hidden path="userEntities[0].user.id" value="${owner.id}" />
@@ -81,7 +81,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input type="email" path="email" id="email" style="margin-top:10px" autocomplete="on" size="55" tabindex="2"/>
+                                            <form:input type="email" path="email" id="email" cssStyle="margin-top:10px" tabindex="2" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.([a-zA-Z]{2,10}|[a-zA-z]{2,10}\.[a-zA-Z]{2,10})" oninvalid="this.setCustomValidity('Email is not valid')" oninput="this.setCustomValidity('');" />
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="panNumber" pattern="" id="panNumber" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="3"/>
+                                            <form:input path="panNumber" id="panNumber" cssStyle="margin-top:10px" tabindex="3" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" oninvalid="this.setCustomValidity('Only Indian Pan Number is allowed ')" oninput="this.setCustomValidity('');"/>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="companyName" id="companyName" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="4"/>
+                                            <form:input path="companyName" id="companyName" cssStyle="margin-top:10px" tabindex="4" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');" />
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
                                     </label>
                                     <div class="fieldgroup"
                                          <span class="error" id="industyList"></span>
-                                        <form:select path="usersIndustrys[0].businessIndustry.id" name="countryCode" id="industyListDropdown"  style=" margin-top:10px;height:30px" class="country-select" tabindex="5">
+                                        <form:select path="usersIndustrys[0].businessIndustry.id" id="industyListDropdown"  cssStyle=" margin-top:10px;height:30px" cssClass="country-select" tabindex="5">
                                             <form:options items="${industryList}" itemLabel="industryName" itemValue="id"/>
                                         </form:select>
                                         <form:hidden path="usersIndustrys[0].user.id" value="${owner.id}" />
@@ -126,7 +126,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="noOfEmployee" id="numberOfEmployees" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="6"/>
+                                            <form:input path="noOfEmployee" id="numberOfEmployees" cssStyle="margin-top:10px" tabindex="6" pattern="[0-9]{1,}" oninvalid="this.setCustomValidity('Only Number is allowed')" oninput="this.setCustomValidity('');" />
                                         </div></div>
                                 </div>
                                 <div class="job-title required">
@@ -135,7 +135,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="noOfVehicles" id="numberOfTrucks" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="7"/>
+                                            <form:input path="noOfVehicles" id="numberOfTrucks" style="margin-top:10px" tabindex="7" pattern="[0-9]{1,}" oninvalid="this.setCustomValidity('Only Number is allowed')" oninput="this.setCustomValidity('');" />
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="businessType" id="business" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="7"/>
+                                            <form:input path="businessType" id="business" style="margin-top:10px" tabindex="7" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');"  />
                                         </div></div>
                                 </div>
                                 <div class="job-title required">
@@ -154,7 +154,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="userReferanceCode" name="transporterReference" id="transporterReference" style="margin-top:10px" autocomplete="on" size="55" maxlength="20" tabindex="8"/>
+                                            <form:input path="userReferanceCode" name="transporterReference" id="transporterReference" cssStyle="margin-top:10px" tabindex="8"/>
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +164,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:textarea path="address.streetName" id="address" class="span6" style="margin-top:10px;height:40px" autocomplete="on" size="55" maxlength="20" tabindex="13"/>
+                                            <form:textarea path="address.streetName" id="address" cssClass="span6" cssStyle="margin-top:10px;height:40px" tabindex="9" />
                                         </div></div>
                                 </div>
                                 <div class="job-title required">
@@ -173,7 +173,7 @@
                                     </label>
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="address.city" id="city" name="city" style="margin-top:10px"  autocomplete="on" size="55" maxlength="20" tabindex="11" />
+                                            <form:input path="address.city" id="city" name="city" cssStyle="margin-top:10px" tabindex="10" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');" />
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@
                                     </label>
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday" >
-                                            <form:input path="address.state" name="state" id="state" style="margin-top:10px" autocomplete="on" size="55" maxlength="20"  tabindex="10"/>
+                                            <form:input path="address.state" name="state" id="state" cssStyle="margin-top:10px" tabindex="11" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');"/>
                                         </div>
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@
                                     </label>
                                     <div class="fieldgroup">
                                         <div class="leo-module mod-feat jointoday">
-                                            <form:input path="address.country" name="country" id="country" style="margin-top:10px" autocomplete="on" size="55" maxlength="20"  tabindex="9"/>
+                                            <form:input path="address.country" name="country" id="country" cssStyle="margin-top:10px" tabindex="12" pattern="[a-zA-Z]{2,}" oninvalid="this.setCustomValidity('Only Alphabets are allowed')" oninput="this.setCustomValidity('');" />
                                         </div>
                                     </div>
                                 </div>
@@ -203,7 +203,7 @@
                                     </label>
                                     <div class="fieldgroup ">
                                         <div class="leo-module mod-feat jointoday">
-                                            <form:input path="address.pincode" value="" id="pincode" name="pincode" style="margin-top:10px"  autocomplete="on" size="55" maxlength="20" tabindex="12" />
+                                            <form:input path="address.pincode" value="" id="pincode" name="pincode" style="margin-top:10px" tabindex="13" pattern="[1-9]{1}[0-9]{5}" oninvalid="this.setCustomValidity('Only Indian Postal Code are allowed ')" oninput="this.setCustomValidity('');" />
                                             <input type="submit" name="" value="Register" id="btn-submit" class="btn-action" tabindex="14">
                                         </div>
                                     </div>
